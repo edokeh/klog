@@ -1,0 +1,10 @@
+<% if record.errors.any? %>
+<div class="alert alert-error">
+  <h2>保存<%= record.class.model_name.human %>时发生<%= record.errors.count %>个错误</h2>
+  <ul>
+  <% record.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+</div>
+<% end %>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Klog</title>
+  <meta charset="utf-8"/>
+  <%= stylesheet_link_tag 'base' %>
+  <%= csrf_meta_tags %>
+  <!--[if lt IE 9]>
+  <%= javascript_include_tag 'html5shiv' %>
+  <![endif]-->
+</head>
+<body>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span12">
+
+      <%= render 'layouts/header' %>
+      <%= render 'layouts/public_nav' %>
+
+      <div class="row-fluid page">
+        <div class="span10 main">
+          <%= yield %>
+        </div>
+        <%= render_cell :sidebar, :show %>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>

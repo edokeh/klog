@@ -1,0 +1,26 @@
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container" style="width:940px">
+      <a class="brand" href="#">Klog后台管理</a>
+      <ul class="nav">
+        <li <%= admin_nav_class('/admin/blogs') %>>
+          <%= link_to '文章', admin_blogs_url %>
+        </li>
+        <li <%= admin_nav_class('/admin/categories') %>>
+          <%= link_to '分类', admin_categories_url %>
+        </li>
+        <li>
+          <%= link_to '页面', admin_blogs_url %>
+        </li>
+      </ul>
+      <ul class="nav pull-right">
+        <li>
+          <%= link_to '查看博客首页', root_path %>
+        </li>
+        <li>
+          <%= link_to '退出后台', admin_session_path, :method=>:delete, :confirm=>'确定退出？' %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Klog管理后台</title>
+  <meta charset="utf-8" />
+  <%= stylesheet_link_tag 'admin' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<%= render 'layouts/admin_nav' %>
+<%= yield %>
+<%= javascript_include_tag 'admin' %>
+</body>
+</html>

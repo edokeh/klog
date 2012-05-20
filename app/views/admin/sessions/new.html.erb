@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Klog管理后台</title>
+  <meta charset="utf-8" />
+  <%= stylesheet_link_tag 'admin' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="container">
+  <h2>输入密码</h2>
+
+  <%= form_tag admin_session_path do -%>
+      <%= text_field_tag 'password' %>
+      <button class="btn btn-large btn-primary" type="submit">
+        登录
+      </button>
+  <% end -%>
+</div>
+</body>
+</html>
+

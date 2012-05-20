@@ -1,0 +1,70 @@
+@import "twitter/bootstrap/bootstrap";
+
+body{
+    background: asset-url("furley_bg.png");
+}
+
+.nav li{
+    font-weight:bolder;
+    font-size: 16px;
+}
+
+.navbar .nav .active a,
+.navbar .nav .active a:hover {
+  background-color: @gray;
+}
+
+.page{
+    box-shadow: 0 0 6px rgba(0,0,0,.2);
+	border: 1px solid #CCC;
+    border-radius: 4px;
+    background: @white;
+}
+
+header{
+    margin-bottom: 10px;
+}
+
+header h1{
+    font-size: 60px;
+    line-height: 80px;
+    height: 80px;
+    font-weight:bolder;
+    display: inline-block;
+}
+
+header em{
+    margin-left:10px;
+    font-size: 30px;
+    color: @grayLight;
+    display: inline-block;
+}
+
+.main{
+    padding: 10px 20px;
+}
+
+.sidebar{
+    padding: 20px 0;
+}
+
+.sidebar section{
+    margin-bottom: 20px;
+}
+
+.sidebar h3{
+    color: @grayLight;
+    margin-bottom: 10px;
+}
+
+article{
+  margin-bottom: 20px;
+}
+
+article header{
+  border-bottom: 1px solid @grayLighter;
+}
+
+article header p{
+    color: @grayLight;
+}
