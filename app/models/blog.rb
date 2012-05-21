@@ -21,15 +21,6 @@ class Blog < ActiveRecord::Base
   scope :publish, where(:status=>S_PUBLISH)
   scope :draft, where(:status=>S_DRAFT)
 
-  def status_str
-    case self.status
-      when S_PUBLISH
-        '已发布'
-      when S_DRAFT
-        '草稿'
-    end
-  end
-
   def publish?
     self.status == S_PUBLISH
   end
@@ -51,9 +42,19 @@ class Blog < ActiveRecord::Base
 
   #保存后更新对应的分类的blog_count字段
   def update_category_count
-    if self.category_id_changed? && self.publish?
+    #TODO:修正这个逻辑
+    #新建发布
+    if self.status_was.nil? && self.status == S_PUBLISH
       Category.increment_counter(:blog_count, self.category_id)
-      Category.decrement_counter(:blog_count, self.category_id_was)
+    else
+      #发布草稿
+      if self.status_changed? && self.status == S_PUBLISH
+        Category.increment_counter(:blog_count, self.category_id)
+      #修改已发布文章的分类
+      elsif self.category_id_changed?
+        Category.increment_counter(:blog_count, self.category_id)
+        Category.decrement_counter(:blog_count, self.category_id_was)
+      end
     end
   end
 

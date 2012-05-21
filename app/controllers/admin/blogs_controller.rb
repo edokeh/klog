@@ -14,7 +14,7 @@ class Admin::BlogsController < Admin::ApplicationController
   def create
     @blog = Blog.new(params[:blog])
     if @blog.save
-      redirect_to admin_blogs_path, :notice=>"发表文章成功！"
+      redirect_to admin_blogs_path(:status=>@blog.status), :notice=>"发表文章成功！"
     else
       render :new
     end
@@ -28,10 +28,7 @@ class Admin::BlogsController < Admin::ApplicationController
   def update
     @blog = Blog.find(params[:id])
     if @blog.update_attributes(params[:blog])
-      if @blog.category_id_changed?
-        puts @blog.category_was
-      end
-      redirect_to admin_blogs_path, :success=>"修改成功！"
+      redirect_to admin_blogs_path(:status=>@blog.status), :notice=>"“#{@blog.title}” 修改成功！"
     else
       render :edit
     end

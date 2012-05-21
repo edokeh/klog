@@ -2,15 +2,30 @@
   <%= form_for([:admin, @blog], :html=>{:class=>"form-horizontal"}) do |f| %>
       <fieldset>
         <legend>修改文章</legend>
-        
+
         <%= render :partial => "form", :locals=>{:f=>f} %>
 
         <div class="form-actions">
-          <button class="btn btn-large btn-primary" type="submit">
+          <%= f.hidden_field :status %>
+          <button class="btn btn-large btn-primary" type="submit" data-status="<%= Blog::S_PUBLISH %>">
             <i class="icon-ok icon-white"></i>
-            提交修改
+            <% if @blog.publish? %>
+                修改文章
+            <% else %>
+                发布文章
+            <% end %>
           </button>
+          <% unless @blog.publish? %>
+              <button class="btn btn-large btn-primary" type="submit" data-status="<%= Blog::S_DRAFT %>">
+                <i class="icon-list icon-white"></i>
+                保存草稿
+              </button>
+          <% end %>
         </div>
       </fieldset>
   <% end %>
 </div>
+
+<% content_for :js do %>
+    <%= javascript_include_tag 'admin/blogs/new' %>
+<% end %>
