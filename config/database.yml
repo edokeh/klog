@@ -15,8 +15,8 @@ development:
   database: klog
   pool: 5
   username: root
-  password: geliang
-  host: 192.168.127.128
+  password: root
+  host: 192.168.29.1
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

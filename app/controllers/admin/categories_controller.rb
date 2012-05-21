@@ -24,18 +24,17 @@ class Admin::CategoriesController < Admin::ApplicationController
 
     respond_to do |format|
       if @category.update_attributes(params[:category])
-        format.html { redirect_to @category, notice: 'Category was successfully updated.' }
-        format.json { head :no_content }
+        format.html { redirect_to admin_categories_path, notice: '修改成功！'}
+        format.json { head :no_content}
       else
-        format.html { render action: "edit" }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
+        format.html { render :action=>"edit"}
+        format.json { render :json=>@category.errors}
       end
     end
   end
 
   def destroy
     @category = Category.find(params[:id])
-    @category.blogs.update_all(:category_id=>nil)
     @category.destroy
 
     redirect_to admin_categories_url

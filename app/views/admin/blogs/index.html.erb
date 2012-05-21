@@ -1,34 +1,45 @@
 <div class="container">
   <h2>文章列表</h2>
+
+  <ul class="nav nav-tabs">
+    <li <%= blog_nav_class(Blog::S_PUBLISH) %>>
+      <a href="<%= admin_blogs_path(:status=>Blog::S_PUBLISH) %>">已发布</a>
+    </li>
+    <li <%= blog_nav_class(Blog::S_DRAFT) %>>
+      <a href="<%= admin_blogs_path(:status=>Blog::S_DRAFT) %>">草稿箱</a>
+    </li>
+  </ul>
+  
   <% if flash[:notice] %>
-  <div class="alert alert-success">
-    <%= flash[:notice] %>
-  </div>
+      <div class="alert alert-success">
+        <%= flash[:notice] %>
+      </div>
   <% end %>
+  
   <table class="table table-striped table-bordered table-condensed">
-    <col width="50%" />
-    <col width="10%" />
-    <col width="20%" />
+    <col width="50%"/>
+    <col width="10%"/>
+    <col width="10%"/>
     <thead>
     <tr>
       <th>标题</th>
       <th>状态</th>
-      <th>发表时间</th>
       <th>类别</th>
+      <th>发表时间</th>
       <th>操作</th>
     </tr>
     </thead>
     <% if @blogs.blank? %>
-    <tr>
-      <td colspan="5">暂无文章</td>
-    </tr>
+        <tr>
+          <td colspan="5">暂无文章</td>
+        </tr>
     <% end %>
     <% @blogs.each do |blog| %>
         <tr>
           <td><%= link_to blog.title, blog_path(blog.slug), :target=>'_blank' %></td>
-          <td><%= blog.status %></td>
-          <td><%= l blog.created_at, :format=>:long %></td>
+          <td><%= blog.status_str %></td>
           <td><%= blog.category.try(:name) %></td>
+          <td><%= l blog.created_at, :format=>:long %></td>
           <td>
             <%= link_to '修改', edit_admin_blog_path(blog) %>
             <%= link_to '删除', [:admin, blog], :confirm => '确定删除?', :method => :delete %>
@@ -36,9 +47,9 @@
         </tr>
     <% end %>
   </table>
-  
+
   <%= paginate @blogs %>
-  
+
   <%= link_to '写文章', new_admin_blog_path, :class=>"btn btn-primary btn-large" %>
-  
+
 </div>

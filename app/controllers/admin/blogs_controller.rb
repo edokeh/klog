@@ -2,7 +2,8 @@
 class Admin::BlogsController < Admin::ApplicationController
 
   def index
-    @blogs = Blog.order("created_at DESC").includes(:category).page(params[:page])
+    params[:status] ||= Blog::S_PUBLISH
+    @blogs = Blog.where(:status=>params[:status]).order("created_at DESC").includes(:category).page(params[:page])
   end
 
   def new
@@ -29,7 +30,7 @@ class Admin::BlogsController < Admin::ApplicationController
     if @blog.update_attributes(params[:blog])
       if @blog.category_id_changed?
         puts @blog.category_was
-      end      
+      end
       redirect_to admin_blogs_path, :success=>"修改成功！"
     else
       render :edit
