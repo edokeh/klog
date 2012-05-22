@@ -1,3 +1,3 @@
 # Klog - a simple personal blog website
 
-Klog是一个简单的个人blog程序，基于rails3 + mysql
+Klog鏄竴涓畝鍗曠殑涓汉blog绋嬪簭锛屽熀浜巖ails3 + mysql
