@@ -6,7 +6,9 @@ Klog::Application.routes.draw do
   resources :categories
 
   namespace :admin do
-    resources :blogs
+    resources :blogs do
+      post "publish", :on=>:member
+    end
     resources :categories
     resource :session
     get '/'=>'home#show'

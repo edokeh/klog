@@ -1,26 +1,25 @@
 <div class="container">
   <%= form_for([:admin, @blog], :html=>{:class=>"form-horizontal"}) do |f| %>
       <fieldset>
-        <legend>写文章</legend>
+        <legend>
+          写文章
+        </legend>
 
         <%= render :partial => "form", :locals=>{:f=>f} %>
 
         <div class="form-actions">
           <%= f.hidden_field :status %>
-          <button class="btn btn-large btn-primary" type="submit" data-status="<%=Blog::S_PUBLISH%>">
+          <button class="btn btn-large btn-primary" type="submit" data-status="<%= Blog::S_PUBLISH %>">
             <i class="icon-ok icon-white"></i>
             发布文章
           </button>
-          <button class="btn btn-large btn-primary" type="submit" data-status="<%=Blog::S_DRAFT%>">
-            <i class="icon-list icon-white"></i>
+          <button class="btn btn-large btn-warning1" type="submit" data-status="<%= Blog::S_DRAFT %>">
             保存草稿
-          </button>
-          <button class="btn btn-large" type="submit">
-            取消
           </button>
         </div>
       </fieldset>
   <% end %>
+  <%= link_to '<<返回列表', admin_blogs_path %>
 </div>
 
 <% content_for :js do %>

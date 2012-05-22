@@ -13,8 +13,11 @@ class Blog < ActiveRecord::Base
   before_validation :clean_slug
   before_save :fill_slug
   before_save :fill_html_content
-  after_create :increase_blog_count, :if=>:publish?
-  after_update :update_blog_count, :if=>:publish?
+  
+  #保存时，如果是发布状态，增加分类的blog count
+  after_save :increase_blog_count, :if=>:publish?
+  #如果修改了已发布的，则减少之前分类的blog count
+  after_save :decrease_blog_count, :if=>:modify_publish?
   after_destroy :decrease_blog_count, :if=>:publish?
 
   belongs_to :category
@@ -24,6 +27,16 @@ class Blog < ActiveRecord::Base
 
   def publish?
     self.status == S_PUBLISH
+  end
+
+  def publish!
+    self.status = S_PUBLISH
+    self.save
+  end
+
+  #是否修改了已发布的blog
+  def modify_publish?
+    self.status == S_PUBLISH && self.status_was == S_PUBLISH
   end
 
   #将slug中的非法字符过滤掉
@@ -41,23 +54,14 @@ class Blog < ActiveRecord::Base
     self.html_content = Klog::Markdown.render(self.content)
   end
 
-  #新建已发布的blog时，增加对应分类的blog_count
+  #增加对应分类的blog_count
   def increase_blog_count
     Category.increment_counter(:blog_count, self.category_id)
   end
 
-  #修改blog时，根据情况更新对象分类的blog_count
-  def update_blog_count
-    Category.increment_counter(:blog_count, self.category_id)
-    #如果是修改的已发布blog，需要做count的修正
-    if self.status_was == S_PUBLISH
-      Category.decrement_counter(:blog_count, self.category_id_was)
-    end
-  end
-
-  #删除blog时，减少对应分类的blog_count
+  #减少之前对应分类的blog_count，如果分类没有改变，则是当前的分类
   def decrease_blog_count
-    Category.decrement_counter(:blog_count, self.category_id)
+    Category.decrement_counter(:blog_count, self.category_id_was)
   end
 
 end

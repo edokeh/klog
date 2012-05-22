@@ -40,4 +40,13 @@ class Admin::BlogsController < Admin::ApplicationController
 
     redirect_to admin_blogs_url, :notice=>'删除成功！'
   end
+
+  #直接发布草稿
+  def publish
+    @blog = Blog.find(params[:id])
+    @blog.publish!
+
+    redirect_to admin_blogs_path(:status=>@blog.status), :notice=>"“#{@blog.title}” 发布成功！"
+  end
+
 end
