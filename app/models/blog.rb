@@ -13,7 +13,6 @@ class Blog < ActiveRecord::Base
   before_validation :clean_slug
   before_save :fill_slug
   before_save :fill_html_content
-
   after_save :update_category_count
 
   belongs_to :category
@@ -40,22 +39,30 @@ class Blog < ActiveRecord::Base
     self.html_content = Klog::Markdown.render(self.content)
   end
 
-  #保存后更新对应的分类的blog_count字段
+  #保存的同时更新对应的分类的blog_count字段
   def update_category_count
     #TODO:修正这个逻辑
-    #新建发布
-    if self.status_was.nil? && self.status == S_PUBLISH
+    if self.publish?
       Category.increment_counter(:blog_count, self.category_id)
-    else
-      #发布草稿
-      if self.status_changed? && self.status == S_PUBLISH
-        Category.increment_counter(:blog_count, self.category_id)
-      #修改已发布文章的分类
-      elsif self.category_id_changed?
-        Category.increment_counter(:blog_count, self.category_id)
-        Category.decrement_counter(:blog_count, self.category_id_was)
-      end
     end
+    unless self.category_id_was.nil?
+      Category.decrement_counter(:blog_count, self.category_id_was)
+    end
+    #新建发布
+#    if self.new_record?
+#      if self.publish?
+#        Category.increment_counter(:blog_count, self.category_id)
+#      end
+#    else
+#      #将草稿修改为发布
+#      if self.status_changed? and self.publish?
+#        Category.increment_counter(:blog_count, self.category_id)
+#        #修改已发布的类别
+#      elsif self.category_id_changed?
+#        Category.increment_counter(:blog_count, self.category_id)
+#        Category.decrement_counter(:blog_count, self.category_id_was)
+#      end
+#    end
   end
 
 end
