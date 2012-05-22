@@ -15,6 +15,7 @@ class Blog < ActiveRecord::Base
   before_save :fill_html_content
   after_create :increase_blog_count, :if=>:publish?
   after_update :update_blog_count, :if=>:publish?
+  after_destroy :decrease_blog_count, :if=>:publish?
 
   belongs_to :category
 
@@ -52,6 +53,11 @@ class Blog < ActiveRecord::Base
     if self.status_was == S_PUBLISH
       Category.decrement_counter(:blog_count, self.category_id_was)
     end
+  end
+
+  #删除blog时，减少对应分类的blog_count
+  def decrease_blog_count
+    Category.decrement_counter(:blog_count, self.category_id)
   end
 
 end

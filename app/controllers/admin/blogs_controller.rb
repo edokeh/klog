@@ -33,4 +33,11 @@ class Admin::BlogsController < Admin::ApplicationController
       render :edit
     end
   end
+
+  def destroy
+    @blog = Blog.find(params[:id])
+    @blog.destroy
+
+    redirect_to admin_blogs_url, :notice=>'删除成功！'
+  end
 end

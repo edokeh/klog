@@ -24,7 +24,7 @@ class Admin::CategoriesController < Admin::ApplicationController
 
     respond_to do |format|
       if @category.update_attributes(params[:category])
-        format.html { redirect_to admin_categories_path, notice: '修改成功！'}
+        format.html { redirect_to admin_categories_path, :notice=>'修改成功！'}
         format.json { head :no_content}
       else
         format.html { render :action=>"edit"}
@@ -37,6 +37,6 @@ class Admin::CategoriesController < Admin::ApplicationController
     @category = Category.find(params[:id])
     @category.destroy
 
-    redirect_to admin_categories_url
+    redirect_to admin_categories_url, :notice=>'删除成功！'
   end
 end
