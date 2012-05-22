@@ -1,17 +1,24 @@
+<% if @category %>
+<div class="well">
+  <h3>分类：<%= @category.name %></h3>
+</div>
+<% end %>
+
 <% @blogs.each do |blog| %>
     <article>
       <header>
         <h2>
           <%= link_to blog.title, blog_path(blog.slug) %>
         </h2>
+
         <p>发表于 <%= l blog.created_at %></p>
       </header>
       <div>
-        <%=raw blog.html_content %>
+        <%= raw blog.html_content %>
       </div>
     </article>
 <% end %>
 
 <div class="pager-wrapper">
-	<%= paginate @blogs, :theme=>'tiny' %>
+  <%= paginate @blogs, :theme=>'tiny' %>
 </div>
