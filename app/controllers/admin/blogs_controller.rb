@@ -49,4 +49,11 @@ class Admin::BlogsController < Admin::ApplicationController
     redirect_to admin_blogs_path(:status=>@blog.status), :notice=>"“#{@blog.title}” 发布成功！"
   end
 
+  #预览文章
+  def preview
+    content = params[:content]
+    html_content = Klog::Markdown.render(content)
+    render :json=>html_content.to_json
+  end
+
 end

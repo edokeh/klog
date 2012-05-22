@@ -26,12 +26,16 @@ class Blog < ActiveRecord::Base
   scope :draft, where(:status=>S_DRAFT)
 
   def publish?
-    self.status == S_PUBLISH
+    return self.status == S_PUBLISH
   end
 
   def publish!
     self.status = S_PUBLISH
     self.save
+  end
+
+  def draft?
+    return self.status == S_DRAFT
   end
 
   #是否修改了已发布的blog

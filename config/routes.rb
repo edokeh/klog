@@ -8,6 +8,7 @@ Klog::Application.routes.draw do
   namespace :admin do
     resources :blogs do
       post "publish", :on=>:member
+      post "preview", :on=>:collection
     end
     resources :categories
     resource :session

@@ -8,11 +8,26 @@
   </div>
 </div>
 
+<div class="control-group editor_tab">
+
+  <div class="controls">
+    <ul class="nav nav-pills">
+      <li class="active" data-type="edit">
+        <a href="javascript:void(0);">编辑</a>
+      </li>
+      <li data-type="preview">
+        <a href="javascript:void(0);">预览</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
 <div class="control-group">
   <label class="control-label">内容</label>
 
   <div class="controls">
-    <%= f.text_area :content, :class=>"input-xxlarge", :rows=>10 %>
+    <%= f.text_area :content, :class=>"input-xxlarge", :rows=>20 %>
+    <div id="preview"></div>
   </div>
 </div>
 
