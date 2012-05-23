@@ -11,6 +11,7 @@ Klog::Application.routes.draw do
       post "preview", :on=>:collection
     end
     resources :categories
+    resources :attaches
     resource :session
     get '/'=>'home#show'
   end

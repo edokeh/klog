@@ -30,6 +30,9 @@ GEM
       multi_json (~> 1.0)
     arel (3.0.2)
     builder (3.0.0)
+    carrierwave (0.6.2)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
     cells (3.8.5)
       actionpack (~> 3.0)
       railties (~> 3.0)
@@ -105,6 +108,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  carrierwave
   cells (~> 3.7)
   jquery-rails
   kaminari (~> 0.13.0)

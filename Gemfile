@@ -28,7 +28,7 @@ gem 'jquery-rails'
 gem "redcarpet", "~> 2.1.1"
 gem 'cells', '~> 3.7'
 gem 'kaminari', '~> 0.13.0'
-
+gem 'carrierwave'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
