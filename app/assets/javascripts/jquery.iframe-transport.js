@@ -101,6 +101,7 @@
                             fileInputClones = options.fileInput.clone();
                             // Insert a clone for each file input field:
                             options.fileInput.after(function (index) {
+                                fileInputClones[index].setAttribute("sb", 1);
                                 return fileInputClones[index];
                             });
                             if (options.paramName) {

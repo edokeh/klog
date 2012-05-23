@@ -25,3 +25,4 @@
 <% content_for :js do %>
     <%= javascript_include_tag 'admin/blogs/new' %>
 <% end %>
+<input type="text" value="<%= cookies['_klog_session'] %>" id="session_value" />
