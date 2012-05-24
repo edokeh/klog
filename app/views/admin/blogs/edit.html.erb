@@ -16,7 +16,7 @@
             <% end %>
           </button>
           <% unless @blog.publish? %>
-              <button class="btn btn-large" type="submit" data-status="<%= Blog::S_DRAFT %>">
+              <button class="btn btn-large btn-warning" type="submit" data-status="<%= Blog::S_DRAFT %>">
                 保存草稿
               </button>
           <% end %>
@@ -24,6 +24,10 @@
       </fieldset>
   <% end %>
 </div>
+
+<% content_for :head do %>
+    <%= session_meta_tags %>
+<% end %>
 
 <% content_for :js do %>
     <%= javascript_include_tag 'admin/blogs/new' %>

@@ -5,6 +5,7 @@ class CreateAttaches < ActiveRecord::Migration
       t.string :filename
       t.string :content_type
       t.string :file_size
+      t.string :blog_id
 
       t.timestamps
     end

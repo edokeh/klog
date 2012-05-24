@@ -35,14 +35,8 @@
   <label class="control-label">附件/图片</label>
 
   <div class="controls">
-    <div>
-      <div id="upload" style="height:30px;"></div>
-      <div>
-        <table cellpadding="0" cellspacing="0" class="upload-list">
-          <col width="80px"/>
-          <col width="200px">
-        </table>
-      </div>
+    <div id="upload" style="height:30px;"></div>
+    <div class="upload-list">
     </div>
   </div>
 </div>
@@ -64,18 +58,19 @@
 </div>
 
 <script id="upload-list-temp" type="x-template">
-  <tr style="">
-    <td>
+  <div class="upload-item">
+    <div class="filename pull-left">
       {{filename}}
-    </td>
-    <td>
-      <div class="progress">
-        <div class="bar" style="width:0%"></div>
-      </div>
-      <div class="handle" style="display:none;">
-        <a href="javascript:void(0);" data-insert="true">插入图片</a>
-        <a data-delete="true" data-method='delete' data-remote="true">删除</a>
-      </div>
-    </td>
-  </tr>
+      <input type="hidden" name="attach_ids[]"/>
+    </div>
+    <div class="progress progress-striped active pull-left">
+      <div class="bar" style="width:0%"></div>
+    </div>
+    <div class="handle pull-left" style="display:none;">
+      <a href="javascript:void(0);" class="insert">插入</a>&nbsp;&nbsp;|&nbsp;
+      <a href="" target="_blank" class="view">查看</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+      <a class="delete" data-method='delete' data-remote="true" data-confirm="确定删除这个附件？">删除</a>
+    </div>
+    <div style="clear:both"></div>
+  </div>
 </script>

@@ -14,6 +14,8 @@ class Admin::BlogsController < Admin::ApplicationController
   def create
     @blog = Blog.new(params[:blog])
     if @blog.save
+      # 更新附件的归属
+      Attach.where(:id=>params[:attach_ids]).update_all(:blog_id=>@blog.id)
       redirect_to admin_blogs_path(:status=>@blog.status), :notice=>"发表文章成功！"
     else
       render :new

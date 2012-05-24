@@ -5,14 +5,14 @@ class Admin::AttachesController < Admin::ApplicationController
     attach = Attach.new
     attach.file = params[:file]
 
-    result = {}
     if attach.save
-      result[:status] = 'success'
-      result[:filepath] = attach.file.url
-      result[:attach_id] = attach.id
-      result[:is_image] = attach.image?
+      result = {:status => 'success',
+                :data=>{:url => attach.file.url,
+                        :attach_id => attach.id,
+                        :is_image => attach.image?,
+                        :filename => attach.filename}}
     else
-      result[:status] = 'error'
+      result = {:status => 'error'}
     end
 
     render :json=>result.to_json
@@ -22,7 +22,7 @@ class Admin::AttachesController < Admin::ApplicationController
     attach = Attach.find(params[:id])
     attach.destroy
 
-    render :head=>:no_content
+    head :no_content
   end
 
 end

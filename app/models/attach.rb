@@ -4,6 +4,8 @@ class Attach < ActiveRecord::Base
   before_create :fill_attributes
   after_destroy :delete_file
 
+  belongs_to :blog
+
   mount_uploader :file, AttachUploader
 
   #填充content_type,file_size字段

@@ -21,6 +21,7 @@ class Blog < ActiveRecord::Base
   after_destroy :decrease_blog_count, :if=>:publish?
 
   belongs_to :category
+  has_many :attaches
 
   scope :publish, where(:status=>S_PUBLISH)
   scope :draft, where(:status=>S_DRAFT)
