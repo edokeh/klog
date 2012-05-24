@@ -7,14 +7,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="container">
-  <h2>输入密码</h2>
-
-  <%= form_tag admin_session_path do -%>
-      <%= text_field_tag 'password' %>
-      <button class="btn btn-large btn-primary" type="submit">
+<div class="container" style="width:400px;">
+  <%= form_tag admin_session_path, :class=>"form-inline" do -%>
+      <legend>输入密码</legend>
+      <div class="well">
+      <%= password_field_tag 'password', nil, :class=>'input-xlarge', :autofocus=>true %>
+      <button class="btn btn-large btn-danger" type="submit">
         登录
       </button>
+      </div>
   <% end -%>
 </div>
 </body>
