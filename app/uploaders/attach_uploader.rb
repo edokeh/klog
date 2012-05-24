@@ -1,10 +1,11 @@
 # encoding: utf-8
 
 class AttachUploader < CarrierWave::Uploader::Base
+  IMAGE_EXTENSIONS = %w(jpg jpeg gif png)
+  DOCUMENT_EXTENSIONS = %w(pdf ppt pptx rar zip)
 
-  # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
+  include CarrierWave::MimeTypes
 
   # Include the Sprockets helpers for Rails 3.1+ asset pipeline compatibility:
   # include Sprockets::Helpers::RailsHelper
@@ -12,13 +13,12 @@ class AttachUploader < CarrierWave::Uploader::Base
 
   # Choose what kind of storage to use for this uploader:
   storage :file
-  # storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     #"uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-    Rails.root.join("tmp", "uploads")
+    "uploads/#{model.class.to_s.underscore}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -36,21 +36,33 @@ class AttachUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
 
+  process :set_content_type
+  process :resize_to_limit => [800, nil], :if => :image?
+
   # Create different versions of your uploaded files:
-  # version :thumb do
-  #   process :scale => [50, 50]
-  # end
+  #version :thumb, :if=>:is_image? do
+  #  process :resize_to_limit => [200, 200]
+  #end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
-  # def extension_white_list
-  #   %w(jpg jpeg gif png)
-  # end
+  def extension_white_list
+    IMAGE_EXTENSIONS + DOCUMENT_EXTENSIONS
+  end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
-  # def filename
-  #   "something.jpg" if original_filename
-  # end
+  def filename
+    if super.present?
+      # current_path 是 Carrierwave 上传过程临时创建的一个文件，有时间标记，所以它将是唯一的
+      @name ||= Digest::MD5.hexdigest(File.dirname(current_path))
+      "#{@name}.#{file.extension.downcase}"
+    end
+  end
 
+  protected
+
+  def image?(file)
+    return file.content_type.include?('image')
+  end
 end

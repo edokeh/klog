@@ -1,8 +1,5 @@
-//= require jquery.iframe-transport
-//= require uploader
-//= require jquery.ui.widget
-//= require jquery.fileupload
 //= require swfupload
+//= require mustache
 $(function() {
     $("button[data-status]").click(function(e) {
         $("#blog_status").val($(this).data('status'));
@@ -29,98 +26,73 @@ $(function() {
 
     var csrfName = $('meta[name=csrf-param]').attr('content');
     var csrfToken = $('meta[name=csrf-token]').attr('content');
+    var sessionKey = $('meta[name=session-key]').attr('content');
+    var sessionValue = $('meta[name=session-value]').attr('content');
     var postParams = {};
     postParams[csrfName] = csrfToken;
-    postParams['session_key'] = $("#session_value").val();
-
-//    var uploader = new Uploader({
-//        'url':'/admin/attaches',
-//        'post_name':'file',
-//        'post_params': postParams
-//    });
-//
-//    $("#upload").click(function() {
-//        uploader.selectAndUpload();
-//    });
-
-//    $("#upload").click(function() {
-//        $("#sb").click();
-//
-//    });
-//
-//    $("#sb").fileupload({
-//        dataType: 'json',
-//        url: "/admin/attaches",
-//        done: function (e, data) {
-//            alert(data);
-//        }
-//    });
-
-//    $("#sb").change(function() {
-//        $("#upload").addClass("disabled");
-//        $.ajax({
-//            'dataType':'iframe json',
-//            'paramName':'file',
-//            'fileInput':$("#sb"),
-//            'url':'/admin/attaches',
-//            'type':'POST',
-//            'formData':[
-//                {
-//                    'name':csrfName,
-//                    'value':csrfToken
-//                }
-//            ]
-//
-//        }).done(
-//            function(xx) {
-//                alert(xx);
-//            }).always(function() {
-//                $("#upload").removeClass("disabled");
-//            });
-//
-//    });
-
-//    $("#ajax_file").change(function(){
-//       $(this).parent().submit();
-//    });
-//
-//    $("#ajax_frame").on('load',function(){
-//        var response = $(this).contents();
-//        alert(response.text());
-//    });
+    postParams[sessionKey] = sessionValue;
 
     var swfu = new SWFUpload({
         upload_url : "/admin/attaches",
         button_action: SWFUpload.BUTTON_ACTION.SELECT_FILE,
         file_post_name: "file",
         flash_url : "/assets/swfupload.swf",
-        file_size_limit : "5 MB",
+        file_size_limit : "10 MB",
+
         button_placeholder_id : "upload",
-        button_image_url :  "/assets/XPButtonNoText_61x22.png",
-        button_text_style: ".text{text-align:center}",
-        button_text : "<span class='text'>上传</span>",
-        button_width : 61,
-        button_height : 22,
-        file_types : "*.jpg;*.gif;*.png;*.rar;*.zip",
+        button_cursor : SWFUpload.CURSOR.HAND,
+        button_image_url :  "/assets/upload_button.png",
+        button_text_style: ".text{text-align:center;}",
+        button_text_top_padding: 4,
+        button_text : "<span class='text'>选择文件</span>",
+        button_width : 80,
+        button_height : 30,
+        button_window_mode : SWFUpload.WINDOW_MODE.TRANSPARENT,
+
+        file_types : "*.jpg;*.gif;*.png;*.rar;*.ppt;*.pptx",
         post_params:postParams,
 
 
         file_dialog_complete_handler: function(selected, queued) {
-            this.startUpload();
-            this.setButtonDisabled(true);
+            if (selected > 0 && queued > 0) {
+                this.startUpload();
+                this.setButtonDisabled(true);
+            }
+        },
+
+        upload_start_handler:function(file) {
+            var template = $("#upload-list-temp").html();
+            var json = {'filename':file.name};
+            var html = Mustache.to_html(template, json).replace(/^\s*/mg, '');
+            $(html).appendTo("table.upload-list");
         },
 
         upload_progress_handler: function(file, complete, total) {
-            var tmp = parseInt(complete * 100 / total);
-            this.setButtonText("<span class='text'>上传中 (" + tmp + "%)</span>");
+            var percent = parseInt(complete * 100 / total);
+            $('table.upload-list tr:last').find('.bar').width(percent + '%');
         },
+
         upload_error_handler: function(file, code, msg) {
             alert("服务器错误！");
         },
+
+        upload_success_handler:function(file, data) {
+            var result = $.parseJSON(data);
+            if (result.status == 'success') {
+                var tr = $('table.upload-list tr:last');
+                tr.find('.progress').hide();
+                tr.find('.handle').show();
+                tr.find('a[data-insert]').data('insert', result.filepath).data('is_image', result.is_image).data('filename', file.name);
+                tr.find('a[data-method=delete]').prop('href', '/admin/attaches/' + result.attach_id);
+            } else {
+
+            }
+        },
+
         upload_complete_handler: function() {
             this.setButtonDisabled(false);
-            this.setButtonText("<span class='text'>上传</span>");
         },
+
         file_queue_error_handler: function(file, code, msg) {
             var error;
             switch (code) {
@@ -138,5 +110,18 @@ $(function() {
         }
     });
 
+    $(".upload-list").on('click', 'a[data-insert]', function() {
+        var url = $(this).data('insert');
+        if ($(this).data('is_image')) {
+            var code = '![](' + url + ')';
+        } else {
+            var code = '[' + $(this).data("filename") + '](' + url + ')';
+        }
 
+        $("#blog_content").val($("#blog_content").val() + code);
+    });
+
+    $(".upload-list").on('click', 'a[data-delete]', function() {
+        $(this).closest('tr').remove();
+    });
 });

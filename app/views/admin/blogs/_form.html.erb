@@ -36,8 +36,13 @@
 
   <div class="controls">
     <div>
-      <div id="upload"></div>
-      <button class="btn" type="button" id="upload1">选择文件</button>
+      <div id="upload" style="height:30px;"></div>
+      <div>
+        <table cellpadding="0" cellspacing="0" class="upload-list">
+          <col width="80px"/>
+          <col width="200px">
+        </table>
+      </div>
     </div>
   </div>
 </div>
@@ -57,3 +62,20 @@
     <%= f.select :category_id, category_options %>
   </div>
 </div>
+
+<script id="upload-list-temp" type="x-template">
+  <tr style="">
+    <td>
+      {{filename}}
+    </td>
+    <td>
+      <div class="progress">
+        <div class="bar" style="width:0%"></div>
+      </div>
+      <div class="handle" style="display:none;">
+        <a href="javascript:void(0);" data-insert="true">插入图片</a>
+        <a data-delete="true" data-method='delete' data-remote="true">删除</a>
+      </div>
+    </td>
+  </tr>
+</script>
