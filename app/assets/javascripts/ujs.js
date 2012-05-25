@@ -373,10 +373,5 @@
   $(document).delegate(rails.formSubmitSelector, 'ajax:complete.rails', function(event) {
     if (this == event.target) rails.enableFormElements($(this));
   });
-  
-  setTimeout(function(){
-  	$('div.alert-success').fadeOut();
-  }, 3000);
-  
 
 })( jQuery );

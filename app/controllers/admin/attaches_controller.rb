@@ -12,7 +12,7 @@ class Admin::AttachesController < Admin::ApplicationController
     attach.filename = params[:file].original_filename
 
     if attach.save
-      result = {:status => 'success', :attach=>attach}
+      result = {:status => 'success', :attach=>attach.json_data}
     else
       result = {:status => 'error'}
     end

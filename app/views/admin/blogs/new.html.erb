@@ -22,10 +22,6 @@
   <%= link_to '<<返回列表', admin_blogs_path %>
 </div>
 
-<script>
-var attaches_json = <%=raw @attaches.to_json %>
-</script>
-
 <% content_for :head do %>
     <%= session_meta_tags %>
 <% end %>

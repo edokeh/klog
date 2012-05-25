@@ -13,12 +13,12 @@ class Admin::BlogsController < Admin::ApplicationController
   #创建
   def create
     @blog = Blog.new(params[:blog])
+    @attaches = Attach.where(:id=>params[:attach_ids])
     if @blog.save
       # 更新附件的归属
-      Attach.where(:id=>params[:attach_ids]).update_all(:blog_id=>@blog.id)
+      @attaches.update_all(:blog_id=>@blog.id)
       redirect_to admin_blogs_path(:status=>@blog.status), :notice=>"发表文章成功！"
     else
-      @attaches = Attach.where(:id=>params[:attach_ids])
       render :new
     end
   end
@@ -26,11 +26,15 @@ class Admin::BlogsController < Admin::ApplicationController
   def edit
     @blog = Blog.find(params[:id])
     @categories = Category.all
+    @attaches = @blog.attaches
   end
 
   def update
     @blog = Blog.find(params[:id])
+    @attaches = Attach.where(:id=>params[:attach_ids])
     if @blog.update_attributes(params[:blog])
+      # 更新附件的归属
+      @attaches.update_all(:blog_id=>@blog.id)
       redirect_to admin_blogs_path(:status=>@blog.status), :notice=>"“#{@blog.title}” 修改成功！"
     else
       render :edit

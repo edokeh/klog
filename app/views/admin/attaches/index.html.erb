@@ -8,7 +8,7 @@
   <% end %>
 
   <table class="table table-striped table-bordered table-condensed">
-    <col width="30%"/>
+    <col width="40%"/>
     <col width="30%"/>
     <col/>
     <col/>
@@ -16,8 +16,8 @@
     <tr>
       <th>文件名</th>
       <th>所属文章</th>
+      <th>文件大小</th>
       <th>创建时间</th>
-      <th>操作</th>
     </tr>
     </thead>
     <% if @attaches.blank? %>
@@ -27,12 +27,13 @@
     <% end %>
     <% @attaches.each do |attach| %>
         <tr>
-          <td><%= link_to attach.filename, attach.file.url, :target=>'_blank' %></td>
-          <td><%= attach.blog.try(:title) %></td>
-          <td><%= l attach.created_at, :format=>:long %></td>
           <td>
-            <%= link_to '删除', [:admin, attach], :confirm=>'确定删除?', :method=>:delete, :class=>'btn' %>
+            <%= link_to attach.filename, attach.file.url, :target=>'_blank', :class=>'pull-left' %>
+            <%= link_to '删除', [:admin, attach], :confirm=>'确定删除?', :method=>:delete, :class=>'btn btn-danger pull-right hide' %>
           </td>
+          <td><%= link_to attach.blog.title, blog_url(attach.blog.slug), :target=>"_blank" if attach.blog.present? %></td>
+          <td><%= number_to_human_size attach.file_size %></td>
+          <td><%= l attach.created_at, :format=>:long %></td>
         </tr>
     <% end %>
   </table>

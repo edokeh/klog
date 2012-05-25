@@ -1,7 +1,6 @@
 //= require uploader
 //= require underscore-min
 //= require backbone-min
-//= require backbone.memory
 $(function() {
     $("button[data-status]").click(function(e) {
         $("#blog_status").val($(this).data('status'));
@@ -26,6 +25,12 @@ $(function() {
         }
     });
 
+    $("#blog_content").blur(function() {
+        if (this.selectionEnd) {
+            $(this).data('insertPos', this.selectionEnd);
+        }
+    });
+
     var Attach = Backbone.Model.extend({
         defaults:{
             percent:0,
@@ -44,17 +49,12 @@ $(function() {
         }
     });
 
-    var AttachList = Backbone.Collection.extend({
-        model:Attach,
-        storage: new Store("attach")
-    });
-
     var AttachView = Backbone.View.extend({
         className:"upload-item",
         template: _.template($('#upload-list-temp').html()),
 
         events: {
-            "click .insert" : "insertToContent"
+            'click .insert' : 'insertToContent'
         },
 
         initialize: function() {
@@ -74,7 +74,10 @@ $(function() {
 
         insertToContent:function() {
             var code = this.model.getCode();
-            $("#blog_content").val($("#blog_content").val() + code);
+            var value = $("#blog_content").val();
+            var insertPos = $("#blog_content").data('inserPos') || $("#blog_content").val().length;
+            value = value.substr(0, insertPos) + '\r\n' + code + '\r\n' + value.substr(insertPos);
+            $("#blog_content").val(value);
         }
     });
 
@@ -91,6 +94,14 @@ $(function() {
         }
     });
 
+    var AttachList = Backbone.Collection.extend({model:Attach});
+    var attaches = new AttachList();
+    new AttachListView({'collection':attaches});
+
+    attaches_json.forEach(function(a) {
+        attaches.add(a);
+    });
+
     var uploader = new Uploader({
         upload_url : "/admin/attaches",
         file_post_name: "file",
@@ -98,13 +109,8 @@ $(function() {
         file_types : "*.jpg;*.gif;*.png;*.rar;*.ppt;*.pptx"
     });
 
-    var attaches = new AttachList(attaches_json);
-    new AttachListView({'collection':attaches});
-
     uploader.on('start', function(file) {
-        attaches.create({'filename':file.name});
-        //var view = new AttachView({model: attach});
-        //$('.upload-list').append(view.render().el).show();
+        attaches.add({'filename':file.name});
     });
 
     uploader.on('progress', function(file, complete, total) {
@@ -117,53 +123,16 @@ $(function() {
         var result = $.parseJSON(data);
         var attach = attaches.last();
         if (result.status == 'success') {
-            attach.set($.extend(result.attach, {'is_complete':true}));
+            attach.set(result.attach);
         } else {
             attach.destroy();
         }
     });
 
-//    uploader.on('start', function(file) {
-//        var template = $("#upload-list-temp").html();
-//        var json = {'filename':file.name};
-//        var html = Mustache.to_html(template, json).replace(/^\s*/mg, '');
-//        $('.upload-list').append($(html)).show();
-//    });
-//    uploader.on('progress', function(file, complete, total) {
-//        var percent = parseInt(complete * 100 / total);
-//        $('.upload-list div.upload-item:last').find('.bar').width(percent + '%');
-//    });
-//    uploader.on('success', function(file, data) {
-//        var result = $.parseJSON(data);
-//        var item = $('.upload-list div.upload-item:last');
-//        if (result.status == 'success') {
-//            item.data(result.data);
-//            item.find('.progress').hide();
-//            item.find('.handle').show();
-//            item.find('a.delete').prop('href', '/admin/attaches/' + result.data.attach_id);
-//            item.find('a.view').prop('href', result.data.url);
-//            item.find('input:hidden').val(result.data.attach_id);
-//        } else {
-//            item.remove();
-//        }
-//    });
-//
-//    $(".upload-list").on('click', 'a.insert', function() {
-//        var data = $(this).closest('.upload-item').data();
-//        var url = data.url;
-//        if (data.is_image) {
-//            var code = '![](' + url + ')';
-//        } else {
-//            var code = '[' + data.filename + '](' + url + ')';
-//        }
-//        $("#blog_content").val($("#blog_content").val() + code);
-//    });
-//
-//    $(".upload-list").on('click', 'a.delete', function() {
-//        $(this).closest('.upload-item').remove();
-//        if ($('.upload-item').length === 0) {
-//            $('.upload-list').hide();
-//        }
-//    });
-
+    $(document).on('click', 'a.delete', function(e) {
+        $(this).closest('.upload-item').remove();
+        if ($('.upload-item').length === 0) {
+            $('.upload-list').hide();
+        }
+    });
 });
