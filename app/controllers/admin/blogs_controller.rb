@@ -18,6 +18,7 @@ class Admin::BlogsController < Admin::ApplicationController
       Attach.where(:id=>params[:attach_ids]).update_all(:blog_id=>@blog.id)
       redirect_to admin_blogs_path(:status=>@blog.status), :notice=>"发表文章成功！"
     else
+      @attaches = Attach.where(:id=>params[:attach_ids])
       render :new
     end
   end
@@ -40,7 +41,7 @@ class Admin::BlogsController < Admin::ApplicationController
     @blog = Blog.find(params[:id])
     @blog.destroy
 
-    redirect_to admin_blogs_url, :notice=>'删除成功！'
+    redirect_to :back, :notice=>'删除成功！'
   end
 
   #直接发布草稿

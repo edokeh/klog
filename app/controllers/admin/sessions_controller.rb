@@ -3,9 +3,7 @@ class Admin::SessionsController < ApplicationController
   layout :nil
   #登录页面
   def new
-    if session[:admin] == true
-      redirect_to '/admin'
-    end
+    redirect_to '/admin' if is_admin?
   end
 
   def create
@@ -13,7 +11,8 @@ class Admin::SessionsController < ApplicationController
       session[:admin] = true
       redirect_to '/admin'
     else
-      render :new
+      flash[:error] = '密码错误！'
+      redirect_to :action=>'new'
     end
   end
 

@@ -57,20 +57,21 @@
   </div>
 </div>
 
-<script id="upload-list-temp" type="x-template">
-  <div class="upload-item">
-    <div class="filename pull-left">
-      {{filename}}
-      <input type="hidden" name="attach_ids[]"/>
-    </div>
-    <div class="progress progress-striped active pull-left">
-      <div class="bar" style="width:0%"></div>
-    </div>
-    <div class="handle pull-left" style="display:none;">
-      <a href="javascript:void(0);" class="insert">插入</a>&nbsp;&nbsp;|&nbsp;
-      <a href="" target="_blank" class="view">查看</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-      <a class="delete" data-method='delete' data-remote="true" data-confirm="确定删除这个附件？">删除</a>
-    </div>
-    <div style="clear:both"></div>
+<script id="upload-list-temp" type="text/template">
+  <div class="filename pull-left">
+    <%%= filename %>
   </div>
+  <%% if(!is_complete){  %>
+  <div class="progress progress-striped active pull-left">
+    <div class="bar" style="width:<%%= percent %>%"></div>
+  </div>
+  <%% }else{ %>
+  <div class="handle pull-left" style="">
+    <a href="javascript:void(0);" class="insert">插入</a>&nbsp;&nbsp;|&nbsp;
+    <a href="<%%= url %>" target="_blank" class="view">查看</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="<%%= '/admin/attaches/' + attach_id %>" class="delete" data-method='delete' data-remote="true" data-confirm="确定删除这个附件？">删除</a>
+    <input type="hidden" name="attach_ids[]" value="<%%= attach_id %>"/>
+  </div>
+  <%% } %>
+  <div style="clear:both"></div>
 </script>

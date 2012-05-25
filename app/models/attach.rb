@@ -12,7 +12,6 @@ class Attach < ActiveRecord::Base
   def fill_attributes
     self.content_type = file.file.content_type
     self.file_size = file.file.size
-    self.filename = file.file.original_filename
   end
 
   #删除对应的文件
