@@ -28,7 +28,7 @@ class Admin::CategoriesController < Admin::ApplicationController
         format.json { head :no_content}
       else
         format.html { render :action=>"edit"}
-        format.json { render :json=>@category.errors}
+        format.json { render :json=>@category.errors.full_messages}
       end
     end
   end

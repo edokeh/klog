@@ -37,7 +37,7 @@
           <td data-id="<%= category.id %>">
             <span class="pull-left"><%= category.name %></span>
             <%= link_to '删除', [:admin, category], :class=>'btn btn-danger pull-right hide', :confirm => '确定删除?', :method => :delete %>
-            <%= link_to '修改', admin_category_path(category), :class=>'btn btn-primary pull-right hide', :data=>{:id=>category.id} %>
+            <%= link_to '修改', admin_category_path(category), :class=>'btn btn-primary pull-right hide edit', :data=>{:id=>category.id, :value=>category.name} %>
           </td>
           <td><%= category.blog_count %></td>
           <td><%= l category.created_at, :format=>:long %></td>
@@ -45,7 +45,9 @@
     <% end %>
   </table>
 
-  <%= form_for([:admin, @category], :html=>{:class=>'form-inline', :id=>'edit_form'}, :method=>:put) do |f| -%>
+  <%= form_for([:admin, @category],
+               :html=>{:class=>'form-inline', :id=>'edit_form', :data=>{:type=>'json'}, :style=>'display:none;margin-bottom:0'},
+               :method=>:put, :remote=>true) do |f| -%>
       <%= f.text_field :name, :class=>"input-xlarge", :id=>'edit_cate_name', :placeholder=>'分类名称' %>
       <button type="submit" class="btn  btn-primary">提交修改</button>
       <button type="button" id="cancel_edit" class="btn">取消</button>
@@ -53,5 +55,5 @@
 </div>
 
 <% content_for :js do %>
-  <%= javascript_include_tag 'admin/categories/index' %>
+    <%= javascript_include_tag 'admin/categories/index' %>
 <% end %>
