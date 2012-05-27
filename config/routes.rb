@@ -7,11 +7,15 @@ Klog::Application.routes.draw do
 
   namespace :admin do
     resources :blogs do
-      post "publish", :on=>:member
-      post "preview", :on=>:collection
+      post 'publish', :on=>:member
+      post 'preview', :on=>:collection
     end
     resources :categories
     resources :attaches
+    namespace :settings do
+      resource :admin_pass
+      resource :website
+    end
     resource :session
     get '/'=>'home#show'
   end

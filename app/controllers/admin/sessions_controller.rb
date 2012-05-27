@@ -7,7 +7,7 @@ class Admin::SessionsController < ApplicationController
   end
 
   def create
-    if Setting.validate_admin(params[:password])
+    if Setting.admin_pass? params[:password]
       session[:admin] = true
       redirect_to '/admin'
     else

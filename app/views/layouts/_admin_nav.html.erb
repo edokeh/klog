@@ -4,16 +4,19 @@
       <a class="brand" href="#">Klog后台管理</a>
       <ul class="nav">
         <li <%= admin_nav_class('/admin/blogs') %>>
-          <%= link_to '文章', admin_blogs_url %>
+          <%= link_to '文章', admin_blogs_path %>
         </li>
         <li <%= admin_nav_class('/admin/categories') %>>
-          <%= link_to '分类', admin_categories_url %>
+          <%= link_to '分类', admin_categories_path %>
         </li>
         <li>
-          <%= link_to '页面', admin_blogs_url %>
+          <%= link_to '页面', admin_blogs_path %>
         </li>
         <li <%= admin_nav_class('/admin/attaches') %>>
-          <%= link_to '附件', admin_attaches_url %>
+          <%= link_to '附件', admin_attaches_path %>
+        </li>
+        <li <%= admin_nav_class('/admin/settings') %>>
+          <%= link_to '设置', edit_admin_settings_website_path %>
         </li>
       </ul>
       <ul class="nav pull-right">

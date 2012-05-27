@@ -1,10 +1,6 @@
 <div class="container">
   <h2>分类</h2>
-  <% if flash[:notice] %>
-      <div class="alert alert-success">
-        <%= flash[:notice] %>
-      </div>
-  <% end %>
+  <%= render 'admin/common/flash_notice' %>
 
   <%= form_for([:admin, @category], :html=>{:class=>'well form-inline'}) do |f| -%>
       <% if flash[:error] %>

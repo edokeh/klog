@@ -7,4 +7,4 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 #管理后台密码
-Setting.create(:key=>Setting::ADMIN_PASSWORD, :value=>'geliang')
+Setting.admin_pass = 'geliang'

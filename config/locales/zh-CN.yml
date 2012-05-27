@@ -199,6 +199,16 @@ zh-CN:
   activemodel:
     errors:
       <<: *errors
+    models:
+      setting/admin_pass: "后台密码"
+      setting/website: "网站信息"
+    attributes:
+      setting/admin_pass:
+          old_pass: "旧密码"
+          new_pass: "新密码"
+          new_pass_confirmation: "新密码确认"
+      setting/website:
+          title: "网站标题"
   activerecord:
     errors:
       <<: *errors

@@ -1,11 +1,7 @@
 <div class="container">
   <h2>附件列表</h2>
 
-  <% if flash[:notice] %>
-      <div class="alert alert-success">
-        <%= flash[:notice] %>
-      </div>
-  <% end %>
+  <%= render 'admin/common/flash_notice' %>
 
   <table class="table table-striped table-bordered table-condensed">
     <col width="40%"/>
@@ -22,7 +18,7 @@
     </thead>
     <% if @attaches.blank? %>
         <tr>
-          <td colspan="5" class="empty-table">暂无文章</td>
+          <td colspan="4" class="empty-table">没有附件</td>
         </tr>
     <% end %>
     <% @attaches.each do |attach| %>
