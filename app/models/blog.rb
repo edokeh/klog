@@ -6,7 +6,7 @@ class Blog < ActiveRecord::Base
 
   attr_accessible :content, :seo_desc, :seo_kwd, :slug, :status, :tag, :title, :category_id
 
-  validates :title, :length => {:in => 5..100}
+  validates :title, :length => {:in => 3..100}
   validates :content, :length => {:in => 10..100000}
   validates :slug, :uniqueness => true
 

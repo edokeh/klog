@@ -8,7 +8,7 @@
         <div class="form-actions">
           <%= f.hidden_field :status %>
           <button class="btn btn-large btn-primary" type="submit" data-status="<%= Blog::S_PUBLISH %>">
-            <i class="icon-ok icon-white"></i>
+            <i class="icon-edit icon-white"></i>
             <% if @blog.publish? %>
                 修改文章
             <% else %>

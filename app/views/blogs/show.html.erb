@@ -1,4 +1,4 @@
-<article>
+<article class="blog">
   <header>
     <h2>
       <%= @blog.title %>
@@ -9,6 +9,11 @@
   <section class="blog-content">
     <%= raw @blog.html_content %>
   </section>
+  <footer>
+    <%= link_to '« '+@prev_blog.title, blog_path(@prev_blog.slug), :class=>'pull-left' if @prev_blog.present? %>
+    <%= link_to @next_blog.title + '  »', blog_path(@next_blog.slug), :class=>'pull-right' if @next_blog.present? %>
+    <div style="clear:both"></div>
+  </footer>
 </article>
 
 <div>
@@ -21,6 +26,7 @@
 
       <%= f.text_area :content, :placeholder=>'写点评论吧...', :rows=>5 %>
       <label></label>
+
       <div class="form-inline">
         <% unless is_admin? %>
             <lable>昵称:</label>

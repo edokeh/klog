@@ -24,26 +24,27 @@ ActiveRecord::Schema.define(:version => 20120528013805) do
   end
 
   create_table "blogs", :force => true do |t|
-    t.string   "title",        :null => false
-    t.text     "content",      :null => false
-    t.text     "html_content", :null => false
-    t.string   "slug",         :null => false
+    t.string   "title",                        :null => false
+    t.text     "content",                      :null => false
+    t.text     "html_content",                 :null => false
+    t.string   "slug",                         :null => false
     t.string   "tag"
     t.string   "seo_kwd"
     t.string   "seo_desc"
     t.integer  "status"
     t.integer  "category_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.integer  "comment_count", :default => 0
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   add_index "blogs", ["slug"], :name => "index_blogs_on_slug", :unique => true
 
   create_table "categories", :force => true do |t|
-    t.string   "name",       :limit => 20, :null => false
-    t.integer  "blog_count"
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.string   "name",       :limit => 20,                :null => false
+    t.integer  "blog_count",               :default => 0
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
   end
 
   create_table "comments", :force => true do |t|
@@ -63,5 +64,7 @@ ActiveRecord::Schema.define(:version => 20120528013805) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "settings", ["key"], :name => "index_settings_on_key", :unique => true
 
 end

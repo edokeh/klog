@@ -5,6 +5,7 @@
   <meta charset="utf-8"/>
   <%= stylesheet_link_tag 'public' %>
   <%= csrf_meta_tags %>
+  <%= auto_discovery_link_tag(:rss, feed_path, :title=>Setting.website_title) %>
   <!--[if lt IE 9]>
   <%= javascript_include_tag 'html5shiv' %>
   <![endif]-->

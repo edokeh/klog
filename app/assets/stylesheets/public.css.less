@@ -14,6 +14,14 @@ body{
   background-color: @gray;
 }
 
+#rss-icon{
+    background:url(/assets/orange_1.png) no-repeat;
+    height:56px;
+    width:55px;
+    padding: 0;
+    margin-top:-16px;
+}
+
 .page{
     box-shadow: 0 0 6px rgba(0,0,0,.2);
 	border: 1px solid #CCC;
@@ -69,6 +77,16 @@ article header p{
     color: @grayLight;
 }
 
+.blog footer{
+  padding: 20px 0;
+  border-bottom: 1px solid @grayLighter;
+}
+
+.blog footer a{
+    font-size: 14px;
+    font-weight: bolder;
+}
+
 .pager-wrapper{
     border-top: 1px solid @grayLighter;
     padding-top: 20px;
@@ -109,8 +127,12 @@ article header p{
     border-radius: 3px;
     font-size: 14px;
     font-weight: bolder;
-    padding: 5px 10px;
+    padding: 5px 20px;
     color: @linkColor;
+}
+
+.comment section{
+    padding: 0 10px;
 }
 
 .comment footer{

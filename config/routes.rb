@@ -7,6 +7,8 @@ Klog::Application.routes.draw do
   end
   resources :categories
 
+  get '/feed'=>'feed#show', :format=>:rss, :as=>:feed
+
   namespace :admin do
     resources :blogs do
       post 'publish', :on=>:member

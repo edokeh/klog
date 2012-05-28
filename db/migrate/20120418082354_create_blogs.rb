@@ -10,7 +10,7 @@ class CreateBlogs < ActiveRecord::Migration
       t.string :seo_desc
       t.integer :status
       t.integer :category_id
-      t.integer :comment_count
+      t.integer :comment_count, :default=>0
 
       t.timestamps
     end
