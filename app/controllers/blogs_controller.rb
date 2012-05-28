@@ -1,3 +1,4 @@
+# -coding: utf-8 -
 class BlogsController < ApplicationController
 
   def index
@@ -7,8 +8,9 @@ class BlogsController < ApplicationController
   def show
     @blog = Blog.where(:slug=>params[:id]).first
     raise ActiveRecord::RecordNotFound if @blog.nil?
-    puts is_admin?
     raise ActiveRecord::RecordNotFound if @blog.draft? and !is_admin?
+
+    @comment = @blog.comments.build()
   end
 
 end

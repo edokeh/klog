@@ -1,0 +1,16 @@
+<% comments.each do |comment| %>
+    <% next if comment.new_record? %>
+    <article class="comment" style="margin-left: <%= level*20 %>px">
+      <header>
+        <%= comment.nick %>
+      </header>
+      <section>
+        <%= simple_format comment.content %>
+      </section>
+      <footer>
+        <%= l comment.created_at %>
+        <a href="javascript:void(0)" data-commentid="<%= comment.id %>" class="reply-comment">回复</a>
+      </footer>
+    </article>
+    <%= render_comments(comment, :level=>level+1) %>
+<% end %>

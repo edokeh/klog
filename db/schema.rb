@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120524020553) do
+ActiveRecord::Schema.define(:version => 20120528013805) do
 
   create_table "attaches", :force => true do |t|
     t.string   "file"
@@ -44,6 +44,17 @@ ActiveRecord::Schema.define(:version => 20120524020553) do
     t.integer  "blog_count"
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
+  end
+
+  create_table "comments", :force => true do |t|
+    t.string   "nick"
+    t.string   "email"
+    t.text     "content"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.integer  "blog_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "settings", :force => true do |t|

@@ -3,7 +3,7 @@
   <%= render 'admin/settings/nav' %>
 
   <%= form_for @website, :url=>admin_settings_website_path, :method=>:put, :html=>{:class=>"form-horizontal topic-form"} do |f| %>
-      <%= render 'admin/common/flash_notice' %>
+      <%= render 'common/flash_notice' %>
 
       <%= error_for(@website) %>
 

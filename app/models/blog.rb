@@ -22,6 +22,8 @@ class Blog < ActiveRecord::Base
 
   belongs_to :category
   has_many :attaches
+  has_many :all_comments, :class_name=>'Comment', :foreign_key=>:blog_id
+  has_many :comments, :as=>:commentable, :include=>[:comments]
 
   scope :publish, where(:status=>S_PUBLISH)
   scope :draft, where(:status=>S_DRAFT)

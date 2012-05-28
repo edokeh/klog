@@ -1,3 +1,47 @@
-<h2><%= @blog.title %></h2>
+<article>
+  <header>
+    <h2>
+      <%= @blog.title %>
+    </h2>
 
-<%=raw @blog.html_content %>
+    <p>发表于 <%= l @blog.created_at %></p>
+  </header>
+  <section class="blog-content">
+    <%= raw @blog.html_content %>
+  </section>
+</article>
+
+<div>
+  <a name="comments" id="comment_anchor"></a>
+  <%= form_for [@blog, @comment], :html=>{:class=>"form comment-form"} do |f| -%>
+      <legend>发表评论</legend>
+      <%= render 'common/flash_notice' %>
+      <%= f.hidden_field :commentable_id %>
+      <%= f.hidden_field :commentable_type %>
+
+      <%= f.text_area :content, :placeholder=>'写点评论吧...', :rows=>5 %>
+      <label></label>
+      <div class="form-inline">
+        <% unless is_admin? %>
+            <lable>昵称:</label>
+              <%= f.text_field :nick, :class=>"input-medium", :style=>"margin-right: 10px;" %>
+              <lable>email:</lable>
+              <%= f.text_field :email, :class=>"input-medium" %>
+        <% end %>
+        <button class="btn btn-medium pull-right" id="cancel_reply" type="button" style="margin-left:10px;display:none">取消回复</button>
+        <button class="btn btn-medium btn-primary pull-right" type="submit">
+          <i class="icon-ok icon-white"></i>
+          发表评论
+        </button>
+        <div style="clear:both"></div>
+      </div>
+
+  <% end -%>
+  <h2><%= @blog.comment_count %>条评论</h2>
+  <%= render_comments(@blog, :level=>0) %>
+</div>
+
+<% content_for :js do %>
+    <%= javascript_include_tag 'jquery', 'blogs/show' %>
+<% end %>
+
