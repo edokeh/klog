@@ -70,11 +70,13 @@ header em{
 }
 
 article{
+  padding-bottom: 10px;
   margin-bottom: 20px;
+  border-bottom: 1px solid @grayLighter;
 }
 
-article header{
-  border-bottom: 1px solid @grayLighter;
+article footer{
+    color: @grayLight;
 }
 
 article header p{
@@ -82,8 +84,7 @@ article header p{
 }
 
 .blog footer{
-  padding: 20px 0;
-  border-bottom: 1px solid @grayLighter;
+  padding-top: 20px;
 }
 
 .blog footer a{
@@ -91,19 +92,10 @@ article header p{
     font-weight: bolder;
 }
 
-.pager-wrapper{
-    border-top: 1px solid @grayLighter;
-    padding-top: 20px;
-}
-
 .pager-wrapper a{
     height: 20px;
     line-height: 20px;
     width: 100px;
-}
-
-.blog-content, .blog-content p{
-    font-size: 16px;
 }
 
 .comment-form{

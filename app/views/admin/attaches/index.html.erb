@@ -11,7 +11,7 @@
     <thead>
     <tr>
       <th>文件名</th>
-      <th>所属文章</th>
+      <th>归属</th>
       <th>文件大小</th>
       <th>创建时间</th>
     </tr>
@@ -27,7 +27,11 @@
             <%= link_to attach.filename, attach.file.url, :target=>'_blank', :class=>'pull-left' %>
             <%= link_to '删除', [:admin, attach], :confirm=>'确定删除?', :method=>:delete, :class=>'btn btn-danger pull-right hide' %>
           </td>
-          <td><%= link_to attach.blog.title, blog_url(attach.blog.slug), :target=>"_blank" if attach.blog.present? %></td>
+          <td>
+            <% if attach.parent.instance_of? Blog %>
+            <%= link_to attach.parent.title, blog_url(attach.parent.slug), :target=>"_blank" %>
+            <% end %>
+          </td>
           <td><%= number_to_human_size attach.file_size %></td>
           <td><%= l attach.created_at, :format=>:long %></td>
         </tr>

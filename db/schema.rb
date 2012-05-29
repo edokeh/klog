@@ -11,14 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120528013805) do
+ActiveRecord::Schema.define(:version => 20120529082817) do
 
   create_table "attaches", :force => true do |t|
     t.string   "file"
     t.string   "filename"
     t.string   "content_type"
     t.string   "file_size"
-    t.string   "blog_id"
+    t.string   "parent_id"
+    t.string   "parent_type"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
@@ -58,6 +59,14 @@ ActiveRecord::Schema.define(:version => 20120528013805) do
     t.boolean  "is_admin"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+  end
+
+  create_table "pages", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.string   "slug"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "settings", :force => true do |t|

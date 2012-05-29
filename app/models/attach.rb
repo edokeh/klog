@@ -4,7 +4,7 @@ class Attach < ActiveRecord::Base
   before_create :fill_attributes
   after_destroy :delete_file
 
-  belongs_to :blog
+  belongs_to :parent, :polymorphic=>true
 
   mount_uploader :file, AttachUploader
 

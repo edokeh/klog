@@ -16,6 +16,16 @@
       <div>
         <%= raw blog.html_content %>
       </div>
+      <footer>
+        发表在
+        <% if blog.category.nil? %>
+            未分类
+        <% else %>
+            <%=link_to blog.category.name, category_path(blog.category.name) %>
+        <% end %>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <%= blog.comment_count %>条评论
+      </footer>
     </article>
 <% end %>
 

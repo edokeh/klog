@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to blog_path(@comment.blog.slug, :anchor=>'comments'), :notice=>'评论发表成功'
     else
-      
+      redirect_to blog_path(@comment.blog.slug, :anchor=>'comments')
     end
   end
 

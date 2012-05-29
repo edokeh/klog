@@ -2,7 +2,7 @@
 class Admin::AttachesController < Admin::ApplicationController
 
   def index
-    @attaches = Attach.order('created_at DESC').includes(:blog).page(params[:page])
+    @attaches = Attach.order('created_at DESC').includes(:parent).page(params[:page])
   end
 
   #上传附件

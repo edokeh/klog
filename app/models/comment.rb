@@ -2,6 +2,8 @@
 class Comment < ActiveRecord::Base
   attr_accessible :blog_id, :commentable_id, :commentable_type, :content, :email, :nick
 
+  validates :content, :presence => true
+
   belongs_to :commentable, :polymorphic => true
   belongs_to :blog
   has_many :comments, :as=>:commentable, :include=>[:comments], :dependent=>:destroy
@@ -10,6 +12,7 @@ class Comment < ActiveRecord::Base
   after_save :increase_comment_count
   #删除时，减少blog的评论数
   after_destroy :decrease_comment_count
+
 
   def nick
     return attributes['nick'].blank? ? '匿名' : attributes['nick']
