@@ -1,5 +1,20 @@
 @import "twitter/bootstrap";
 
+.nav li{
+    font-weight:bolder;
+    font-size: 14px;
+}
+
+.navbar .brand{
+    color: #8bbbf2;
+    font-weight: bold;
+}
+
+.navbar .nav .active a,
+.navbar .nav .active a:hover {
+  background-color: @gray;
+}
+
 .table th{
     background: #C5D5DD;
     color: @black;
@@ -25,6 +40,37 @@
 .empty-table{
     height: 20px;
     font-weight: bolder;
+}
+
+.copyright{
+    margin-top: 100px;
+    padding: 20px 0px;
+    border-top: 1px solid @grayLighter;
+    color: @grayLight;
+}
+
+.copyright a{
+    color: @gray;
+    text-decoration:underline;
+}
+
+.admin-main{
+    padding-top: 20px;
+}
+
+.admin-main header{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.admin-main article{
+    margin-bottom: 20px;
+}
+
+.admin-main li{
+    font-size: 16px;
+    margin-bottom: 10px;
 }
 
 .table-manage {
