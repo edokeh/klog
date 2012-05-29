@@ -13,7 +13,7 @@ var Attach = Backbone.Model.extend({
         if (this.get('is_image')) {
             var code = '![](' + url + ')';
         } else {
-            var code = '[' + this.get('filename') + '](' + url + ')';
+            var code = '[' + this.get('file_name') + '](' + url + ')';
         }
         return code;
     }
@@ -80,7 +80,7 @@ var uploader = new Uploader({
 });
 
 uploader.on('start', function(file) {
-    attaches.add({'filename':file.name});
+    attaches.add({'file_name':file.name});
 });
 
 uploader.on('progress', function(file, complete, total) {

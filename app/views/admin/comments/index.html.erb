@@ -10,7 +10,9 @@
         <article>
           <header>
             <span>
-              <span class="nick"><%= comment.nick %></span>
+              <span class="nick">
+                <%= comment.is_admin? ? '我':comment.nick %>
+              </span>
               <em><%= "(#{comment.email})" if comment.email.present? %></em>
             </span>
             <span class="ip">来自 <%= comment.ip %></span>

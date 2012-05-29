@@ -1,0 +1,16 @@
+<% @blogs_by_year.each do |year, blogs| %>
+    <table>
+      <tr>
+        <td valign="top"><%= year %></td>
+        <td>
+          <% blogs.each do |blog| %>
+
+              <article>
+                <%= l blog.created_at %>
+                <%= link_to blog.title, blog_path(blog.slug) %>
+              </article>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+<% end %>

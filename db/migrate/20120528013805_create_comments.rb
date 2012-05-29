@@ -3,11 +3,11 @@ class CreateComments < ActiveRecord::Migration
     create_table :comments do |t|
       t.string :nick
       t.string :email
-      t.text :content
+      t.text :content, :null=>false
       t.string :ip
-      t.integer :commentable_id
-      t.string :commentable_type
-      t.integer :blog_id
+      t.integer :commentable_id, :null=>false
+      t.string :commentable_type, :null=>false
+      t.integer :blog_id, :null=>false
       t.boolean :is_admin
 
       t.timestamps

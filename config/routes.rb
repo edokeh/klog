@@ -8,6 +8,7 @@ Klog::Application.routes.draw do
   resources :categories
 
   get '/feed'=>'feed#show', :format=>:rss, :as=>:feed
+  get '/archive'=>'archive#show', :as=>:archive
 
   namespace :admin do
     resources :blogs do

@@ -1,3 +1,4 @@
+# -coding: utf-8 -
 class Attach < ActiveRecord::Base
   attr_accessible :file
 
@@ -26,7 +27,7 @@ class Attach < ActiveRecord::Base
   #用于生成json的数据
   def json_data
     return {
-        'filename' => self.filename,
+        'file_name' => self.file_name,
         'url' => self.file.url,
         'is_image' => self.image?,
         'id' => self.id,

@@ -9,7 +9,7 @@ class Admin::AttachesController < Admin::ApplicationController
   def create
     attach = Attach.new
     attach.file = params[:file]
-    attach.filename = params[:file].original_filename
+    attach.file_name = params[:file].original_filename
 
     if attach.save
       result = {:status => 'success', :attach=>attach.json_data}

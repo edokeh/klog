@@ -215,9 +215,14 @@ zh-CN:
     models:
       blog: "文章"
       category: "分类"
+      page: "页面"
     attributes:
       blog:
         title: "标题"
         content: "内容"
       category:
         name: "分类名称"
+      page:
+        title: "标题"
+        content: "内容"
+        slug: "slug"

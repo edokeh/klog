@@ -3,7 +3,7 @@ class FeedController < ApplicationController
 
   def show
     expires_in 3.hours
-    @blogs = Blog.order('created_at DESC').all
+    @blogs = Blog.publish.order('created_at DESC').all
     
     respond_to do |format|
       format.html

@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(:version => 20120529082817) do
 
   create_table "attaches", :force => true do |t|
     t.string   "file"
-    t.string   "filename"
+    t.string   "file_name"
     t.string   "content_type"
     t.string   "file_size"
     t.string   "parent_id"
@@ -42,10 +42,10 @@ ActiveRecord::Schema.define(:version => 20120529082817) do
   add_index "blogs", ["slug"], :name => "index_blogs_on_slug", :unique => true
 
   create_table "categories", :force => true do |t|
-    t.string   "name",       :limit => 20, :null => false
-    t.integer  "blog_count"
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.string   "name",       :limit => 20,                :null => false
+    t.integer  "blog_count",               :default => 0
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
   end
 
   create_table "comments", :force => true do |t|
@@ -75,5 +75,7 @@ ActiveRecord::Schema.define(:version => 20120529082817) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "settings", ["key"], :name => "index_settings_on_key", :unique => true
 
 end
