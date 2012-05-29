@@ -6,6 +6,9 @@
         <li <%= admin_nav_class('/admin/blogs') %>>
           <%= link_to '文章', admin_blogs_path %>
         </li>
+        <li <%= admin_nav_class('/admin/comments') %>>
+          <%= link_to '评论', admin_comments_path %>
+        </li>
         <li <%= admin_nav_class('/admin/categories') %>>
           <%= link_to '分类', admin_categories_path %>
         </li>
@@ -21,7 +24,7 @@
       </ul>
       <ul class="nav pull-right">
         <li>
-          <%= link_to '查看博客首页', root_path %>
+          <%= link_to '查看博客首页', root_path, :target=>'_blank' %>
         </li>
         <li>
           <%= link_to '退出后台', admin_session_path, :method=>:delete, :confirm=>'确定退出？' %>

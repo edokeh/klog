@@ -5,6 +5,9 @@
   <meta charset="utf-8" />
   <%= stylesheet_link_tag 'admin' %>
   <%= csrf_meta_tags %>
+  <!--[if lt IE 9]>
+  <%= javascript_include_tag 'html5shiv' %>
+  <![endif]-->
   <%= yield :head %>
 </head>
 <body>

@@ -15,6 +15,7 @@ Klog::Application.routes.draw do
       post 'preview', :on=>:collection
     end
     resources :categories
+    resources :comments
     resources :attaches
     namespace :settings do
       resource :admin_pass

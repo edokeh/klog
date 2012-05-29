@@ -41,19 +41,21 @@ ActiveRecord::Schema.define(:version => 20120528013805) do
   add_index "blogs", ["slug"], :name => "index_blogs_on_slug", :unique => true
 
   create_table "categories", :force => true do |t|
-    t.string   "name",       :limit => 20,                :null => false
-    t.integer  "blog_count",               :default => 0
-    t.datetime "created_at",                              :null => false
-    t.datetime "updated_at",                              :null => false
+    t.string   "name",       :limit => 20, :null => false
+    t.integer  "blog_count"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
   end
 
   create_table "comments", :force => true do |t|
     t.string   "nick"
     t.string   "email"
     t.text     "content"
+    t.string   "ip"
     t.integer  "commentable_id"
     t.string   "commentable_type"
     t.integer  "blog_id"
+    t.boolean  "is_admin"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end
@@ -64,7 +66,5 @@ ActiveRecord::Schema.define(:version => 20120528013805) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
-  add_index "settings", ["key"], :name => "index_settings_on_key", :unique => true
 
 end
