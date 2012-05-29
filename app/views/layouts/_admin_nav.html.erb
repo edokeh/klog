@@ -12,8 +12,8 @@
         <li <%= admin_nav_class('/admin/categories') %>>
           <%= link_to '分类', admin_categories_path %>
         </li>
-        <li>
-          <%= link_to '页面', admin_blogs_path %>
+        <li <%= admin_nav_class('/admin/pages') %>>
+          <%= link_to '页面', admin_pages_path %>
         </li>
         <li <%= admin_nav_class('/admin/attaches') %>>
           <%= link_to '附件', admin_attaches_path %>

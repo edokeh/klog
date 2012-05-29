@@ -1,0 +1,22 @@
+<script id="upload-list-temp" type="text/template">
+  <div class="filename pull-left">
+    <%%= filename %>
+  </div>
+  <%% if(!is_complete){ %>
+  <div class="progress progress-striped active pull-left">
+    <div class="bar" style="width:<%%= percent %>%"></div>
+  </div>
+  <%% }else{ %>
+  <div class="handle pull-left" style="">
+    <a href="javascript:void(0);" class="insert">插入</a>&nbsp;&nbsp;|&nbsp;
+    <a href="<%%= url %>" target="_blank" class="view">查看</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/admin/attaches/<%%= id %>.json" class="delete" data-method='delete' data-remote="true" data-confirm="确定删除这个附件？">删除</a>
+    <input type="hidden" name="attach_ids[]" value="<%%= id %>"/>
+  </div>
+  <%% } %>
+  <div style="clear:both"></div>
+</script>
+
+<script>
+var attaches_json = <%= raw (@attaches||[]).map { |a| a.json_data }.to_json %>;
+</script>

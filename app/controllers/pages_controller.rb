@@ -1,10 +1,9 @@
 # -coding: utf-8 -
-class CategoriesController < ApplicationController
+class PagesController < ApplicationController
 
   def show
-    @category = Category.where(:name=>params[:id]).first
-    @blogs = @category.blogs.order("created_at DESC").page(params[:page])
-    render 'blogs/index'
+    @page = Page.where(:slug=>params[:page_slug]).first
+    raise  ActiveRecord::RecordNotFound if @page.nil?
   end
 
 end

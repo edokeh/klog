@@ -8,9 +8,11 @@
         <li>
           <%= link_to 'Archives', admin_blogs_url %>
         </li>
+        <% Page.all.each do |page| %>
         <li>
-          <%= link_to 'About', admin_blogs_url %>
+          <%=link_to page.title, "/#{page.slug}" %>
         </li>
+        <% end %>
       </ul>
 
       <ul class="nav pull-right">

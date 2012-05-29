@@ -12,18 +12,23 @@ Klog::Application.routes.draw do
   namespace :admin do
     resources :blogs do
       post 'publish', :on=>:member
-      post 'preview', :on=>:collection
     end
     resources :categories
     resources :comments
     resources :attaches
+    resources :pages
+
     namespace :settings do
       resource :admin_pass
       resource :website
     end
+
     resource :session
     get '/'=>'home#show'
+    post '/preview'=>'home#preview'
   end
+
+  get '/:page_slug'=>'pages#show'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
