@@ -11,10 +11,20 @@ class Setting::Sidebar
   attr_accessor *ATTR_KEYS
   attr_accessible *ATTR_KEYS
 
+  validates :html_content, :length=>{:maximum=>255}
+
+  def initialize
+    ATTR_KEYS.each do |key|
+      key = key.to_s
+      self.send(key + '=', Setting['sidebar_' + key])
+    end
+  end
+
   def update_attributes(attributes={})
     sanitize_for_mass_assignment(attributes).each do |name, value|
       send("#{name}=", value)
     end
+    self.fill_html_content
     if valid?
       ATTR_KEYS.each do |key|
         Setting['sidebar_' + key.to_s] = self.send(key)
@@ -23,6 +33,11 @@ class Setting::Sidebar
     else
       return false
     end
+  end
+
+  #将markup的content转换为html并写入字段
+  def fill_html_content
+    self.html_content = Klog::Markdown.render(self.content)
   end
 
   def persisted?

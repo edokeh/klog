@@ -21,7 +21,7 @@
 
       <form class="navbar-search pull-right" action="http://google.com/search" style="margin-right: 20px" method="get">
         <input type="text" name="q" class="search-query input-large" placeholder="搜索" />
-        <input type="hidden" name="q" value="site:huacnlee.com" />
+        <input type="hidden" name="q" value="site:<%= request.host %>" />
       </form>
     </div>
   </div>

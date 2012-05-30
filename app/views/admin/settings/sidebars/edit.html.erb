@@ -2,17 +2,31 @@
 
   <%= render 'admin/settings/nav' %>
 
-  <%= form_for @sidebar, :url=>admin_settings_website_path, :method=>:put, :html=>{:class=>"form-horizontal topic-form"} do |f| %>
+  <%= form_for @sidebar, :url=>admin_settings_sidebar_path, :method=>:put, :html=>{:class=>"form-horizontal topic-form"} do |f| %>
       <%= render 'common/flash_notice' %>
 
       <%= error_for(@sidebar) %>
 
       <fieldset>
         <div class="control-group">
-          <label class="control-label">网站标题</label>
+          <label class="control-label">标题</label>
 
           <div class="controls">
             <%= f.text_field :title, :class=>"input-xlarge" %>
+          </div>
+        </div>
+
+        <div class="control-group editor_tab">
+
+          <div class="controls">
+            <ul class="nav nav-pills">
+              <li class="active" data-type="edit">
+                <a href="javascript:void(0);">编辑</a>
+              </li>
+              <li data-type="preview">
+                <a href="javascript:void(0);">预览</a>
+              </li>
+            </ul>
           </div>
         </div>
 
@@ -20,7 +34,18 @@
           <label class="control-label">内容</label>
 
           <div class="controls">
-            <%= f.text_area :content, :class=>"input-xlarge" %>
+            <%= f.text_area :content, :class=>"input-xlarge", :rows=>10 %>
+            <div id="preview"></div>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label">附件/图片</label>
+
+          <div class="controls">
+            <div id="upload" style="height:30px;"></div>
+            <div class="upload-list">
+            </div>
           </div>
         </div>
 
@@ -33,3 +58,9 @@
       </fieldset>
   <% end %>
 </div>
+
+<%= render 'admin/common/upload_temp' %>
+
+<% content_for :js do %>
+    <%= javascript_include_tag 'admin/settings/sidebar/edit' %>
+<% end %>

@@ -2,8 +2,7 @@
 class Admin::Settings::SidebarsController < Admin::ApplicationController
 
   def edit
-    puts ::Setting::Sidebar.class
-    @sidebar = ::Setting::Sidebar.instance
+    @sidebar = Setting::Sidebar.instance
   end
 
   def update
