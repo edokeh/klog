@@ -5,8 +5,7 @@ class CategoriesController < ApplicationController
     @category = Category.where(:name=>params[:id]).first
     raise  ActiveRecord::RecordNotFound if @category.nil?
 
-    #TODO publish
-    @blogs = @category.blogs.order("created_at DESC").page(params[:page])
+    @blogs = @category.blogs.publish.order("created_at DESC").page(params[:page])
     render 'blogs/index'
   end
 

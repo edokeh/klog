@@ -1,0 +1,42 @@
+<div class="span3 sidebar">
+  <section>
+    <h3>关于</h3>
+        
+    <div>
+        <%= image_tag 'avatar.jpg', :size=>'120x120' %>
+    </div>
+  </section>
+  
+  <section>
+    <h3>分类</h3>
+    <ul>
+      <% @categories.each do |category| %>
+      <li>
+        <%=link_to "#{category.name} (#{category.blog_count})", category_path(category.name) %>
+      </li>
+      <% end %>
+    </ul>
+  </section>
+
+  <section>
+    <h3>最近文章</h3>
+    <ul>
+      <% @recent_blogs.each do |blog| %>
+      <li>
+        <%= link_to blog.title, blog_path(blog.slug) %>
+      </li>
+      <% end %>
+    </ul>
+  </section>
+
+  <section>
+    <h3>最近文章</h3>
+    <ul>
+      <% @recent_blogs.each do |blog| %>
+      <li>
+        <%= link_to blog.title, blog_path(blog.slug) %>
+      </li>
+      <% end %>
+    </ul>
+  </section>
+</div>

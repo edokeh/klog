@@ -1,0 +1,35 @@
+<div class="container">
+
+  <%= render 'admin/settings/nav' %>
+
+  <%= form_for @sidebar, :url=>admin_settings_website_path, :method=>:put, :html=>{:class=>"form-horizontal topic-form"} do |f| %>
+      <%= render 'common/flash_notice' %>
+
+      <%= error_for(@sidebar) %>
+
+      <fieldset>
+        <div class="control-group">
+          <label class="control-label">网站标题</label>
+
+          <div class="controls">
+            <%= f.text_field :title, :class=>"input-xlarge" %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label">内容</label>
+
+          <div class="controls">
+            <%= f.text_area :content, :class=>"input-xlarge" %>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-large btn-primary" type="submit">
+            <i class="icon-ok icon-white"></i>
+            修改
+          </button>
+        </div>
+      </fieldset>
+  <% end %>
+</div>

@@ -2,7 +2,6 @@ class Page < ActiveRecord::Base
   attr_accessible :content, :slug, :title
 
   before_validation :clean_slug
-  before_save :fill_slug
   before_save :fill_html_content
 
   validates :title, :length => {:in => 2..10}

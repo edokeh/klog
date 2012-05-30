@@ -190,6 +190,7 @@ zh-CN:
       default: ! '%Y年%m月%d日'
       long: ! '%Y-%m-%d %H:%M:%S'
       short: ! '%H:%M'
+      date: ! '%-m月%d日'
   views:
     pagination:
       previous: "&laquo; 上一页"

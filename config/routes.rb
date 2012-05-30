@@ -22,6 +22,7 @@ Klog::Application.routes.draw do
     namespace :settings do
       resource :admin_pass
       resource :website
+      resource :sidebar
     end
 
     resource :session

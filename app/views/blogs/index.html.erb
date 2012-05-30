@@ -5,17 +5,16 @@
 <% end %>
 
 <% @blogs.each do |blog| %>
-    <article>
+    <article class="blog">
       <header>
         <h2>
           <%= link_to blog.title, blog_path(blog.slug) %>
         </h2>
-
         <p>发表于 <%= l blog.created_at %></p>
       </header>
-      <div>
+      <section>
         <%= raw blog.html_content %>
-      </div>
+      </section>
       <footer>
         发表在
         <% if blog.category.nil? %>

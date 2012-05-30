@@ -33,11 +33,11 @@ body{
     background: @white;
 }
 
-header{
+.logo{
     margin-bottom: 10px;
 }
 
-header h1{
+.logo h1{
     font-size: 60px;
     line-height: 80px;
     height: 80px;
@@ -45,7 +45,7 @@ header h1{
     display: inline-block;
 }
 
-header em{
+.logo em{
     margin-left:10px;
     font-size: 30px;
     color: @grayLight;
@@ -53,11 +53,13 @@ header em{
 }
 
 .main{
-    padding: 10px 20px;
+    padding: 20px;
 }
 
 .sidebar{
-    padding: 20px 0;
+    margin-top: 20px;
+    padding-left: 20px;
+    border-left: 1px solid @grayLighter;
 }
 
 .sidebar section{
@@ -69,22 +71,42 @@ header em{
     margin-bottom: 10px;
 }
 
-article{
-  padding-bottom: 10px;
-  margin-bottom: 20px;
-  border-bottom: 1px solid @grayLighter;
+.blog{
+    margin-bottom: 10px;
+    border-bottom: 1px solid @grayLighter;
 }
 
-article footer{
+.blog header h2{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.blog header p{
     color: @grayLight;
 }
 
-article header p{
-    color: @grayLight;
+/*
+.blog section h3{
+    font-size: 25px;
+    line-height: 30px;
+    margin: 10px 0;
 }
 
+.blog section h4{
+    font-size: 20px;
+    line-height: 25px;
+    margin: 5px 0;
+}
+
+.blog section p, .blog section li{
+    font-size: 18px;
+    line-height: 27px;
+    color: #222;
+}
+*/
 .blog footer{
-  padding-top: 20px;
+  padding: 10px 0;
+  color: @grayLight;
 }
 
 .blog footer a{
@@ -116,6 +138,7 @@ article header p{
 
 .comment{
     margin-top: 5px;
+    margin-bottom: 10px;
 }
 
 .comment header{
@@ -123,15 +146,61 @@ article header p{
     border-radius: 3px;
     font-size: 14px;
     font-weight: bolder;
-    padding: 5px 15px;
+    padding: 5px 10px;
     color: @linkColor;
     border:none;
+    margin-bottom: 10px;
 }
 
 .comment section{
-    padding: 0 10px;
 }
 
 .comment footer{
     color: @grayLight;
+    padding: 5px 0;
+}
+
+
+.archive .year {
+    margin-top: 20px;
+}
+
+.archive h2 {
+    font-size: 40px;
+    font-weight: bolder;
+    line-height: 50px;
+    color: @gray;
+    padding-top: 3px;
+}
+
+.archive article {
+    border-bottom: 1px solid @grayLighter;
+}
+
+.archive h3{
+    color:@grayLight;
+    font-size: 30px;
+    font-weight: bolder;
+     line-height: 50px;
+    height: 50px;
+}
+
+.archive .title{
+    font-size: 25px;
+     line-height: 50px;
+    height: 50px;
+}
+
+.page-content h3{
+    font-size: 30px;
+    line-height: 40px;
+    margin: 20px 0 10px 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid @grayLighter;
+    color: #000;
+}
+
+.page-content p, .page-content li{
+    font-size: 18px;
+    line-height: 27px;
 }

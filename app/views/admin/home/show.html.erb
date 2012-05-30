@@ -11,7 +11,7 @@
   <article>
     <header>统计信息</header>
     <ul>
-      <li>文章 <strong><%= Blog.count %></strong> 篇</li>
+      <li>文章 <strong><%= Blog.publish.count %></strong> 篇，草稿 <strong><%= Blog.draft.count %></strong>  篇</li>
       <li>评论 <strong><%= Comment.count %></strong> 条</li>
       <li>分类 <strong><%= Category.count %></strong> 个</li>
       <li>附件 <strong><%= Attach.count %></strong> 个，占用 <strong><%= number_to_human_size Attach.sum('file_size') %></strong></li>

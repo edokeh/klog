@@ -1,7 +1,7 @@
 # -coding: utf-8 -
 # 网站信息的抽象类，不是AR Model
 class Setting::Website
-  ATTR_KEYS = [:title, :sub_title, :description, :author]
+  ATTR_KEYS = [:title, :sub_title, :descr, :author]
   
   include ActiveModel::Conversion
   include ActiveModel::Validations
