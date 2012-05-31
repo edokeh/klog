@@ -46,6 +46,7 @@
 
   <div class="controls">
     <%= f.text_field :slug, :class=>"input-large" %>
+    <span class="help-block">用于文章的URL，如不填写系统会采用当前时间戳</span>
   </div>
 </div>
 
@@ -54,6 +55,15 @@
 
   <div class="controls">
     <%= f.select :category_id, category_options %>
+  </div>
+</div>
+
+<div class="control-group">
+  <label class="control-label">tag</label>
+
+  <div class="controls">
+    <%= f.text_field :tag_list %>
+    <span class="help-block">请用英文逗号(,)分隔tag词</span>
   </div>
 </div>
 

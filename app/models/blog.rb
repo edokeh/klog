@@ -4,7 +4,9 @@ class Blog < ActiveRecord::Base
   S_DRAFT = 0
   S_PUBLISH = 1
 
-  attr_accessible :content, :seo_desc, :seo_kwd, :slug, :status, :tag, :title, :category_id
+  acts_as_taggable
+
+  attr_accessible :content, :seo_desc, :seo_kwd, :slug, :status, :tag, :title, :category_id, :tag_list
 
   validates :title, :length => {:in => 3..100}
   validates :content, :length => {:in => 10..100000}

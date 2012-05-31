@@ -1,7 +1,13 @@
-<% if @category %>
-<div class="well">
-  <h3>分类：<%= @category.name %></h3>
-</div>
+<% if controller_name == 'categories' %>
+    <div class="well">
+      <h3>分类：<%= @category.name %></h3>
+    </div>
+<% end %>
+
+<% if controller_name == 'tags' %>
+    <div class="well">
+      <h3>标签：<%= params[:id] %></h3>
+    </div>
 <% end %>
 
 <% @blogs.each do |blog| %>
@@ -10,6 +16,7 @@
         <h2>
           <%= link_to blog.title, blog_path(blog.slug) %>
         </h2>
+
         <p>发表于 <%= l blog.created_at %></p>
       </header>
       <section>
@@ -20,7 +27,7 @@
         <% if blog.category.nil? %>
             未分类
         <% else %>
-            <%=link_to blog.category.name, category_path(blog.category.name) %>
+            <%= link_to blog.category.name, category_path(blog.category.name) %>
         <% end %>
         &nbsp;&nbsp;|&nbsp;&nbsp;
         <%= blog.comment_count %>条评论

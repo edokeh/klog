@@ -6,6 +6,7 @@ Klog::Application.routes.draw do
     resources :comments
   end
   resources :categories
+  resources :tags
 
   get '/feed'=>'feed#show', :format=>:rss, :as=>:feed
   get '/archive'=>'archive#show', :as=>:archive

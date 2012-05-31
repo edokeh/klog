@@ -1,4 +1,5 @@
 module ApplicationHelper
+  include ActsAsTaggableOn::TagsHelper
 
   def error_for(record)
     render :partial => "admin/common/error_for", :locals => {:record => record}
@@ -24,8 +25,6 @@ module ApplicationHelper
 
   #前台导航栏中tab是否激活
   def public_nav_class(*controllers)
-    puts controllers
-    puts '---'
     controllers.each do |controller|
       return 'class="active"'.html_safe if controller_name == controller
     end

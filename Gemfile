@@ -30,6 +30,7 @@ gem 'cells', '~> 3.7'
 gem 'kaminari', '~> 0.13.0'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'acts-as-taggable-on', '~> 2.3.1'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

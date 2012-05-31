@@ -1,42 +1,43 @@
 <div class="span3 sidebar">
   <section>
     <h3><%= Setting.sidebar_title %></h3>
-        
+
     <div>
-        <%=raw Setting.sidebar_html_content %>
+      <%= raw Setting.sidebar_html_content %>
     </div>
   </section>
-  
+
+  <% if @categories.present? %>
   <section>
     <h3>分类</h3>
     <ul>
       <% @categories.each do |category| %>
-      <li>
-        <%=link_to "#{category.name} (#{category.blog_count})", category_path(category.name) %>
-      </li>
+          <li>
+            <%= link_to "#{category.name} (#{category.blog_count})", category_path(category.name) %>
+          </li>
       <% end %>
     </ul>
   </section>
+  <% end %>
+
+  <% if @tags.present? %>
+  <section>
+    <h3>标签</h3>
+    <% tag_cloud(@tags, %w(12 16 22 30)) do |tag, weight| %>
+        <%= link_to tag.name, tag_path(tag.name), :style=>"font-size: #{weight}px", :class=>"tag" %>
+    <% end %>
+  </section>
+  <% end %>
 
   <section>
     <h3>最近文章</h3>
     <ul>
       <% @recent_blogs.each do |blog| %>
-      <li>
-        <%= link_to blog.title, blog_path(blog.slug) %>
-      </li>
+          <li>
+            <%= link_to blog.title, blog_path(blog.slug) %>
+          </li>
       <% end %>
     </ul>
   </section>
 
-  <section>
-    <h3>最近评论</h3>
-    <ul>
-      <% @recent_comments.each do |comment| %>
-      <li>
-        <%= link_to truncate(comment.content, :length=>20), blog_path(comment.blog.slug, :anchor=>"comments_#{comment.id}") %>
-      </li>
-      <% end %>
-    </ul>
-  </section>
 </div>
