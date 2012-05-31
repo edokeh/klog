@@ -12,6 +12,7 @@
     <tr>
       <th>文件名</th>
       <th>归属</th>
+      <th>归属类型</th>
       <th>文件大小</th>
       <th>创建时间</th>
     </tr>
@@ -30,6 +31,20 @@
           <td>
             <% if attach.parent.instance_of? Blog %>
             <%= link_to attach.parent.title, blog_url(attach.parent.slug), :target=>"_blank" %>
+            <% end %>
+            <% if attach.parent.instance_of? Page %>
+            <%= link_to attach.parent.title, page_url(attach.parent.slug), :target=>"_blank" %>
+            <% end %>
+          </td>
+          <td>
+            <% if attach.parent.instance_of? Blog %>
+                <span class="label">文章</span>
+            <% end %>
+            <% if attach.parent.instance_of? Page %>
+                <span class="label label-success">页面</span>
+            <% end %>
+            <% if attach.parent_type == 'Setting::Sidebar' %>
+                <span class="label label-info">侧边栏</span>
             <% end %>
           </td>
           <td><%= number_to_human_size attach.file_size %></td>

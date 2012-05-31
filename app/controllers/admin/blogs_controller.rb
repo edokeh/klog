@@ -14,10 +14,9 @@ class Admin::BlogsController < Admin::ApplicationController
   #创建
   def create
     @blog = Blog.new(params[:blog])
-    @attaches = Attach.where(:id=>params[:attach_ids])
     if @blog.save
       # 更新附件的归属
-      @attaches.update_all(:parent_id=>@blog.id, :parent_type=>'Blog')
+      Attach.update_parent(params[:attach_ids], @blog)
       redirect_to admin_blogs_path(:status=>@blog.status), :notice=>"发表文章成功！"
     else
       render :new
@@ -31,10 +30,9 @@ class Admin::BlogsController < Admin::ApplicationController
 
   def update
     @blog = Blog.find(params[:id])
-    @attaches = Attach.where(:id=>params[:attach_ids])
     if @blog.update_attributes(params[:blog])
-      # 更新附件的归属
-      @attaches.update_all(:parent_id=>@blog.id, :parent_type=>'Blog')
+       # 更新附件的归属
+      Attach.update_parent(params[:attach_ids], @blog)
       redirect_to admin_blogs_path(:status=>@blog.status), :notice=>"“#{@blog.title}” 修改成功！"
     else
       render :edit

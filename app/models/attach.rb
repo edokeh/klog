@@ -9,6 +9,11 @@ class Attach < ActiveRecord::Base
 
   mount_uploader :file, AttachUploader
 
+  def self.update_parent(ids, parent)
+    attaches = self.where(:id=>ids)
+    attaches.update_all(:parent_id=>parent.id, :parent_type=>parent.class.to_s)
+  end
+
   #填充content_type,file_size字段
   def fill_attributes
     self.content_type = file.file.content_type

@@ -13,6 +13,8 @@ class Admin::PagesController < Admin::ApplicationController
     @page = Page.new(params[:page])
 
     if @page.save
+      # 更新附件的归属
+      Attach.update_parent(params[:attach_ids], @page)
       flash[:notice] = "<strong>#{@page.title}</strong> 创建成功！".html_safe
       redirect_to admin_pages_path
     else
@@ -28,6 +30,8 @@ class Admin::PagesController < Admin::ApplicationController
     @page = Page.find(params[:id])
 
     if @page.update_attributes(params[:page])
+      # 更新附件的归属
+      Attach.update_parent(params[:attach_ids], @page)
       redirect_to admin_pages_path, :notice=>'修改成功！'
     else
       render :action=>"edit"

@@ -9,7 +9,7 @@ class Admin::CategoriesController < Admin::ApplicationController
 
   def create
     @category = Category.new(params[:category])
-
+    
     if @category.save
       flash[:notice] = "<strong>#{@category.name}</strong> 创建成功！".html_safe
       redirect_to admin_categories_path

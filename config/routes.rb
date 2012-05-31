@@ -31,7 +31,7 @@ Klog::Application.routes.draw do
     post '/preview'=>'home#preview'
   end
 
-  get '/:page_slug'=>'pages#show'
+  get '/:page_slug'=>'pages#show', :as=>:page
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

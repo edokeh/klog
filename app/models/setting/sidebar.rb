@@ -44,4 +44,8 @@ class Setting::Sidebar
     false
   end
 
+  def id
+    nil
+  end
+
 end
