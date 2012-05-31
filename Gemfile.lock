@@ -124,6 +124,7 @@ DEPENDENCIES
   cells (~> 3.7)
   jquery-rails
   kaminari (~> 0.13.0)
+  less-rails
   less-rails-bootstrap
   mini_magick
   mysql2
