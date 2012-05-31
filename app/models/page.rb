@@ -1,12 +1,15 @@
 class Page < ActiveRecord::Base
+  include Sequencable
+
   attr_accessible :content, :slug, :title
 
   before_validation :clean_slug
   before_save :fill_html_content
+  before_save :set_sid
 
   validates :title, :length => {:in => 2..10}
   validates :content, :length => {:in => 10..100000}
-  validates :slug, :presence => true
+  validates :slug, :presence => true, :uniqueness => true
 
   #将slug中的非法字符过滤掉
   def clean_slug
@@ -16,5 +19,9 @@ class Page < ActiveRecord::Base
   #将markup的content转换为html并写入字段
   def fill_html_content
     self.html_content = Klog::Markdown.render(self.content)
+  end
+
+  def set_sid
+    self.sid = Time.now.to_i
   end
 end

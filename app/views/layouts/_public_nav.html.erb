@@ -2,14 +2,14 @@
   <div class="navbar-inner">
     <div class="container">
       <ul class="nav">
-        <li <%= public_nav_class('blogs') %>>
+        <li <%= public_nav_class('^/blogs', '^/$') %>>
           <%= link_to 'Blog', blogs_path %>
         </li>
-        <li <%= public_nav_class('archive') %>>
+        <li <%= public_nav_class('^/archive') %>>
           <%= link_to 'Archives', archive_path %>
         </li>
         <% Page.all.each do |page| %>
-            <li <%= public_nav_class('pages') %>>
+            <li <%= public_nav_class('^/' + page.slug) %>>
               <%= link_to page.title, "/#{page.slug}" %>
             </li>
         <% end %>

@@ -24,9 +24,9 @@ module ApplicationHelper
   end
 
   #前台导航栏中tab是否激活
-  def public_nav_class(*controllers)
-    controllers.each do |controller|
-      return 'class="active"'.html_safe if controller_name == controller
+  def public_nav_class(*urls)
+    urls.each do |url|
+      return 'class="active"'.html_safe if Regexp.new(url).match(request.path)
     end
     return ''
   end
