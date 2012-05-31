@@ -1,4 +1,5 @@
 //= require jquery.color
+//= require twitter/bootstrap/modal
 $(function() {
 
     $('a.reply-comment').click(function() {
@@ -21,7 +22,9 @@ $(function() {
         if ($(this).hasClass('disabled')) {
             e.preventDefault();
         }else{
+            $('#captchaModal').modal();
             $(this).addClass('disabled');
+            e.preventDefault();
         }
     });
 

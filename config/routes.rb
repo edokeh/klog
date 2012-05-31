@@ -18,7 +18,10 @@ Klog::Application.routes.draw do
     resources :categories
     resources :comments
     resources :attaches
-    resources :pages
+    resources :pages do
+      post 'up', :on=>:member
+      post 'down', :on=>:member
+    end
 
     namespace :settings do
       resource :admin_pass

@@ -20,6 +20,8 @@
         <tr>
           <td>
             <%= link_to page.title, blog_path(page.slug), :target=>'_blank', :class=>'pull-left' %>
+            <%= link_to '上移', up_admin_page_path(page), :method=>:post, :class=>'btn pull-right hide' %>
+            <%= link_to '下移', down_admin_page_path(page), :method=>:post, :class=>'btn pull-right hide' %>
             <%= link_to '删除', [:admin, page], :class=>'btn btn-danger pull-right hide', :confirm=>'确定删除?', :method=>:delete %>
             <%= link_to '修改', edit_admin_page_path(page), :class=>'btn btn-primary pull-right hide' %>
           </td>

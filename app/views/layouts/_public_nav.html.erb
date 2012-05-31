@@ -8,7 +8,7 @@
         <li <%= public_nav_class('^/archive') %>>
           <%= link_to 'Archives', archive_path %>
         </li>
-        <% Page.all.each do |page| %>
+        <% Page.order('sid ASC').each do |page| %>
             <li <%= public_nav_class('^/' + page.slug) %>>
               <%= link_to page.title, "/#{page.slug}" %>
             </li>

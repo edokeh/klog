@@ -5,7 +5,7 @@ class Page < ActiveRecord::Base
 
   before_validation :clean_slug
   before_save :fill_html_content
-  before_save :set_sid
+  after_create :set_sid
 
   validates :title, :length => {:in => 2..10}
   validates :content, :length => {:in => 10..100000}
@@ -22,6 +22,6 @@ class Page < ActiveRecord::Base
   end
 
   def set_sid
-    self.sid = Time.now.to_i
+    self.update_column(:sid, id)
   end
 end

@@ -2,7 +2,7 @@
 class Admin::PagesController < Admin::ApplicationController
 
   def index
-    @pages = Page.all
+    @pages = Page.order('sid ASC').all
   end
 
   def new
@@ -43,5 +43,19 @@ class Admin::PagesController < Admin::ApplicationController
     @page.destroy
 
     redirect_to admin_pages_url, :notice=>'删除成功！'
+  end
+
+  def up
+    @page = Page.find(params[:id])
+    @page.up
+
+    redirect_to admin_pages_url
+  end
+
+  def down
+    @page = Page.find(params[:id])
+    @page.down
+
+    redirect_to admin_pages_url
   end
 end
