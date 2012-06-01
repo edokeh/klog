@@ -25,7 +25,6 @@ class Admin::BlogsController < Admin::ApplicationController
 
   def edit
     @blog = Blog.find(params[:id])
-    @attaches = @blog.attaches
   end
 
   def update

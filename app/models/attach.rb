@@ -10,7 +10,7 @@ class Attach < ActiveRecord::Base
   mount_uploader :file, AttachUploader
 
   def self.update_parent(ids, parent)
-    return if ids.empty?
+    return if ids.blank?
     attaches = self.where(:id=>ids)
     attaches.update_all(:parent_id=>parent.id, :parent_type=>parent.class.to_s)
   end

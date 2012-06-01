@@ -37,7 +37,7 @@ class AttachUploader < CarrierWave::Uploader::Base
   # end
 
   process :set_content_type
-  process :resize_to_limit => [800, nil], :if => :image?
+  process :resize_to_limit => [750, nil], :if => :image?
 
   # Create different versions of your uploaded files:
   #version :thumb, :if=>:is_image? do

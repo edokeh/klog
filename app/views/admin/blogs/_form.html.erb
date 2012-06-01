@@ -67,4 +67,12 @@
   </div>
 </div>
 
-<%= render 'admin/common/upload_temp' %>
+<%= render :partial=>'admin/common/upload_temp', :locals=>{:parent=>@blog} %>
+
+<% content_for :head do %>
+    <%= session_meta_tags %>
+<% end %>
+
+<% content_for :js do %>
+    <%= javascript_include_tag 'admin/blogs/new' %>
+<% end %>

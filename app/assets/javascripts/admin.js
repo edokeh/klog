@@ -1,5 +1,5 @@
 //= require jquery
-//= require ujs
+//= require jquery_ujs
 //= require es5-safe-debug
 $(function() {
     setTimeout(function() {

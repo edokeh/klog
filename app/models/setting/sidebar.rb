@@ -48,4 +48,8 @@ class Setting::Sidebar
     nil
   end
 
+  def attaches
+    Attach.where(:parent_type=>self.class.to_s)
+  end
+
 end

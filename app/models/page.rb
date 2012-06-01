@@ -11,6 +11,8 @@ class Page < ActiveRecord::Base
   validates :content, :length => {:in => 10..100000}
   validates :slug, :presence => true, :uniqueness => true
 
+  has_many :attaches, :as=>:parent
+
   #将slug中的非法字符过滤掉
   def clean_slug
     self.slug = self.slug.gsub(/[^a-zA-Z\-0-9]/, '-').downcase if self.slug.present?

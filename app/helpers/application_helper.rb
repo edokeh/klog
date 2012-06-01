@@ -30,4 +30,9 @@ module ApplicationHelper
     end
     return ''
   end
+
+  #根据路径自动引入相应的js
+  def page_js_tag
+     javascript_include_tag "#{params[:controller]}/#{action_name}"
+  end
 end

@@ -5,61 +5,11 @@
           修改页面
         </legend>
 
-        <%= error_for(@page) %>
-
-        <div class="control-group">
-          <label class="control-label">标题</label>
-
-          <div class="controls">
-            <%= f.text_field :title, :class=>"input-xxlarge" %>
-          </div>
-        </div>
-
-        <div class="control-group editor_tab">
-
-          <div class="controls">
-            <ul class="nav nav-pills">
-              <li class="active" data-type="edit">
-                <a href="javascript:void(0);">编辑</a>
-              </li>
-              <li data-type="preview">
-                <a href="javascript:void(0);">预览</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <label class="control-label">内容</label>
-
-          <div class="controls">
-            <%= f.text_area :content, :class=>"input-xxlarge", :rows=>20 %>
-            <div id="preview"></div>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <label class="control-label">附件/图片</label>
-
-          <div class="controls">
-            <div id="upload" style="height:30px;"></div>
-            <div class="upload-list">
-            </div>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <label class="control-label">slug</label>
-
-          <div class="controls">
-            <%= f.text_field :slug, :class=>"input-large" %>
-          </div>
-        </div>
-
-
+        <%= render :partial => "form", :locals=>{:f=>f} %>
+        
         <div class="form-actions">
           <button class="btn btn-large btn-primary" type="submit">
-            <i class="icon-ok icon-white"></i>
+            <i class="icon-edit icon-white"></i>
             修改页面
           </button>
         </div>
@@ -67,13 +17,3 @@
   <% end %>
   <%= link_to '<<返回列表', admin_pages_path %>
 </div>
-
-<%= render 'admin/common/upload_temp' %>
-
-<% content_for :head do %>
-    <%= session_meta_tags %>
-<% end %>
-
-<% content_for :js do %>
-    <%= javascript_include_tag 'admin/pages/new' %>
-<% end %>

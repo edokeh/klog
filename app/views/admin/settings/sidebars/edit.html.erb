@@ -59,8 +59,12 @@
   <% end %>
 </div>
 
-<%= render 'admin/common/upload_temp' %>
+<%= render :partial=>'admin/common/upload_temp', :locals=>{:parent=>@sidebar} %>
+
+<% content_for :head do %>
+    <%= session_meta_tags %>
+<% end %>
 
 <% content_for :js do %>
-    <%= javascript_include_tag 'admin/settings/sidebar/edit' %>
+    <%= page_js_tag %>
 <% end %>
