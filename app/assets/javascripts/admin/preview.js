@@ -5,7 +5,7 @@ var Preview = {
         this.textarea = textarea;
         $("#preview").height(textarea.height()).width(textarea.width());
         var _this = this;
-        $(".nav li").click(function() {
+        $(".nav li[data-type]").click(function() {
             $(this).addClass("active");
             $(this).siblings().removeClass("active");
 
