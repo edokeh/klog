@@ -10,8 +10,8 @@ class BlogsController < ApplicationController
     raise ActiveRecord::RecordNotFound if @blog.nil?
     raise ActiveRecord::RecordNotFound if @blog.draft? and !is_admin?
 
-    @prev_blog = Blog.where('id < ?', @blog.id).order('id DESC').first
-    @next_blog = Blog.where('id > ?', @blog.id).order('id ASC').first
+    @prev_blog = Blog.publish.where('id < ?', @blog.id).order('id DESC').first
+    @next_blog = Blog.publish.where('id > ?', @blog.id).order('id ASC').first
 
     @comment = @blog.comments.build()
   end
