@@ -1,5 +1,6 @@
 //= require admin/preview
 //= require admin/attach
+//= require twitter/bootstrap/modal
 $(function() {
     $("button[data-status]").click(function(e) {
         $("#blog_status").val($(this).data('status'));
@@ -21,6 +22,8 @@ $(function() {
             $(this).data('insertPos', this.selectionEnd);
         }
     });
+
+    $("#markdownTip").modal();
 
 
 });
