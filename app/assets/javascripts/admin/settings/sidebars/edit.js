@@ -3,8 +3,6 @@
 $(function(){
     Preview.init($("#setting_sidebar_content"));
 
-    AttachUploader.init();
-
     AttachUploader.onInsert(function(code) {
         var value = $("#setting_sidebar_content").val();
         var insertPos = $("#setting_sidebar_content").data('inserPos') || $("#setting_sidebar_content").val().length;

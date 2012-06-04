@@ -1,3 +1,4 @@
+# -coding: utf-8 -
 module ApplicationHelper
   include ActsAsTaggableOn::TagsHelper
 
@@ -35,4 +36,5 @@ module ApplicationHelper
   def page_js_tag
      javascript_include_tag "#{params[:controller]}/#{action_name}"
   end
+
 end

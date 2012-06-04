@@ -2,7 +2,7 @@
 
   <%= render 'admin/settings/nav' %>
 
-  <%= form_for @website, :url=>admin_settings_website_path, :method=>:put, :html=>{:class=>"form-horizontal topic-form"} do |f| %>
+  <%= form_for @website, :url=>admin_settings_website_path, :method=>:put, :html=>{:class=>"form-horizontal admin-form"} do |f| %>
       <%= render 'common/flash_notice' %>
 
       <%= error_for(@website) %>
@@ -42,7 +42,7 @@
 
         <div class="form-actions">
           <button class="btn btn-large btn-primary" type="submit">
-            <i class="icon-ok icon-white"></i>
+            <i class="icon-edit icon-white"></i>
             修改
           </button>
         </div>

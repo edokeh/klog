@@ -1,9 +1,9 @@
 //预览markdown内容
-
+//约定：预览结果的div必须id为preview，相应的textarea需要有data-preview=true属性
 var Preview = {
-    init:function(textarea) {
-        this.textarea = textarea;
-        $("#preview").height(textarea.height()).width(textarea.width());
+    init:function() {
+        this.textarea = $('textarea[data-preview=true]');
+        $("#preview").height(this.textarea.height()).width(this.textarea.width());
         var _this = this;
         $(".nav li[data-type]").click(function() {
             $(this).addClass("active");
@@ -27,3 +27,5 @@ var Preview = {
         }, 'json');
     }
 }
+
+Preview.init();

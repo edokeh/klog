@@ -3,8 +3,6 @@
 $(function() {
     Preview.init($("#page_content"));
 
-    AttachUploader.init();
-
     AttachUploader.onInsert(function(code) {
         var value = $("#page_content").val();
         var insertPos = $("#page_content").data('inserPos') || $("#page_content").val().length;

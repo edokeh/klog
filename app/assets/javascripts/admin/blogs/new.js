@@ -6,8 +6,6 @@ $(function() {
         $("#blog_status").val($(this).data('status'));
     });
 
-    Preview.init($("#blog_content"));
-
     AttachUploader.init();
 
     AttachUploader.onInsert(function(code) {
