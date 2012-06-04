@@ -1,7 +1,12 @@
 @import "twitter/bootstrap";
 
+/* navbar */
+.navbar{
+    margin-bottom: 30px;
+}
+
 .nav li{
-    font-weight:bolder;
+    font-weight: bolder;
     font-size: 14px;
 }
 
@@ -12,9 +17,10 @@
 
 .navbar .nav .active a,
 .navbar .nav .active a:hover {
-  background-color: @gray;
+    background-color: @gray;
 }
 
+/* table */
 .table th{
     background: #C5D5DD;
     color: @black;
@@ -29,19 +35,12 @@
     margin-right: 5px;
 }
 
-.table .hide{
-    display:none;
-}
-
-.table .hover .hide{
-    display:inline-block;
-}
-
 .empty-table{
     height: 20px;
     font-weight: bolder;
 }
 
+/* copy right */
 .copyright{
     margin-top: 100px;
     padding: 20px 0px;
@@ -54,81 +53,78 @@
     text-decoration:underline;
 }
 
-.admin-main{
-    padding-top: 20px;
-}
-
-.admin-main header{
+/* 后台首页 */
+.main header{
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 15px;
 }
 
-.admin-main article{
+.main article{
     margin-bottom: 20px;
 }
 
-.admin-main li{
+.main li{
     font-size: 16px;
     margin-bottom: 10px;
 }
 
-.table-manage {
-    margin-left: 20px;
-    display:none;
-}
-
-.topic-form .control-label{
+/* 表单 */
+.admin-form .control-label{
     width: 60px;
 }
 
-.topic-form label{
-    font-weight:bolder;
+.admin-form label{
+    font-weight: bolder;
 }
 
-.topic-form .controls{
+.admin-form .controls{
     margin-left: 80px;
 }
 
-.topic-form .input-xxlarge{
-    width:90%;
+.admin-form .input-xxlarge{
+    width: 90%;
 }
 
-.topic-form .form-actions{
+.admin-form .form-actions{
     padding-left: 80px;
 }
 
-.topic-form .help-block{
+.admin-form .help-block{
     color: @grayLight;
 }
 
+/* 分页 */
 .pagination ul{
     float:right;
 }
 
+/* 表单中的tab */
 .form-horizontal .editor_tab{
-    margin-bottom:0;
+    margin-bottom: 0;
 }
 
 .editor_tab .nav{
-    margin-bottom:3px;
+    margin-bottom: 3px;
 }
 
 .editor_tab a, .editor_tab a{
-    padding:0;
+    padding: 0;
 }
 
+/* 预览 */
 #preview{
     margin-top: 0px;
     border: 1px solid #CCC;
     padding: 4px;
     border-radius: 3px;
-    display:none;
+    display: none;
     overflow: scroll;
 }
 
+/* 上传显示 */
 .upload-list{
-    display:none;
+    display: none;
     width: 500px;
     padding: 5px 10px;
     background-color: #f5f5f5;
@@ -143,15 +139,16 @@
 
 .upload-list .filename{
     margin-right: 10px;
-    font-weight:bolder;
+    font-weight: bolder;
 }
 
 .upload-list .progress{
-    height:10px;
-    width:150px;
-    margin:4px 0 0 10px;
+    height: 10px;
+    width: 150px;
+    margin: 4px 0 0 10px;
 }
 
+/* 评论 */
 .comments{
     border: 1px solid @grayLighter;
     border-radius: 5px;
@@ -163,7 +160,7 @@
 }
 
 .comments article:last{
-    border-bottom:none;
+    border-bottom: none;
 }
 
 .comments article header{

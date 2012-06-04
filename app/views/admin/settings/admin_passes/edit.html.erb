@@ -2,7 +2,7 @@
 
   <%= render 'admin/settings/nav' %>
 
-  <%= form_for @admin_pass, :url=>admin_settings_admin_pass_path, :method=>:put, :html=>{:class=>"form-horizontal topic-form"} do |f| %>
+  <%= form_for @admin_pass, :url=>admin_settings_admin_pass_path, :method=>:put, :html=>{:class=>"form-horizontal admin-form"} do |f| %>
       <%= render 'common/flash_notice' %>
 
       <%= error_for(@admin_pass) %>

@@ -11,14 +11,14 @@ $(function() {
         var _this = this;
         clearTimeout(timer);
         timer = setTimeout(function() {
-            $(_this).addClass('hover');
+            $(_this).find('.btn').removeClass('hide');
         }, 300);
 
     }, function(e) {
         var _this = this;
         clearTimeout(timer);
         setTimeout(function() {
-            $(_this).removeClass('hover');
+            $(_this).find('.btn').addClass('hide');
         }, 300);
     });
 });
