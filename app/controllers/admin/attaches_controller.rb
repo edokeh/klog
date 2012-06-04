@@ -7,9 +7,7 @@ class Admin::AttachesController < Admin::ApplicationController
 
   #上传附件
   def create
-    attach = Attach.new
-    attach.file = params[:file]
-    attach.file_name = params[:file].original_filename
+    attach = Attach.new_by_params(params[:attach])
 
     if attach.save
       result = {:status => 'success', :attach=>attach.json_data}

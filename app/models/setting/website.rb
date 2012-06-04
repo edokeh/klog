@@ -1,7 +1,7 @@
 # -coding: utf-8 -
 # 网站信息的抽象类，不是AR Model
 class Setting::Website
-  ATTR_KEYS = [:title, :sub_title, :descr, :author]
+  ATTR_KEYS = [:title, :sub_title, :descr, :author, :bottom_js]
   
   include ActiveModel::Conversion
   include ActiveModel::Validations
@@ -12,6 +12,7 @@ class Setting::Website
   send :attr_accessible, *ATTR_KEYS
 
   validates :title, :presence=>true
+  validates :title, :sub_title, :descr, :author, :bottom_js, :length => {:maximum=>2000}
 
   def initialize
     ATTR_KEYS.each do |key|

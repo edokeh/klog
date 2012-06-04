@@ -11,7 +11,7 @@ class Setting::Sidebar
   attr_accessor *ATTR_KEYS
   attr_accessible *ATTR_KEYS
 
-  validates :html_content, :length=>{:maximum=>255}
+  validates :html_content, :length=>{:maximum=>2000}
 
   def initialize
     ATTR_KEYS.each do |key|

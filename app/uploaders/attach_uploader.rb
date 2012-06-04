@@ -1,11 +1,11 @@
 # encoding: utf-8
 
 class AttachUploader < CarrierWave::Uploader::Base
+  include CarrierWave::MimeTypes
+  include CarrierWave::MiniMagick
+
   IMAGE_EXTENSIONS = %w(jpg jpeg gif png)
   DOCUMENT_EXTENSIONS = %w(pdf ppt pptx rar zip)
-
-  include CarrierWave::MiniMagick
-  include CarrierWave::MimeTypes
 
   # Include the Sprockets helpers for Rails 3.1+ asset pipeline compatibility:
   # include Sprockets::Helpers::RailsHelper
@@ -37,7 +37,23 @@ class AttachUploader < CarrierWave::Uploader::Base
   # end
 
   process :set_content_type
-  process :resize_to_limit => [750, nil], :if => :image?
+
+  version :thumb, :if=>:image? do |file|
+    process :resize
+  end
+
+  # 根据model对应的max_width和max_height属性调整图片尺寸
+  # 默认情况下max_width为700
+  def resize
+    width = model.max_width || 700
+    height = model.max_height || nil
+    manipulate! do |img|
+      img.resize "#{width}x#{height}>"
+      img = yield(img) if block_given?
+      img
+    end
+  end
+
 
   # Create different versions of your uploaded files:
   #version :thumb, :if=>:is_image? do

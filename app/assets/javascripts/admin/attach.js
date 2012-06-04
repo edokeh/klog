@@ -2,7 +2,8 @@
 //= require underscore-min
 //= require backbone-min
 var AttachUploader = {
-    init: function() {
+    init: function(options) {
+        options = options || {};
         var _this = this;
         var Attach = Backbone.Model.extend({
             defaults:{
@@ -74,9 +75,11 @@ var AttachUploader = {
 
         var uploader = new Uploader({
             upload_url : "/admin/attaches",
-            file_post_name: "file",
+            file_post_name: "attach[file]",
             file_size_limit : "5 MB",
-            file_types : "*.jpg;*.gif;*.png;*.rar;*.ppt;*.pptx"
+            file_types : "*.jpg;*.gif;*.png;*.rar;*.ppt;*.pptx",
+
+            post_params: options['post_params'] || {}
         });
 
         uploader.on('start', function(file) {

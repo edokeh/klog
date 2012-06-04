@@ -1,4 +1,4 @@
-//= require admin/preview
+//= require admin/markdown_editor
 //= require admin/attach
 $(function() {
     AttachUploader.init();

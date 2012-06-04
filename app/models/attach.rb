@@ -1,6 +1,7 @@
 # -coding: utf-8 -
 class Attach < ActiveRecord::Base
-  attr_accessible :file
+  attr_accessor :max_width, :max_height
+  attr_accessible :file, :max_width, :max_height
 
   before_create :fill_attributes
   after_destroy :delete_file
@@ -8,6 +9,12 @@ class Attach < ActiveRecord::Base
   belongs_to :parent, :polymorphic=>true
 
   mount_uploader :file, AttachUploader
+
+  def self.new_by_params(params)
+    attach = Attach.new(params)
+    attach.file_name = params[:file].original_filename
+    return attach
+  end
 
   def self.update_parent(ids, parent)
     return if ids.blank?
@@ -34,7 +41,7 @@ class Attach < ActiveRecord::Base
   def json_data
     return {
         'file_name' => self.file_name,
-        'url' => self.file.url,
+        'url' => self.file.thumb.url,
         'is_image' => self.image?,
         'id' => self.id,
         'is_complete' => true

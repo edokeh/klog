@@ -1,7 +1,11 @@
-//= require admin/preview
+//= require admin/markdown_editor
 //= require admin/attach
 $(function(){
-    AttachUploader.init();
+    AttachUploader.init({
+        'post_params': {
+            'attach[max_width]': 200
+        }
+    });
 
     AttachUploader.onInsert(function(code) {
         var value = $("#setting_sidebar_content").val();
