@@ -3,7 +3,7 @@
   <%= render 'admin/settings/nav' %>
 
   <%= form_for @sidebar, :url=>admin_settings_sidebar_path, :method=>:put,
-               :builder=>KlogFormBuilder, :html=>{:class=>"form-horizontal admin-form"} do |f| %>
+               :html=>{:class=>"form-horizontal admin-form"} do |f| %>
       <%= render 'common/flash_notice' %>
 
       <%= error_for(@sidebar) %>
@@ -21,7 +21,7 @@
           <label class="control-label" style="padding-top: 28px;">内容</label>
 
           <div class="controls">
-            <%= f.markdown_editor :content, :class=>"input-xxlarge", :rows=>10 %>
+            <%= markdown_editor(f) %>
           </div>
         </div>
 

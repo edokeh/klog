@@ -1,0 +1,14 @@
+<ul class="nav nav-tabs editor-tab">
+  <li class="active" data-type="edit">
+    <a href="javascript:void(0);">编辑</a>
+  </li>
+  <li data-type="preview">
+    <a href="javascript:void(0);">预览</a>
+  </li>
+</ul>
+<%= f.text_area method, :class=>"input-xxlarge", :rows=>20, :data=>{:preview=>true} %>
+<div id="preview"></div>
+<span class="help-block">
+  使用 Markdown 格式编写，按下 M 键或者<a href="javascript:void(0)" id="popMarkdownTip">点此查看语法</a>
+</span>
+<%= render 'admin/common/markdown_tip' %>

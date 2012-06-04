@@ -1,7 +1,7 @@
 //= require admin/preview
 //= require admin/attach
 $(function() {
-    Preview.init($("#page_content"));
+    AttachUploader.init();
 
     AttachUploader.onInsert(function(code) {
         var value = $("#page_content").val();

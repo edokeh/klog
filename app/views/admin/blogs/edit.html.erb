@@ -1,5 +1,5 @@
 <div class="container">
-  <%= form_for([:admin, @blog], :builder=>KlogFormBuilder, :html=>{:class=>"form-horizontal admin-form"}) do |f| %>
+  <%= form_for([:admin, @blog], :html=>{:class=>"form-horizontal admin-form"}) do |f| %>
       <fieldset>
         <legend>修改文章</legend>
 
@@ -25,5 +25,3 @@
   <% end %>
   <%= link_to '<< 返回列表', admin_blogs_path %>
 </div>
-
-<%= render 'admin/common/markdown_tip' %>

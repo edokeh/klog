@@ -37,4 +37,8 @@ module ApplicationHelper
      javascript_include_tag "#{params[:controller]}/#{action_name}"
   end
 
+  def markdown_editor(f, method=:content)
+    render :partial=>'admin/common/markdown_editor', :locals=>{:f=>f, :method=>method}
+  end
+
 end

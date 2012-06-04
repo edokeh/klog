@@ -1,28 +1,85 @@
 <div id="markdownTip" class="modal hide">
-  <h2>Cheat Sheet</h2>
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Markdown Cheat Sheet</h3>
+  </div>
   <div class="container-fluid">
     <div class="row-fluid">
-      <div class="span6">
-        <div>
+      <div class="span4">
+        <article>
           <p>Header</p>
           <pre>
-            # 一级标题
-            ## 二级标题
-          </pre>
-        </div>
+# 一级标题
+## 二级标题</pre>
+        </article>
 
-        <div>
+        <article>
           <p>文本样式</p>
           <pre>
-            *斜体*
-            _斜体_
-            **粗体**
-            __粗体__
-          </pre>
-        </div>
+*斜体*
+**粗体**</pre>
+        </article>
+
+        <article>
+          <p>多行代码</p>
+          <pre>
+```ruby
+class Dog
+  def bark
+  end
+end
+```</pre>
+        </article>
+
       </div>
-      <div class="span6">
-        
+      <div class="span4">
+        <article>
+          <p>无序列表</p>
+          <pre>
+* Item 1
+* Item 2
+  * Item 2a
+  * Item 2b</pre>
+        </article>
+
+        <article>
+          <p>有序列表</p>
+          <pre>
+1. Item 1
+2. Item 2
+3. Item 3
+   * Item 3a
+   * Item 3b</pre>
+        </article>
+
+        <article>
+          <p>单行代码</p>
+          <pre>`rvm install 1.9.2`</pre>
+        </article>
+      </div>
+
+      <div class="span4">
+        <article>
+          <p>图片</p>
+          <pre>
+![文字](url)</pre>
+        </article>
+
+        <article>
+          <p>链接</p>
+          <pre>
+[链接文字](url)</pre>
+        </article>
+
+        <article>
+          <p>引用</p>
+          <pre>
+般若波罗蜜多心经有云
+
+> 观自在菩萨
+> 行深般若波罗蜜多时</pre>
+        </article>
+
       </div>
     </div>
   </div>

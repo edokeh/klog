@@ -1,3 +1,4 @@
+//= require twitter/bootstrap/modal
 //预览markdown内容
 //约定：预览结果的div必须id为preview，相应的textarea需要有data-preview=true属性
 var Preview = {
@@ -18,6 +19,16 @@ var Preview = {
                 _this.textarea.focus();
             }
         });
+
+        $(document).keydown(function(e) {
+            if (e.which == 77) {  //M键
+                $("#markdownTip").modal();
+            }
+        });
+
+        $("#popMarkdownTip").click(function() {
+            $("#markdownTip").modal();
+        })
     },
 
     showPreview:function() {
