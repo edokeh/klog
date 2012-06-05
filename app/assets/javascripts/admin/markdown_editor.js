@@ -21,7 +21,7 @@ var MarkdownEditor = {
         });
 
         $(document).keydown(function(e) {
-            if (e.which === 77 || e.which === 229) {  //M键
+            if (e.which === 77) {  //M键
                 $("#markdownTip").modal();
             }
         });
