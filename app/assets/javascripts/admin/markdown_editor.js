@@ -20,8 +20,8 @@ var MarkdownEditor = {
             }
         });
 
-        $(document).keydown(function(e) {
-            if (e.which === 77) {  //M键
+        $('body').keydown(function(e) {
+            if (e.which === 77 && e.target.nodeName !== 'INPUT' && e.target.nodeName !== 'TEXTAREA') {  //M键
                 $("#markdownTip").modal();
             }
         });
