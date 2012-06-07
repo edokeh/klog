@@ -62,5 +62,7 @@ module Klog
 
     config.assets.precompile += %w(html5shiv.js jquery_ujs.js admin.js blogs/show.js admin/blogs/new.js admin/categories/index.js admin/pages/new.js admin/settings/sidebars/edit.js)
 
+    config.middleware.delete(ActionDispatch::BestStandardsSupport)
+
   end
 end
