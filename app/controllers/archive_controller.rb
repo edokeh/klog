@@ -2,7 +2,7 @@
 class ArchiveController < ApplicationController
 
   def show
-    expires_in 3.hours
+    expires_in 1.hours
     @blogs = Blog.publish.order('created_at DESC').all
 
     @blogs_by_year = {}
