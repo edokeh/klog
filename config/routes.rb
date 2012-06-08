@@ -8,8 +8,9 @@ Klog::Application.routes.draw do
   resources :categories
   resources :tags
 
+  get '/blog/:id.html'=>'blogs#show', :as=>:blog
   get '/feed'=>'feed#show', :format=>:rss, :as=>:feed
-  get '/archive'=>'archive#show', :as=>:archive
+  get '/archive.html'=>'archive#show', :as=>:archive
 
   namespace :admin do
     resources :blogs do
@@ -34,7 +35,7 @@ Klog::Application.routes.draw do
     post '/preview'=>'home#preview'
   end
 
-  get '/:page_slug'=>'pages#show', :as=>:page
+  get '/:page_slug.html'=>'pages#show', :as=>:page
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

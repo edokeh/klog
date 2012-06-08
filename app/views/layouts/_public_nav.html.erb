@@ -2,15 +2,15 @@
   <div class="navbar-inner">
     <div class="container">
       <ul class="nav">
-        <li <%= public_nav_class('^/blogs', '^/$') %>>
-          <%= link_to 'Blog', blogs_path %>
+        <li <%= public_nav_class('^/$') %>>
+          <%= link_to 'Blog', root_path %>
         </li>
         <li <%= public_nav_class('^/archive') %>>
           <%= link_to 'Archives', archive_path %>
         </li>
         <% Page.order('sid ASC').each do |page| %>
             <li <%= public_nav_class('^/' + page.slug) %>>
-              <%= link_to page.title, "/#{page.slug}" %>
+              <%= link_to page.title, page_path(page.slug) %>
             </li>
         <% end %>
       </ul>
