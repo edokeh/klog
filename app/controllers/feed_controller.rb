@@ -2,7 +2,7 @@
 class FeedController < ApplicationController
 
   def show
-    expires_in 3.hours
+    expires_in 1.hours, :public=>true
     @blogs = Blog.publish.order('created_at DESC').all
     
     respond_to do |format|

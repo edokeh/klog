@@ -23,9 +23,9 @@ $(function() {
         if ($(this).hasClass('disabled')) {
             e.preventDefault();
         }else{
-            $('#captchaModal').modal();
+            //$('#captchaModal').modal();
             $(this).addClass('disabled');
-            e.preventDefault();
+            //e.preventDefault();
         }
     });
 
@@ -43,6 +43,7 @@ $(function() {
 
     checkComment();
 
+    //根据锚点高亮闪烁对应的评论
     if (/^#comments_(\d+)$/.test(location.hash)) {
         var header = $(location.hash).find('header');
         var blinkA,blinkB,i=0;
