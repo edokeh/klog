@@ -3,7 +3,7 @@ class BlogsController < ApplicationController
 
   def index
     expires_in 2.minutes, :public=>true
-    @blogs = Blog.publish.order('created_at DESC').page(params[:page]).per(5)
+    @blogs = Blog.publish.includes([:category]).order('created_at DESC').page(params[:page]).per(5)
   end
 
   def show

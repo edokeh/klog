@@ -1,5 +1,6 @@
 # -coding: utf-8 -
 class Blog < ActiveRecord::Base
+  include TruncateHtmlHelper
   # 状态常量，发布/草稿
   S_DRAFT = 0
   S_PUBLISH = 1
@@ -15,6 +16,7 @@ class Blog < ActiveRecord::Base
   before_validation :clean_slug
   before_save :fill_slug
   before_save :fill_html_content
+  before_save :fill_html_content_summary
   
   #保存时，如果是发布状态，增加分类的blog count
   after_save :increase_blog_count, :if=>:publish?
@@ -61,6 +63,11 @@ class Blog < ActiveRecord::Base
   #将markup的content转换为html并写入字段
   def fill_html_content
     self.html_content = Klog::Markdown.render(self.content)
+  end
+
+  #将生成的html内容做个截取，放进字段保存
+  def fill_html_content_summary
+    self.html_content_summary = truncate_html(self.html_content, :length => 250, :omission => '')
   end
 
   #增加对应分类的blog_count

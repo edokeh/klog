@@ -27,7 +27,7 @@
         </p>
       </header>
       <section>
-        <%= raw truncate_html(blog.html_content, :length => 250, :omission => '') %>
+        <%= raw blog.html_content_summary %>
         <%= link_to "阅读全文...", blog_path(blog.slug), :class=>'link-readmore' %>
       </section>
       <footer>
