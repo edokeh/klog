@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= yield :title %><%= Setting.website_title %></title>
+  <title><%= yield :title %><%= "#{Setting.website_title} - #{Setting.website_author}的Blog" %></title>
   <meta charset="utf-8"/>
   <%= csrf_meta_tags %>
   <%= yield :seo %>

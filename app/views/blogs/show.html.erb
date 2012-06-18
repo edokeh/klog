@@ -3,7 +3,15 @@
     <h2>
       <%= @blog.title %>
     </h2>
-    <p>发表于 <%= l @blog.created_at %></p>
+    <p>
+      <i class="icon-time"></i> <%= l @blog.created_at %>
+      <i class="separate">|</i>
+      <i class="icon-user"></i> <%= Setting.website_author %>
+      <i class="separate">|</i>
+      <% @blog.tag_list.each do |tag| %>
+      <span class="label"><%= tag %></span>
+      <% end %>
+    </p>
   </header>
   <section>
     <%= raw @blog.html_content %>
@@ -22,7 +30,7 @@
   <%= render_comments(@blog, :level=>0) %>
 </div>
 
-<% content_for :title do %><%= @blog.title %> -<% end %>
+<% content_for :title do %><%= @blog.title %> - <% end %>
 
 <% content_for :seo do %>
     <meta name="Keywords" content="<%= @blog.tag_list %>" />
