@@ -10,7 +10,7 @@
   <% if @categories.present? %>
   <section>
     <h3>分类</h3>
-    <ul>
+    <ul class="category">
       <% @categories.each do |category| %>
           <li>
             <%= link_to "#{category.name} (#{category.blog_count})", category_path(category.name) %>
