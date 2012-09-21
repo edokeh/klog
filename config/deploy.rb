@@ -34,6 +34,48 @@ namespace :deploy do
     task :replace_config do
         run "#{try_sudo} cp #{File.join(deploy_to,'config','*')} #{File.join(release_path,'config')}"
     end
+
+    desc <<-DESC
+      New deploy:cold
+      Add `rake db:create` and `rake db:seed`
+    DESC
+    task :cold do
+      update
+      create_db
+      migrate
+      seed_db
+      start
+    end
+
+    task :create_db do
+      rake = fetch(:rake, "rake")
+      rails_env = fetch(:rails_env, "production")
+      migrate_env = fetch(:migrate_env, "")
+      migrate_target = fetch(:migrate_target, :latest)
+
+      directory = case migrate_target.to_sym
+        when :current then current_path
+        when :latest  then latest_release
+        else raise ArgumentError, "unknown migration target #{migrate_target.inspect}"
+        end
+
+      run "cd #{directory} && #{rake} RAILS_ENV=#{rails_env} #{migrate_env} db:create"
+    end
+
+    task :seed_db do
+      rake = fetch(:rake, "rake")
+      rails_env = fetch(:rails_env, "production")
+      migrate_env = fetch(:migrate_env, "")
+      migrate_target = fetch(:migrate_target, :latest)
+
+      directory = case migrate_target.to_sym
+        when :current then current_path
+        when :latest  then latest_release
+        else raise ArgumentError, "unknown migration target #{migrate_target.inspect}"
+        end
+
+      run "cd #{directory} && #{rake} RAILS_ENV=#{rails_env} #{migrate_env} db:seed"
+    end
     
     after 'deploy:finalize_update', 'deploy:replace_config'
 end
