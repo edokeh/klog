@@ -7,7 +7,6 @@ gem 'rails', '3.2.3'
 
 gem 'mysql2'
 
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -31,6 +30,9 @@ gem 'mini_magick'
 gem 'acts-as-taggable-on', '~> 2.3.1'
 gem "recaptcha", :require => "recaptcha/rails"
 gem 'truncate_html'
+
+gem 'whenever', :require => false
+gem 'backup', :require => false
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
