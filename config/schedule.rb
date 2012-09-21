@@ -18,6 +18,7 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-every :day, :at=>'18:00' do
+set :output, "#{path}/log/whenever.log"
+every :day, :at=>'19:00' do
   command 'backup perform -t klog -c ~/klog/current/config/backup_config.rb'
 end
