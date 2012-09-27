@@ -18,7 +18,7 @@
             <span class="ip">来自 <%= comment.ip %></span>
           </header>
           <section>
-            <%= simple_format comment.content %>
+            <%= simple_format h(comment.content) %>
           </section>
           <footer>
             <span class="date">评论于 <%= l comment.created_at, :format=>:long %></span>

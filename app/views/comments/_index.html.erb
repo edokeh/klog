@@ -11,7 +11,7 @@
         <% end %>
       </header>
       <section>
-        <%= simple_format comment.content %>
+        <%= simple_format h(comment.content) %>
       </section>
       <footer>
         <%= l comment.created_at %>
