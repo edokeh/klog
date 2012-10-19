@@ -39,6 +39,7 @@ GEM
       actionpack (~> 3.0)
       railties (~> 3.0)
     chronic (0.6.7)
+    coderay (1.0.8)
     commonjs (0.2.6)
     erubis (2.7.0)
     execjs (1.4.0)
@@ -125,6 +126,7 @@ DEPENDENCIES
   acts-as-taggable-on (~> 2.3.1)
   carrierwave
   cells (~> 3.7)
+  coderay
   jquery-rails
   kaminari (~> 0.13.0)
   less-rails-bootstrap

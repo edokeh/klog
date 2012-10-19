@@ -33,5 +33,9 @@ module Klog
       tag_end = "</#{tag}>"
       return tag_start + text + tag_end
     end
+
+    def block_code(code, language)
+      CodeRay.scan(code, language).div(:tab_width=>2)
+    end
   end
 end
