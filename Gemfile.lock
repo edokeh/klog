@@ -38,7 +38,6 @@ GEM
     cells (3.8.5)
       actionpack (~> 3.0)
       railties (~> 3.0)
-    chronic (0.6.7)
     coderay (1.0.8)
     commonjs (0.2.6)
     erubis (2.7.0)
@@ -72,7 +71,6 @@ GEM
       subexec (~> 0.2.1)
     multi_json (1.3.5)
     mysql2 (0.3.11)
-    open4 (1.3.0)
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
@@ -126,7 +124,7 @@ DEPENDENCIES
   acts-as-taggable-on (~> 2.3.1)
   carrierwave
   cells (~> 3.7)
-  coderay
+  coderay (~> 1.0.8)
   jquery-rails
   kaminari (~> 0.13.0)
   less-rails-bootstrap
