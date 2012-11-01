@@ -11,6 +11,8 @@ http://chaoskeh.com/blog/how-to-deploy-klog-on-linode-with-ubuntu.html
 # 演示
 
 我的 Blog 地址 http://chaoskeh.com
+
 另外有个演示版地址是 http://106.187.101.67/admin
+
 演示版密码 password
 
