@@ -12,7 +12,7 @@ set :user, 'test'
 set :password, 'test'
 set :deploy_to, '~/klog'
 set :deploy_via, :remote_cache
-set :shared_children, shared_children + %w(public/uploads)
+set :shared_children, shared_children + %w(public/uploads public/captcha)
 
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"
