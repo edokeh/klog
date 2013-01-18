@@ -24,7 +24,7 @@
       <% @hotest_blogs.each do |blog| %>
           <li>
             <%= link_to blog.title, blog_path(blog.slug), :target=>'_blank' %>
-            <em><%= blog.comment_count %>条评论</em>
+            - <em><%= blog.comment_count %>条评论</em>
           </li>
       <% end %>
     </ul>
