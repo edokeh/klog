@@ -44,7 +44,7 @@ class Captcha < ActiveRecord::Base
     output
   end
 
-  def self.valid?(key, code)
+  def self.valid?(key, code = "")
     return where(:key => key, :code => code.upcase).count > 0
   end
 
