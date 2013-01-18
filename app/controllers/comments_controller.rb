@@ -13,6 +13,7 @@ class CommentsController < ApplicationController
       redirect_to blog_path(@comment.blog.slug, :anchor => 'comments'), :notice => '评论发表成功'
     else
       flash[:error] = @comment.errors.full_messages[0]
+      flash[:content] = @comment.content
       redirect_to blog_path(@comment.blog.slug, :anchor => 'comments')
     end
   end

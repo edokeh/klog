@@ -14,7 +14,7 @@ class BlogsController < ApplicationController
     @prev_blog = Blog.publish.where('id < ?', @blog.id).order('id DESC').first
     @next_blog = Blog.publish.where('id > ?', @blog.id).order('id ASC').first
 
-    @comment = @blog.comments.build()
+    @comment = @blog.comments.build(:content=>flash[:content])
 
     @captcha = Captcha.random
     session[:captcha] = @captcha.key
