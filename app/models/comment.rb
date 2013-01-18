@@ -3,8 +3,8 @@ class Comment < ActiveRecord::Base
   attr_accessible :blog_id, :commentable_id, :commentable_type, :content, :email, :nick
 
   validates :content, :presence => true
-  validates :nick, :presence => true
-  validates :email, :presence => true
+  validates :nick, :presence => true, :unless=>"is_admin?"
+  validates :email, :presence => true, :unless=>"is_admin?"
 
   belongs_to :commentable, :polymorphic => true
   belongs_to :blog
