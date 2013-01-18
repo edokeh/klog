@@ -221,9 +221,16 @@ zh-CN:
       blog:
         title: "标题"
         content: "内容"
+      comment:
+        content: "内容"
+        nick: "昵称"
+        email: "email"
       category:
         name: "分类名称"
       page:
         title: "标题"
         content: "内容"
         slug: "slug"
+  captcha:
+    errors:
+        verification_failed: "验证码错误"

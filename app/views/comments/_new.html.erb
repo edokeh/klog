@@ -11,15 +11,13 @@
 
     <div class="form-inline">
       <% unless is_admin? %>
-          <label>昵称:</label>
-          <%= f.text_field :nick, :value=>cookies['comment_nick'], :class=>"input-medium", :style=>"margin-right: 10px;" %>
-          <label>email:</label>
-          <%= f.text_field :email, :value=>cookies['comment_email'], :class=>"input-medium" %>
+          <%= f.text_field :nick, :value=>cookies['comment_nick'], :class=>"input-medium", :style=>"margin-right: 10px;", :placeholder=>"昵称" %>
+          <%= f.text_field :email, :value=>cookies['comment_email'], :class=>"input-medium", :placeholder=>"email", :type=>"email" %>
+          <%= text_field_tag :captcha, nil, :class=>"input-medium", :placeholder=>'验证码' %>
+          <div style="position: absolute;display: none;">
+            <img src="<%= @captcha.pic_url %>" />
+          </div>
       <% end %>
-      <div class="modal" id="captchaModal" style="display:none;width: 330px;text-align: center">
-        <%= recaptcha_tags(:ajax=>true) %>
-        <button class="btn btn-large" type="submit">提交</button>
-      </div>
       <button class="btn btn-large pull-right" id="cancel_reply" type="button" style="margin-left:10px;display:none">取消回复</button>
       <button class="btn btn-large pull-right" id="submit_comment" type="submit">
         <i class="icon-ok"></i>
@@ -27,5 +25,6 @@
       </button>
       <div style="clear:both"></div>
     </div>
+
 
 <% end -%>

@@ -1,10 +1,10 @@
 # -coding: utf-8 -
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  
+
   layout 'public_layout'
 
-  rescue_from ActiveRecord::RecordNotFound, :with=>:redirect_404
+  rescue_from ActiveRecord::RecordNotFound, :with => :redirect_404
 
   helper_method :is_admin?
 
@@ -16,5 +16,18 @@ class ApplicationController < ActionController::Base
 
   def is_admin?
     return session[:admin] == true
+  end
+
+  # 校验验证码
+  def verify_captcha(options)
+    options = {:model => options} unless options.is_a? Hash
+    if Captcha.valid?(session[:captcha], params[:captcha])
+      return true
+    else
+      attribute = options[:attribute] || :base
+      message = I18n.translate('captcha.errors.verification_failed', :default => message)
+      options[:model].errors.add attribute, options[:message] || message
+      return false
+    end
   end
 end

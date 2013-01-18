@@ -9,8 +9,7 @@ class CommentsController < ApplicationController
 
     save_user_to_cookie(@comment) unless is_admin?
 
-    #verify_recaptcha(:model => @comment, :message => "验证码错误") && 
-    if @comment.save
+    if verify_captcha(@comment) && @comment.save
       redirect_to blog_path(@comment.blog.slug, :anchor=>'comments'), :notice=>'评论发表成功'
     else
       flash[:error] = @comment.errors.full_messages[0]

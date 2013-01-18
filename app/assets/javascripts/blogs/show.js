@@ -1,9 +1,9 @@
 //= require jquery
 //= require jquery.color
 //= require twitter/bootstrap/modal
-$(function() {
+$(function () {
 
-    $('a.reply-comment').click(function() {
+    $('a.reply-comment').click(function () {
         $('#cancel_reply').show();
         $('#comment_commentable_id').val($(this).data('commentid'));
         $('#comment_commentable_type').val('Comment');
@@ -11,51 +11,47 @@ $(function() {
         $('#comment_content').focus();
     });
 
-    $('#cancel_reply').click(function() {
+    $('#cancel_reply').click(function () {
         $('#new_comment').css('margin-left', 0).insertAfter($('#comment_anchor'));
-        $('#comment_commentable_id, #comment_commentable_type').val(function() {
+        $('#comment_commentable_id, #comment_commentable_type').val(function () {
             return $(this).data('origin');
         });
         $(this).hide();
     });
 
-    $('#submit_comment').click(function(e) {
+    $('#submit_comment').click(function (e) {
         if ($(this).hasClass('disabled')) {
             e.preventDefault();
-        }else{
-            //$('#captchaModal').modal();
+        } else {
             $(this).addClass('disabled');
-            //e.preventDefault();
         }
     });
 
-    var timer;
-    $('#comment_content').focus(
-            function() {
-                timer = setInterval(checkComment, 500);
-            }).blur(function() {
-        clearInterval(timer);
-    });
-
-    setTimeout(function() {
+    setTimeout(function () {
         $('div.alert-success').fadeOut();
     }, 2000);
 
-    checkComment();
+    $('#captcha').on('focus blur', function () {
+        var position = $(this).position();
+        $(this).next().toggle('fast').css({
+            left:position.left + 10,
+            top:position.top - 40
+        });
+    });
 
     //根据锚点高亮闪烁对应的评论
     if (/^#comments_(\d+)$/.test(location.hash)) {
         var header = $(location.hash).find('header');
-        var blinkA,blinkB,i=0;
-        blinkA = function() {
-            if(i++>2){
+        var blinkA, blinkB, i = 0;
+        blinkA = function () {
+            if (i++ > 2) {
                 return;
             }
-            header.animate({backgroundColor: "#fff"}, 'normal', 'linear', blinkB);
+            header.animate({backgroundColor:"#fff"}, 'normal', 'linear', blinkB);
 
         }
-        blinkB = function() {
-            header.animate({backgroundColor: "#eee"}, 'normal', 'linear', blinkA);
+        blinkB = function () {
+            header.animate({backgroundColor:"#eee"}, 'normal', 'linear', blinkA);
         }
         blinkA();
     }
@@ -63,14 +59,16 @@ $(function() {
     //检查评论内容框有没有内容
     //如果有则高亮按钮
     function checkComment() {
-        if ($('#comment_content').val().trim().length > 0) {
-            $('#submit_comment').addClass('btn-primary').removeClass('disabled');
-            $('#submit_comment').find('i').addClass('icon-white');
-        } else {
-            $('#submit_comment').removeClass('btn-primary').addClass('disabled');
-            ;
-            $('#submit_comment').find('i').removeClass('icon-white');
-        }
+        var isValid = true;
+        $('#comment_content, #comment_nick, #comment_email, #captcha').each(function () {
+            if ($(this).val().trim().length === 0) {
+                isValid = false;
+                return false;
+            }
+        });
+        $('#submit_comment').toggleClass('btn-primary', isValid).toggleClass('disabled', !isValid);
+        $('#submit_comment').find('i').toggleClass('icon-white', isValid);
     }
+    setInterval(checkComment, 500);
 
 });
