@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source 'http://ruby.taobao.org'
 
 gem 'rails', '3.2.3'
 
@@ -10,7 +10,9 @@ gem 'mysql2'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'less-rails-bootstrap'
+  #gem 'less-rails-bootstrap'
+  gem 'sass-rails', '~> 3.2'
+  gem 'bootstrap-sass', '~> 2.3.0.0'
   
 #  gem 'sass-rails',   '~> 3.2.3'
 #  gem 'coffee-rails', '~> 3.2.1'

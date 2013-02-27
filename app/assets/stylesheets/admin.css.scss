@@ -1,0 +1,179 @@
+@import "bootstrap";
+
+// 登录首页
+.admin-login-body {
+  text-align: center;
+
+  .admin-login-wrapper {
+    display: inline-block;
+    margin-top: 100px;
+
+    legend, .alert {
+      text-align: left;
+    }
+  }
+}
+
+// nav
+.navbar {
+  margin-bottom: 30px;
+
+  .container {
+    width: 940px;
+  }
+
+  .brand {
+    color: #8bbbf2;
+    font-weight: bold;
+  }
+
+  .nav-link {
+    li {
+      font-weight: bold;
+    }
+    li > a:hover {
+      color: $black;
+    }
+  }
+}
+
+// copy right
+.copyright {
+  margin-top: 100px;
+  padding: 20px 0px;
+  border-top: 1px solid $grayLighter;
+  color: $grayLight;
+  text-align: center;
+
+  a {
+    color: $gray;
+    text-decoration: underline;
+  }
+}
+
+// 后台首页
+.main {
+  header {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  article {
+    margin-bottom: 20px;
+  }
+
+  li {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+}
+
+// 表格
+/* table */
+.table {
+  th {
+    background: #C5D5DD;
+    color: $black;
+  }
+
+  td {
+    height: 30px;
+    line-height: 30px;
+  }
+
+  .btn {
+    margin-right: 5px;
+  }
+
+  .table-empty-row {
+    height: 20px;
+    font-weight: bolder;
+  }
+}
+
+// 分页
+.pagination ul {
+  float: right;
+}
+
+// 表单
+.admin-form {
+  .control-label {
+    width: 75px;
+  }
+
+  label {
+    font-weight: bolder;
+    font-size: 16px;
+  }
+
+  .controls {
+    margin-left: 90px;
+  }
+
+  .input-xxlarge {
+    width: 100%;
+  }
+
+  .form-actions {
+    padding-left: 90px;
+  }
+
+  .help-block {
+    color: $grayLight;
+  }
+
+  // 编辑器的 tab
+  .editor-tabs {
+    margin-bottom: 0;
+    border-bottom: none;
+    height: 28px;
+    padding-left: 3px;
+
+    a {
+      padding: 5px 10px;
+      font-size: 12px;
+    }
+
+    .active a {
+      background: #08C;
+      color: white;
+    }
+  }
+}
+
+/* 预览 */
+#preview {
+  margin-top: 0px;
+  border: 1px solid #CCC;
+  padding: 4px;
+  border-radius: 3px;
+  display: none;
+  overflow: scroll;
+}
+
+/* 上传显示 */
+.upload-list {
+  display: none;
+  width: 500px;
+  padding: 5px 10px;
+  background-color: #f5f5f5;
+  border: 1px solid #eee;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+.upload-item {
+  margin-top: 5px;
+}
+
+.upload-list .filename {
+  margin-right: 10px;
+  font-weight: bolder;
+}
+
+.upload-list .progress {
+  height: 10px;
+  width: 150px;
+  margin: 4px 0 0 10px;
+}

@@ -1,4 +1,4 @@
-//= require twitter/bootstrap/modal
+//= require bootstrap-modal
 //预览markdown内容
 //约定：预览结果的div必须id为preview，相应的textarea需要有data-preview=true属性
 var MarkdownEditor = {

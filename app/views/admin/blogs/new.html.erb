@@ -1,4 +1,47 @@
 <div class="container">
+  <%= form_for([:admin, @blog], :html=>{:class=>"admin-form"}) do |f| %>
+      <fieldset>
+        <legend>
+          写文章
+        </legend>
+
+        <div class="well">
+          <%= f.text_field :title, :class=>"input-xxlarge input-block-level", :placeholder=>"标题" %>
+          <%= f.select :category_id, category_options, :html=>{:class=>"input-large"} %>
+          <%= f.text_field :slug, :class=>"input-large" %>
+
+          <%= f.text_field :tag_list, :class=>"input-xlarge" %>
+
+
+          <%= markdown_editor(f) %>
+
+          <div class="control-group">
+            <label class="control-label">附件/图片</label>
+
+            <div class="controls">
+              <div id="upload" style="height:30px;"></div>
+              <div class="upload-list">
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-actions">
+          <%= f.hidden_field :status %>
+          <button class="btn btn-primary" type="submit" data-status="<%= Blog::S_PUBLISH %>">
+            <i class="icon-ok icon-white"></i>
+            发布文章
+          </button>
+          <button class="btn btn-warning" type="submit" data-status="<%= Blog::S_DRAFT %>">
+            保存草稿
+          </button>
+        </div>
+
+      </fieldset>
+  <% end %>
+
+
   <%= form_for([:admin, @blog], :html=>{:class=>"form-horizontal admin-form"}) do |f| %>
       <fieldset>
         <legend>
@@ -9,15 +52,17 @@
 
         <div class="form-actions">
           <%= f.hidden_field :status %>
-          <button class="btn btn-large btn-primary" type="submit" data-status="<%= Blog::S_PUBLISH %>">
+          <button class="btn btn-primary" type="submit" data-status="<%= Blog::S_PUBLISH %>">
             <i class="icon-ok icon-white"></i>
             发布文章
           </button>
-          <button class="btn btn-large btn-warning" type="submit" data-status="<%= Blog::S_DRAFT %>">
+          <button class="btn btn-warning" type="submit" data-status="<%= Blog::S_DRAFT %>">
             保存草稿
           </button>
         </div>
       </fieldset>
   <% end %>
+
+
   <%= link_to '<< 返回列表', admin_blogs_path %>
 </div>
