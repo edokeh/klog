@@ -47,3 +47,4 @@ gem 'truncate_html'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+gem 'pry-rails', :group => :development

@@ -6,12 +6,14 @@
         </legend>
 
         <div class="well">
-          <%= f.text_field :title, :class=>"input-xxlarge input-block-level", :placeholder=>"标题" %>
-          <%= f.select :category_id, category_options, :html=>{:class=>"input-large"} %>
-          <%= f.text_field :slug, :class=>"input-large" %>
-
-          <%= f.text_field :tag_list, :class=>"input-xlarge" %>
-
+          <div class="row-fluid">
+            <div class="span9">
+              <%= f.text_field :title, :class=>"input-block-level", :placeholder=>"标题" %>
+            </div>
+            <div class="span3">
+              <%= f.select :category_id, category_options, {}, :class=>"input-block-level" %>
+            </div>
+          </div>
 
           <%= markdown_editor(f) %>
 
@@ -24,6 +26,10 @@
               </div>
             </div>
           </div>
+
+
+          <%= f.text_field :tag_list, :class=>"input-block-level", :placeholder=>"Tag标签，请用英文逗号(,)分隔" %>
+          <%= f.text_field :slug, :class=>"input-block-level", :placeholder=>"URL Slug，默认为当前时间戳" %>
         </div>
 
 

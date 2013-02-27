@@ -115,30 +115,47 @@
     width: 100%;
   }
 
-  .form-actions {
-    padding-left: 90px;
-  }
-
   .help-block {
     color: $grayLight;
   }
 
   // 编辑器的 tab
   .editor-tabs {
-    margin-bottom: 0;
-    border-bottom: none;
-    height: 28px;
-    padding-left: 3px;
+    //height: 28px;
+    //padding-left: 3px;
+
+    li:first-child {
+      margin-left: 10px;
+    }
 
     a {
-      padding: 5px 10px;
-      font-size: 12px;
+      //padding: 5px 10px;
+      //font-size: 12px;
     }
 
     .active a {
       background: #08C;
       color: white;
     }
+  }
+
+}
+
+// 编辑器的 tab
+.editor-tabs {
+  margin-bottom: 0;
+  border-bottom: none;
+  height: 28px;
+  padding-left: 3px;
+
+  a {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+
+  .active a {
+    background: #08C;
+    color: white;
   }
 }
 
