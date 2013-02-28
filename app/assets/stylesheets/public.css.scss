@@ -5,10 +5,9 @@ body {
 }
 
 .logo {
-  margin-bottom: 10px;
   h1 {
-    font-size: 60px;
-    line-height: 80px;
+    font-size: 55px;
+    line-height: 70px;
     height: 80px;
     font-weight: bolder;
     display: inline-block;
@@ -16,7 +15,7 @@ body {
 
   em {
     margin-left: 10px;
-    font-size: 30px;
+    font-size: 25px;
     color: $grayLight;
     display: inline-block;
   }
@@ -40,6 +39,238 @@ body {
   margin-top: -16px;
 }
 
+// 页面
+.page {
+  box-shadow: 0 0 6px rgba(0, 0, 0, .2);
+  border: 1px solid #CCC;
+  border-radius: 4px;
+  background: #fff;
+
+  .main {
+    padding: 20px;
+    padding-right: 0;
+  }
+
+  .sidebar {
+    margin-top: 20px;
+    padding: 0 20px;
+    border-left: 1px solid #ccc;
+
+    section {
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      color: $grayLight;
+      margin-bottom: 10px;
+      font-size: 18px;
+      line-height: 30px;
+    }
+
+    .category li {
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 28px;
+    }
+
+    .tag {
+      font-weight: bold;
+      margin-right: 8px;
+      line-height: 30px;
+    }
+  }
+}
+
+// blog
+.blog {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 20px;
+
+  // 标题部分
+  header {
+    h2 {
+      font-size: 30px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: $grayLight;
+    }
+
+    i {
+      opacity: 0.7;
+    }
+
+    .separate {
+      margin: 0 5px;
+    }
+  }
+
+  // 正文部分
+  section {
+    h3 {
+      font-size: 25px;
+      line-height: 30px;
+      margin: 20px 0;
+      font-weight: bold;
+      color: #222;
+    }
+
+    h4 {
+      font-size: 18px;
+      line-height: 25px;
+      margin: 15px 0;
+      font-weight: bold;
+      color: #222;
+    }
+
+    p, li {
+      font-size: 14px;
+      line-height: 24px;
+    }
+
+    pre {
+      margin-bottom: 15px;
+    }
+
+    .link-readmore {
+      font-size: 18px;
+      font-weight: 800;
+      margin: 10px 0 30px 0;
+    }
+  }
+
+  // 文章底部
+  footer {
+    padding: 10px 0;
+    color: $grayLight;
+
+    a {
+      font-size: 14px;
+      font-weight: bolder;
+    }
+  }
+}
+
+// 分页
+.paginate {
+  a {
+    height: 20px;
+    line-height: 20px;
+    width: 100px;
+  }
+}
+
+// 评论
+.comments {
+
+  // 评论表单
+  .comment-form {
+    padding: 10px;
+    background: $grayLighter;
+    border-radius: 5px;
+
+    legend {
+      margin-bottom: 5px;
+      font-size: 18px;
+      border: none;
+    }
+
+    textarea {
+      border-width: 2px;
+    }
+  }
+
+  // 评论列表
+  h2 {
+    font-size: 25px;
+    line-height: 30px;
+  }
+
+  article {
+    margin-top: 5px;
+    margin-bottom: 10px;
+
+    header {
+      background: $grayLighter;
+      border-radius: 3px;
+      font-size: 14px;
+      font-weight: bolder;
+      padding: 5px 10px;
+      color: $linkColor;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      color: $grayLight;
+      padding: 5px 0;
+    }
+  }
+}
+
+// 存档
+.archive {
+  .full-year {
+    margin-top: 20px;
+
+    // 年
+    h2 {
+      font-size: 40px;
+      font-weight: bolder;
+      line-height: 50px;
+      color: $gray;
+      padding-top: 3px;
+      width: 100px;
+      margin: 0;
+    }
+
+    // 列表
+    ul {
+      list-style-type: none;
+      &>li {
+        border-bottom: 1px solid $grayLighter;
+
+        // 月日
+        h3 {
+          color: $grayLight;
+          font-size: 30px;
+          font-weight: bolder;
+          line-height: 50px;
+          height: 50px;
+          width: 80px;
+          display: inline;
+          margin: 0;
+        }
+
+        // 文章
+        a {
+          margin-left: 20px;
+          font-size: 25px;
+          line-height: 50px;
+          height: 50px;
+        }
+      }
+    }
+  }
+}
+
+// 自定义页面
+.page-content h3 {
+  font-size: 30px;
+  line-height: 40px;
+  margin: 20px 0 10px 0;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+.page-content p, .page-content li {
+  font-size: 18px;
+  line-height: 27px;
+}
+
+//底部版权
 .copyright {
   margin: 20px;
   text-align: center;

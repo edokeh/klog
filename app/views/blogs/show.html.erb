@@ -16,14 +16,13 @@
   <section>
     <%= raw @blog.html_content %>
   </section>
-  <footer>
+  <footer class="clearfix">
     <%= link_to '« '+@prev_blog.title, blog_path(@prev_blog.slug), :class=>'pull-left' if @prev_blog.present? %>
     <%= link_to @next_blog.title + '  »', blog_path(@next_blog.slug), :class=>'pull-right' if @next_blog.present? %>
-    <div style="clear:both"></div>
   </footer>
 </article>
 
-<div>
+<div class="comments">
   <a name="comments" id="comment_anchor"></a>
   <%= render 'comments/new' %>
   <h2><%= @blog.comment_count %>条评论</h2>

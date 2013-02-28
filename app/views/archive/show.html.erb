@@ -1,19 +1,17 @@
 <div class="archive">
   <% @blogs_by_year.each do |year, blogs| %>
-      <div class="row-fluid year">
-        <h2 class="span2" style="width:100px;"><%= year %></h2>
-        <div class="span10">
+      <div class="row-fluid full-year">
+        <h2 class="span2"><%= year %></h2>
+        <ul class="span10">
           <% blogs.each do |blog| %>
-              <article class="row-fluid">
-                <h3 class="span2" style="width:80px">
+              <li>
+                <h3>
                   <%= l blog.created_at, :format=>'%m/%d' %>
                 </h3>
-                <div class="span10 title">
-                  <%= link_to blog.title, blog_path(blog.slug) %>
-                </div>
-              </article>
+                <%= link_to blog.title, blog_path(blog.slug) %>
+              </li>
           <% end %>
-        </div>
+        </ul>
       </div>
   <% end %>
 </div>

@@ -7,9 +7,9 @@
     <%= f.hidden_field :commentable_id, :data=>{:origin=>@comment.commentable_id} %>
     <%= f.hidden_field :commentable_type, :data=>{:origin=>@comment.commentable_type} %>
 
-    <%= f.text_area :content, :placeholder=>'写点评论吧...', :rows=>5 %>
+    <%= f.text_area :content, :placeholder=>'写点评论吧...', :rows=>5, :class=>"input-block-level" %>
 
-    <div class="form-inline">
+    <div class="form-inline clearfix">
       <% unless is_admin? %>
           <%= f.text_field :nick, :value=>cookies['comment_nick'], :class=>"input-medium", :style=>"margin-right: 10px;", :placeholder=>"昵称" %>
           <%= f.text_field :email, :value=>cookies['comment_email'], :class=>"input-medium", :placeholder=>"email", :type=>"email" %>
@@ -18,13 +18,10 @@
             <img src="<%= @captcha.pic_url %>" />
           </div>
       <% end %>
-      <button class="btn btn-large pull-right" id="cancel_reply" type="button" style="margin-left:10px;display:none">取消回复</button>
-      <button class="btn btn-large pull-right" id="submit_comment" type="submit">
+      <button class="btn pull-right" id="cancel_reply" type="button" style="margin-left:10px;display:none">取消回复</button>
+      <button class="btn pull-right" id="submit_comment" type="submit">
         <i class="icon-ok"></i>
         发表评论
       </button>
-      <div style="clear:both"></div>
     </div>
-
-
 <% end -%>

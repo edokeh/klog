@@ -1,6 +1,6 @@
 <% comments.each do |comment| %>
     <% next if comment.new_record? %>
-    <article class="comment" style="margin-left: <%= level*20 %>px" id="comments_<%= comment.id%>">
+    <article style="margin-left: <%= level*20 %>px" id="comments_<%= comment.id%>">
       <a name="comments_<%= comment.id %>"></a>
       <header>
         <% if comment.is_admin? %>
