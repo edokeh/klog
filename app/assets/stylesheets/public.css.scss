@@ -1,0 +1,49 @@
+@import "bootstrap";
+
+body {
+  background: image-url("furley_bg.png");
+}
+
+.logo {
+  margin-bottom: 10px;
+  h1 {
+    font-size: 60px;
+    line-height: 80px;
+    height: 80px;
+    font-weight: bolder;
+    display: inline-block;
+  }
+
+  em {
+    margin-left: 10px;
+    font-size: 30px;
+    color: $grayLight;
+    display: inline-block;
+  }
+}
+
+// 导航
+.nav li {
+  font-weight: bolder;
+  font-size: 16px;
+}
+
+.navbar .nav .active a, .navbar .nav .active a:hover {
+  background-color: $gray;
+}
+
+#rss-icon {
+  background: image-url("orange_1.png") no-repeat;
+  height: 56px;
+  width: 55px;
+  padding: 0;
+  margin-top: -16px;
+}
+
+.copyright {
+  margin: 20px;
+  text-align: center;
+  a {
+    text-decoration: underline;
+  }
+}
