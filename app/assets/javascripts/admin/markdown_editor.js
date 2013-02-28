@@ -4,13 +4,13 @@
 var MarkdownEditor = {
     init:function() {
         this.textarea = $('textarea[data-preview=true]');
-        $("#preview").height(this.textarea.height()).width(this.textarea.width());
+        $(".preview-wrapper").height(this.textarea.height()).width(this.textarea.width());
         var _this = this;
         $(".nav li[data-type]").click(function() {
             $(this).addClass("active");
             $(this).siblings().removeClass("active");
 
-            $('#preview').toggle().html('Loading...');
+            $(".preview-wrapper").toggle().html('Loading...');
             _this.textarea.toggle();
 
             if ($(this).data("type") === 'preview') {
@@ -34,7 +34,7 @@ var MarkdownEditor = {
     showPreview:function() {
         var content = this.textarea.val();
         $.post("/admin/preview", {'content':content}, function(html) {
-            $('#preview').html(html).show();
+            $(".preview-wrapper").html(html).show();
         }, 'json');
     }
 }

@@ -24,7 +24,7 @@ var AttachUploader = {
         });
 
         var AttachView = Backbone.View.extend({
-            className:"upload-item",
+            className:"upload-item clearfix",
             template: _.template($('#upload-list-temp').html()),
 
             events: {
@@ -105,7 +105,7 @@ var AttachUploader = {
         $(document).on('click', 'a.delete', function(e) {
             $(this).closest('.upload-item').remove();
             if ($('.upload-item').length === 0) {
-                $('.upload-list').hide();
+                $('.upload-list').hide('fast');
             }
         });
     },

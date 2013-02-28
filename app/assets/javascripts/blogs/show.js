@@ -1,6 +1,6 @@
 //= require jquery
 //= require jquery.color
-//= require twitter/bootstrap/modal
+//= require bootstrap-modal
 $(function () {
 
     $('a.reply-comment').click(function () {

@@ -1,53 +1,22 @@
 <div class="container">
-  <%= form_for([:admin, @blog], :html=>{:class=>"admin-form"}) do |f| %>
+  <h3>写文章</h3>
+  <%= form_for([:admin, @blog], :html => {:class => "blog-form"}) do |f| %>
       <fieldset>
-        <legend>
-          写文章
-        </legend>
-
-        <div class="well">
-          <div class="row-fluid">
-            <div class="span9">
-              <%= f.text_field :title, :class=>"input-block-level", :placeholder=>"标题" %>
-            </div>
-            <div class="span3">
-              <%= f.select :category_id, category_options, {}, :class=>"input-block-level" %>
-            </div>
-          </div>
-
-          <%= markdown_editor(f) %>
-
-          <div class="control-group">
-            <label class="control-label">附件/图片</label>
-
-            <div class="controls">
-              <div id="upload" style="height:30px;"></div>
-              <div class="upload-list">
-              </div>
-            </div>
-          </div>
-
-
-          <%= f.text_field :tag_list, :class=>"input-block-level", :placeholder=>"Tag标签，请用英文逗号(,)分隔" %>
-          <%= f.text_field :slug, :class=>"input-block-level", :placeholder=>"URL Slug，默认为当前时间戳" %>
-        </div>
-
-
-        <div class="form-actions">
-          <%= f.hidden_field :status %>
-          <button class="btn btn-primary" type="submit" data-status="<%= Blog::S_PUBLISH %>">
-            <i class="icon-ok icon-white"></i>
-            发布文章
-          </button>
-          <button class="btn btn-warning" type="submit" data-status="<%= Blog::S_DRAFT %>">
-            保存草稿
-          </button>
-        </div>
-
+        <%= render :partial => "form", :locals=>{:f=>f} %>
       </fieldset>
+      <div class="form-actions">
+        <%= f.hidden_field :status %>
+        <button class="btn btn-large btn-primary" type="submit" data-status="<%= Blog::S_PUBLISH %>">
+          <i class="icon-ok icon-white"></i>
+          发布文章
+        </button>
+        <button class="btn btn-large btn-warning" type="submit" data-status="<%= Blog::S_DRAFT %>">
+          保存草稿
+        </button>
+      </div>
   <% end %>
 
-
+<!--
   <%= form_for([:admin, @blog], :html=>{:class=>"form-horizontal admin-form"}) do |f| %>
       <fieldset>
         <legend>
@@ -68,7 +37,7 @@
         </div>
       </fieldset>
   <% end %>
-
+-->
 
   <%= link_to '<< 返回列表', admin_blogs_path %>
 </div>
