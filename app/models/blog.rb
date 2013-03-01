@@ -67,7 +67,7 @@ class Blog < ActiveRecord::Base
 
   #将生成的html内容做个截取，放进字段保存
   def fill_html_content_summary
-    self.html_content_summary = truncate_html(self.html_content, :length => 250, :omission => '')
+    self.html_content_summary = truncate_html(self.html_content, :length => 250, :omission => '', :break_token => '<!-- truncate -->')
   end
 
   #增加对应分类的blog_count

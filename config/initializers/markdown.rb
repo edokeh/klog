@@ -36,7 +36,8 @@ module Klog
     end
 
     def block_code(code, language)
-      CodeRay.scan(code, language).div(:tab_width=>2)
+      # 加上 HTML 注释是为了不让 truncate_html 把代码片段切开，参见 :break_token 参数
+      '<!-- truncate -->' + CodeRay.scan(code, language).div(:tab_width=>2)
     end
 
     def table(header, body)

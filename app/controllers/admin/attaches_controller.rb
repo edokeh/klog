@@ -7,6 +7,7 @@ class Admin::AttachesController < Admin::ApplicationController
 
   #上传附件
   def create
+    # JS 中会传递对于图像的尺寸要求 max_width
     attach = Attach.new_by_params(params[:attach])
 
     if attach.save

@@ -27,10 +27,10 @@ gem "redcarpet", "~> 2.2.2"
 gem 'coderay', '~> 1.0.9'
 gem 'cells', '~> 3.8'
 gem 'kaminari', '~> 0.14.0'
-gem 'carrierwave', '~> 0.8.0' #TODO
+gem 'carrierwave', '~> 0.8.0'
 gem 'mini_magick', '~> 3.5'
 gem 'acts-as-taggable-on', '~> 2.3.3'
-gem 'truncate_html'
+gem 'truncate_html', '~> 0.9.2'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

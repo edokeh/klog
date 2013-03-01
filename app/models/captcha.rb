@@ -6,6 +6,7 @@ class Captcha < ActiveRecord::Base
 
   after_destroy :destroy_pic
 
+  # 随机取一条记录
   def self.random
     order('RAND()').first
   end
