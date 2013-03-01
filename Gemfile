@@ -11,25 +11,25 @@ gem 'mysql2'
 # in production environments by default.
 group :assets do
   gem 'sass-rails', '~> 3.2'
-  gem 'bootstrap-sass', '~> 2.3.0.0'
+  gem 'bootstrap-sass', '~> 2.3'
   
 #  gem 'sass-rails',   '~> 3.2.3'
 #  gem 'coffee-rails', '~> 3.2.1'
 #
 #  # See https://github.com/sstepshenson/execjs#readme for more supported runtimes
-   gem 'therubyracer', :platform => :ruby
+  gem 'therubyracer', :platform => :ruby
 #
-  gem 'uglifier', '>= 1.0.3'
+  gem 'uglifier', '>= 1.3'
 end
 
 gem 'jquery-rails'
-gem "redcarpet", "~> 2.1.1"
-gem 'coderay', '~> 1.0.8'
-gem 'cells', '~> 3.7'
-gem 'kaminari', '~> 0.13.0'
-gem 'carrierwave'
-gem 'mini_magick'
-gem 'acts-as-taggable-on', '~> 2.3.1'
+gem "redcarpet", "~> 2.2.2"
+gem 'coderay', '~> 1.0.9'
+gem 'cells', '~> 3.8'
+gem 'kaminari', '~> 0.14.0'
+gem 'carrierwave', '~> 0.8.0' #TODO
+gem 'mini_magick', '~> 3.5'
+gem 'acts-as-taggable-on', '~> 2.3.3'
 gem 'truncate_html'
 
 # To use ActiveModel has_secure_password

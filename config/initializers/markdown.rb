@@ -12,7 +12,8 @@ module Klog
       @markdown ||= Redcarpet::Markdown.new(Klog::Render.new,
                                             :autolink => true,
                                             :fenced_code_blocks => true,
-                                            :no_intra_emphasis => true)
+                                            :no_intra_emphasis => true,
+                                            :tables =>true)
       return @markdown
     end
 
@@ -36,6 +37,10 @@ module Klog
 
     def block_code(code, language)
       CodeRay.scan(code, language).div(:tab_width=>2)
+    end
+
+    def table(header, body)
+      return "<table class=\"table table-bordered\"><thead>#{header}</thead><tbody>#{body}</tbody></table>"
     end
   end
 end
