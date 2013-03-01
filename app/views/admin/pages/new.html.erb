@@ -1,6 +1,6 @@
 <div class="container">
   <h3>添加页面</h3>
-  <%= form_for([:admin, @page], :html => {:class => "blog-form"}) do |f| %>
+  <%= form_for([:admin, @page], :html => {:class => "editor-form"}) do |f| %>
       <fieldset>
         <%= render :partial => "form", :locals => {:f => f} %>
       </fieldset>

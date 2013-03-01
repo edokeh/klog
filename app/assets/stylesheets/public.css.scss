@@ -40,13 +40,13 @@ body {
 }
 
 // 页面
-.page {
+.main {
   box-shadow: 0 0 6px rgba(0, 0, 0, .2);
   border: 1px solid #CCC;
   border-radius: 4px;
   background: #fff;
 
-  .main {
+  .content {
     padding: 20px;
     padding-right: 0;
   }
@@ -256,18 +256,20 @@ body {
 }
 
 // 自定义页面
-.page-content h3 {
-  font-size: 30px;
-  line-height: 40px;
-  margin: 20px 0 10px 0;
-  padding-bottom: 5px;
-  border-bottom: 1px solid #ccc;
-  color: #000;
-}
+.page {
+  h3 {
+    font-size: 30px;
+    line-height: 40px;
+    margin: 20px 0 10px 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+    color: #000;
+  }
 
-.page-content p, .page-content li {
-  font-size: 18px;
-  line-height: 27px;
+  p, li {
+    font-size: 18px;
+    line-height: 27px;
+  }
 }
 
 //底部版权

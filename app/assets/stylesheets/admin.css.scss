@@ -69,11 +69,11 @@
 }
 
 // 表格
-/* table */
 .table {
   th {
-    background: #C5D5DD;
+    background: $grayLighter;
     color: $black;
+    padding: 8px 5px;
   }
 
   td {
@@ -96,15 +96,15 @@
   float: right;
 }
 
-// 表单
-.blog-form {
+// 带有文本编辑器的表单
+.editor-form {
   fieldset {
     padding: 4px;
     background: #eee;
     border-radius: 4px;
   }
 
-  .blog-form-inner {
+  .editor-form-inner {
     border: 1px solid #CACACA;
     background-color: #fff;
     padding: 20px 0px;
@@ -128,6 +128,7 @@
     font-weight: bolder;
   }
 
+  // bootstrap会将input设为margin-left 0 ，所以加上一个gutter的宽度
   input.span10 {
     width: ($fluidGridColumnWidth  * 10) + ($fluidGridGutterWidth * 9);
   }
@@ -207,4 +208,66 @@
       margin: 4px 0 0 10px;
     }
   }
+}
+
+// 普通表单
+.admin-form {
+  .control-label {
+    width: 70px;
+  }
+
+  label {
+    font-weight: bolder;
+  }
+
+  .controls {
+    margin-left: 90px;
+  }
+
+  .form-actions {
+    padding-left: 90px;
+  }
+
+  .help-block {
+    color: $grayLight;
+  }
+}
+
+// 评论
+.comments {
+  border: 1px solid $grayLighter;
+  border-radius: 5px;
+
+  article {
+    border-bottom: 1px solid $grayLighter;
+    padding: 10px;
+    &:last {
+      border-bottom: none;
+    }
+
+    header {
+      margin-bottom: 5px;
+    }
+
+    footer {
+      margin-top: 5px;
+    }
+  }
+
+  .nick {
+    color: $linkColor;
+    font-weight: bolder;
+    font-size: 16px;
+  }
+
+  .ip {
+    color: $grayLight;
+    margin-left: 10px;
+  }
+
+  .date {
+    color: $grayLight;
+    margin-right: 10px;
+  }
+
 }
