@@ -1,0 +1,1 @@
+define("seajs/plugin-json",["./plugin-base"],function(a){var b=a("./plugin-base"),c=b.util;b.add({name:"json",ext:[".json"],fetch:function(a,b){c.xhr(a,function(a){c.globalEval("define("+a+")"),b()})}})});

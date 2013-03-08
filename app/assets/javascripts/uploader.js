@@ -98,5 +98,4 @@ Uploader.defaultOption = {
         }
         alert(error);
     }
-
 };
