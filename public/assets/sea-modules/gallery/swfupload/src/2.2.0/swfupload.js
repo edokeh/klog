@@ -49,7 +49,7 @@ SWFUpload.prototype.initSWFUpload = function (settings) {
 /* Static Members  */
 /* *************** */
 SWFUpload.instances = {};
-S2WFUpload.movieCount = 0;
+SWFUpload.movieCount = 0;
 SWFUpload.version = "2.2.0 2009-03-25";
 SWFUpload.QUEUE_ERROR = {
 	QUEUE_LIMIT_EXCEEDED	  		: -100,

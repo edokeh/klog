@@ -1,42 +1,48 @@
 //= require bootstrap-modal
 //预览markdown内容
 //约定：预览结果的div必须id为preview，相应的textarea需要有data-preview=true属性
-var MarkdownEditor = {
-    init:function() {
-        this.textarea = $('textarea[data-preview=true]');
-        $(".preview-wrapper").height(this.textarea.height()).width(this.textarea.width());
-        var _this = this;
-        $(".nav li[data-type]").click(function() {
-            $(this).addClass("active");
-            $(this).siblings().removeClass("active");
 
-            $(".preview-wrapper").toggle().html('Loading...');
-            _this.textarea.toggle();
+define(function (require) {
+    var MarkdownEditor = {
+        init: function () {
+            this.textarea = $('textarea[data-preview=true]');
+            $('.preview-wrapper').height(this.textarea.height()).width(this.textarea.width());
+            var _this = this;
+            $('.nav li[data-type]').click(function () {
+                $(this).addClass('active');
+                $(this).siblings().removeClass('active');
 
-            if ($(this).data("type") === 'preview') {
-                _this.showPreview();
-            } else {
-                _this.textarea.focus();
-            }
-        });
+                $('.preview-wrapper').toggle().html('Loading...');
+                _this.textarea.toggle();
 
-        $('body').keydown(function(e) {
-            if (e.which === 77 && e.target.nodeName !== 'INPUT' && e.target.nodeName !== 'TEXTAREA') {  //M键
-                $("#markdownTip").modal();
-            }
-        });
+                if ($(this).data('type') === 'preview') {
+                    _this.showPreview();
+                } else {
+                    _this.textarea.focus();
+                }
+            });
 
-        $("#popMarkdownTip").click(function() {
-            $("#markdownTip").modal();
-        })
-    },
+            $('body').keydown(function (e) {
+                if (e.which === 77 && e.target.nodeName !== 'INPUT' && e.target.nodeName !== 'TEXTAREA') {  //M键
+                    $('#markdownTip').modal();
+                }
+            });
 
-    showPreview:function() {
-        var content = this.textarea.val();
-        $.post("/admin/preview", {'content':content}, function(html) {
-            $(".preview-wrapper").html(html).show();
-        }, 'json');
+            $('#popMarkdownTip').click(function () {
+                $('#markdownTip').modal();
+            })
+        },
+
+        showPreview: function () {
+            var content = this.textarea.val();
+            $.post('/admin/preview', {'content': content}, function (html) {
+                $('.preview-wrapper').html(html).show();
+            }, 'json');
+        }
     }
-}
 
-MarkdownEditor.init();
+    MarkdownEditor.init();
+
+    return MarkdownEditor;
+});
+

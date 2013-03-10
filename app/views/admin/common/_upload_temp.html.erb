@@ -17,5 +17,5 @@
 </script>
 
 <script>
-var attaches_json = <%= raw (parent.attaches||[]).map { |a| a.json_data }.to_json %>;
+var attaches_json = <%= raw (parent.attaches || []).map {|a| a.json_data }.to_json %>;
 </script>

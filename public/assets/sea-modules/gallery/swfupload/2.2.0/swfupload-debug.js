@@ -1,4 +1,4 @@
-define("gallery/swfupload/2.2.0/swfupload-debug", [], function() {
+define("gallery/swfupload/2.2.0/swfupload-debug", [], function(require) {
     /**
  * SWFUpload: http://www.swfupload.org, http://swfupload.googlecode.com
  *
@@ -43,7 +43,7 @@ define("gallery/swfupload/2.2.0/swfupload-debug", [], function() {
     /* Static Members  */
     /* *************** */
     SWFUpload.instances = {};
-    S2WFUpload.movieCount = 0;
+    SWFUpload.movieCount = 0;
     SWFUpload.version = "2.2.0 2009-03-25";
     SWFUpload.QUEUE_ERROR = {
         QUEUE_LIMIT_EXCEEDED: -100,

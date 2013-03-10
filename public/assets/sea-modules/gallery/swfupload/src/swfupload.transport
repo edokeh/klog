@@ -1,4 +1,4 @@
-define(function () {
+define(function (require) {
     // @include {{baseDirectory}}/src/2.2.0/swfupload.js
 
     SWFUpload.defaultFlashUrl = require.resolve('./swfupload.swf#');

@@ -2,12 +2,14 @@
  * 附件 Model
  */
 define(function (require) {
-    var Backbone = require('backbone');
+    var _ = require('_');
+    var Backbone = require('klog-backbone');
+    var $ = require('$');
 
     var Attach = Backbone.Model.extend({
         defaults: {
             percent: 0,
-            isComplete: false
+            is_complete: false
         },
 
         //markdown 的 code
@@ -21,6 +23,12 @@ define(function (require) {
             return code;
         }
     });
+
+    Attach.List = Backbone.Collection.extend({
+        model: Attach,
+        url: '/admin/attaches'
+    });
+
 
     return Attach;
 });
