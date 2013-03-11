@@ -4,9 +4,37 @@
 define(function (require) {
     var _ = require('_');
     var $ = require('$');
+
+    var successTip = require('../common/success-tip');
+    var Category = require('./category');
+    var CategoryListView = require('./category-list-view');
+    var CategoryNewView = require('./category-new-view');
+
     require('jquery-ujs');
 
 
+    var categories = new Category.List(category_json);
+    new CategoryListView({
+        collection:categories
+    });
+
+    new CategoryNewView({
+        collection:categories
+    });
+
+
+    $('a.delete').on('ajax:success', function () {
+        $(this).closest('tr').hide('fast');
+    });
+//
+//    $('#new_category').on('submit', function (e) {
+//        e.preventDefault();
+//        categories.create({
+//            name: $(this).find('[name="category[name]"]').val()
+//        }, {wait:true});
+//        //category.on
+//        return false;
+//    });
 
     $("a.edit").click(function (e) {
         e.preventDefault();

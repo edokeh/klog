@@ -9,13 +9,15 @@ class Admin::CategoriesController < Admin::ApplicationController
 
   def create
     @category = Category.new(params[:category])
-    
+
     if @category.save
-      flash[:notice] = "<strong>#{@category.name}</strong> 创建成功！".html_safe
-      redirect_to admin_categories_path
+      #flash[:notice] = "<strong>#{@category.name}</strong> 创建成功！".html_safe
+      #redirect_to admin_categories_path
+      render :json => @category.to_json
     else
-      flash[:error] = @category.errors.full_messages.join("<br/>")
-      redirect_to admin_categories_path
+      #flash[:error] = @category.errors.full_messages.join("<br/>")
+      #redirect_to admin_categories_path
+      render :json => @category.errors.full_messages, :status => 422
     end
   end
 
@@ -24,11 +26,11 @@ class Admin::CategoriesController < Admin::ApplicationController
 
     respond_to do |format|
       if @category.update_attributes(params[:category])
-        format.html { redirect_to admin_categories_path, :notice=>'修改成功！'}
-        format.json { head :no_content}
+        format.html { redirect_to admin_categories_path, :notice => '修改成功！' }
+        format.json { head :no_content }
       else
-        format.html { render :action=>"edit"}
-        format.json { render :json=>@category.errors.full_messages}
+        format.html { render :action => "edit" }
+        format.json { render :json => @category.errors.full_messages }
       end
     end
   end
@@ -37,6 +39,7 @@ class Admin::CategoriesController < Admin::ApplicationController
     @category = Category.find(params[:id])
     @category.destroy
 
-    redirect_to admin_categories_url, :notice=>'删除成功！'
+    #redirect_to admin_categories_url, :notice=>'删除成功！'
+    head :no_content
   end
 end

@@ -1,12 +1,12 @@
 /**
- * 附件 View
+ * 分类 View
  */
 define(function (require) {
     var _ = require('_');
     var Backbone = require('klog-backbone');
     var temp = require('./attach.html');
 
-    var AttachView = Backbone.View.extend({
+    var CategoryEditView = Backbone.View.extend({
         className: 'upload-item clearfix',
         template: _.template(temp),
 

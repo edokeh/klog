@@ -1,13 +1,6 @@
 <div class="container">
-  <%= render 'common/flash_notice' %>
-
   <%= form_for([:admin, @category], :html=>{:class=>'well form-inline'}) do |f| -%>
-      <% if flash[:error] %>
-          <div class="alert alert-error">
-            <%= flash[:error] %>
-          </div>
-      <% end %>
-      <%= f.text_field :name, :class=>"input-xlarge", :maxlength=>20, :placeholder=>'分类名称' %>
+      <%= f.text_field :name, :class=>"input-xlarge", :maxlength=>20, :placeholder=>'分类名称', :required=>true %>
       <button type="submit" class="btn  btn-primary">新建分类</button>
   <% end -%>
 
@@ -37,7 +30,7 @@
           <td><%= l category.created_at, :format=>:long %></td>
           <td>
             <%= link_to '修改', admin_category_path(category), :class=>'btn', :data=>{:id=>category.id, :value=>category.name} %>
-            <%= link_to '删除', [:admin, category], :class=>'btn', :confirm => '确定删除?', :method => :delete %>
+            <%= link_to '删除', [:admin, category], :class=>'btn delete', :confirm => '确定删除?', :method => :delete, :remote=>true %>
           </td>
         </tr>
     <% end %>
@@ -54,6 +47,7 @@
 
 <% content_for :js do %>
     <script>
+      var category_json = <%=raw @categories.to_json %>;
       seajs.use('/assets/klog/admin/categories/index');
     </script>
 <% end %>

@@ -12,3 +12,9 @@ end
 ActiveSupport.on_load(:active_record) do
   self.include_root_in_json = false
 end
+
+class ActiveSupport::TimeWithZone
+  def as_json(options = {})
+    strftime('%Y-%m-%d %H:%M:%S')
+  end
+end

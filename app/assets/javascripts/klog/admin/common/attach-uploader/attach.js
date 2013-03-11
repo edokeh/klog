@@ -4,7 +4,6 @@
 define(function (require) {
     var _ = require('_');
     var Backbone = require('klog-backbone');
-    var $ = require('$');
 
     var Attach = Backbone.Model.extend({
         defaults: {
