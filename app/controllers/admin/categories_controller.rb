@@ -17,7 +17,7 @@ class Admin::CategoriesController < Admin::ApplicationController
     else
       #flash[:error] = @category.errors.full_messages.join("<br/>")
       #redirect_to admin_categories_path
-      render :json => @category.errors.full_messages, :status => 422
+      render :json => @category.errors.full_messages, :status => 403
     end
   end
 

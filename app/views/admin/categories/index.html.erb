@@ -1,4 +1,5 @@
 <div class="container">
+
   <%= form_for([:admin, @category], :html=>{:class=>'well form-inline'}) do |f| -%>
       <%= f.text_field :name, :class=>"input-xlarge", :maxlength=>20, :placeholder=>'分类名称', :required=>true %>
       <button type="submit" class="btn  btn-primary">新建分类</button>
