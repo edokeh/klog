@@ -12,7 +12,7 @@
   <% end -%>
 
   <table class="table table-striped table-bordered table-condensed">
-    <col width="50%"/>
+    <col width="55%"/>
     <col width="10%"/>
     <col width="20%"/>
     <thead>
@@ -20,6 +20,7 @@
       <th>名称</th>
       <th>文章数</th>
       <th>创建时间</th>
+      <th></th>
     </tr>
     </thead>
     <% if @categories.blank? %>
@@ -31,11 +32,13 @@
         <tr>
           <td data-id="<%= category.id %>">
             <span class="pull-left"><%= category.name %></span>
-            <%= link_to '删除', [:admin, category], :class=>'btn btn-danger pull-right hide', :confirm => '确定删除?', :method => :delete %>
-            <%= link_to '修改', admin_category_path(category), :class=>'btn btn-primary pull-right hide edit', :data=>{:id=>category.id, :value=>category.name} %>
           </td>
           <td><%= category.blog_count %></td>
           <td><%= l category.created_at, :format=>:long %></td>
+          <td>
+            <%= link_to '修改', admin_category_path(category), :class=>'btn', :data=>{:id=>category.id, :value=>category.name} %>
+            <%= link_to '删除', [:admin, category], :class=>'btn', :confirm => '确定删除?', :method => :delete %>
+          </td>
         </tr>
     <% end %>
   </table>
@@ -50,5 +53,7 @@
 </div>
 
 <% content_for :js do %>
-    <%= page_js_tag %>
+    <script>
+      seajs.use('/assets/klog/admin/categories/index');
+    </script>
 <% end %>

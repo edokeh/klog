@@ -3,7 +3,7 @@
  */
 define(function (require) {
     var $ = require('$');
-    var MarkdownEditor = require('../common/markdown-editor');
+    var MarkdownEditor = require('../../common/markdown-editor');
     require('jquery-ujs');
 
     new MarkdownEditor();

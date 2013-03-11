@@ -1,27 +1,32 @@
 <div class="markdown-editor">
   <ul class="nav nav-tabs editor-tabs">
     <li class="active" data-type="edit">
-      <a href="javascript:void(0);">编辑</a>
+      <a href="#markdown_edit">编辑</a>
     </li>
     <li data-type="preview">
-      <a href="javascript:void(0);">预览</a>
+      <a href="#markdown_preview">预览</a>
     </li>
     <li class="nav-tip">
       <span>
-        请使用 <a href="javascript:void(0)" id="popMarkdownTip">Markdown</a> 格式撰写文章，按下 Shfit + M 试试:)
+        请使用 <a href="javascript:void(0)" id="popMarkdownTip">Markdown</a> 格式撰写文章，按下 Shift + M 试试:)
       </span>
     </li>
   </ul>
 
   <div class="control-group">
-    <%= f.text_area method, :class => "input-block-level", :rows => 30, :data => {:preview => true}, :placeholder => "写点什么..." %>
-    <div class="preview-wrapper"></div>
-
-    <div class="upload-wrapper">
-      <div class="upload-list"></div>
-      <div id="upload"></div>
+    <div id="markdown_edit">
+      <%= f.text_area method, :class => "input-block-level", :rows => 30, :placeholder => "写点什么..." %>
+      <div class="upload-wrapper">
+        <div class="upload-list"></div>
+        <div id="uploadHolder"></div>
+      </div>
     </div>
-    <%= render 'admin/common/markdown_tip' %>
-    <%= render :partial => 'admin/common/upload_temp', :locals => {:parent => f.object} %>
+
+    <div class="preview-wrapper" id="markdown_preview"></div>
   </div>
+
+  <%= render 'admin/common/markdown_tip' %>
 </div>
+<script>
+    var attaches_json = <%= raw f.object.attaches.map {|a| a.json_data }.to_json %>;
+</script>

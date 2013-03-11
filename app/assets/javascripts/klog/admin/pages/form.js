@@ -1,5 +1,5 @@
 /**
- * blog 编辑表单
+ * 页面编辑表单
  */
 define(function (require) {
     var $ = require('$');

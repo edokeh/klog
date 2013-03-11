@@ -31,6 +31,9 @@
   </div>
 
   <%= paginate @comments %>
-
-
 </div>
+<% content_for :js do %>
+    <script>
+      seajs.use('/assets/klog/admin/comments/index');
+    </script>
+<% end %>

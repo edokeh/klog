@@ -70,6 +70,7 @@
 
 // 表格
 .table {
+
   th {
     background: $grayLighter;
     color: $black;
@@ -81,8 +82,10 @@
     line-height: 30px;
   }
 
-  .btn {
+  .list-btn {
     margin-right: 5px;
+    float: right;
+    display: none;
   }
 
   .table-empty-row {

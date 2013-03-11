@@ -11,7 +11,7 @@ define(function (require) {
         template: _.template(temp),
 
         events: {
-            'click .insert': 'insertToContent',
+            'click .insert': 'insertCode',
             'click .delete': 'delete'
         },
 
@@ -34,17 +34,18 @@ define(function (require) {
             this.$('.bar').width(percent + '%');
         },
 
-        delete:function(){
-            if(confirm('确定删除？')){
+        delete: function () {
+            if (confirm('确定删除？')) {
                 this.model.destroy();
-                this.remove();
+                this.$el.hide('fast', this.remove);
             }
             return false;
         },
 
-        insertToContent: function () {
+        // 点击插入
+        insertCode: function () {
             var code = this.model.getCode();
-            _this.insertCallback(code);
+            this.trigger('insertCode', code);
         }
     });
 

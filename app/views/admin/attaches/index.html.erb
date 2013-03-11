@@ -24,7 +24,7 @@
         <tr>
           <td>
             <%= link_to attach.file_name, attach.file.url, :target=>'_blank', :class=>'pull-left' %>
-            <%= link_to '删除', [:admin, attach], :confirm=>'确定删除?', :method=>:delete, :class=>'btn btn-danger pull-right hide' %>
+            <%= link_to '删除', [:admin, attach], :confirm=>'确定删除?', :method=>:delete, :class=>'btn btn-danger list-btn' %>
           </td>
           <td>
             <% if attach.parent.instance_of? Blog %>
@@ -53,3 +53,9 @@
 
   <%= paginate @attaches %>
 </div>
+
+<% content_for :js do %>
+    <script>
+      seajs.use('/assets/klog/admin/index');
+    </script>
+<% end %>

@@ -6,7 +6,7 @@ define(function (require) {
     var $ = require('$');
     var Backbone = require('klog-backbone');
     var SWFUploader = require('swfupload');
-    var swfConfig = require('./attach-uploader/swfupload-config');
+    var swfUploadConfig = require('./attach-uploader/swfupload-config');
     var Attach = require('./attach-uploader/attach');
     var AttachListView = require('./attach-uploader/attach-list-view');
 
@@ -14,7 +14,10 @@ define(function (require) {
         _.bindAll(this);
 
         this.attaches = new Attach.List(attaches_json);
-        new AttachListView({'collection': this.attaches});
+        this.attachListView = new AttachListView({'collection': this.attaches});
+        this.attachListView.on('insertCode', function (code) {
+            this.trigger('insertCode', code);
+        }, this);
 
         this.initSwfUpload(buttonHolder);
     };
@@ -23,7 +26,7 @@ define(function (require) {
         constructor: AttachUploader,
 
         initSwfUpload: function (buttonHolder) {
-            var config = _.extend(swfConfig, {
+            var config = _.extend(swfUploadConfig, {
                 upload_url: "/admin/attaches",
                 file_post_name: "attach[file]",
                 file_size_limit: "5 MB",
@@ -60,8 +63,16 @@ define(function (require) {
             } else {
                 attach.destroy();
             }
+        },
+
+        // 组件高度
+        height: function () {
+            return $('.upload-wrapper').height();
         }
+
     };
+
+    _.extend(AttachUploader.prototype, Backbone.Events);
 
     // flash 上传时附加的参数
     function getPostParam() {

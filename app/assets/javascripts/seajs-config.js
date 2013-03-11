@@ -4,7 +4,11 @@ seajs.config({
         '_': 'gallery/underscore/1.4.4/underscore',
         'backbone': 'gallery/backbone/0.9.10/backbone',
         'klog-backbone': '/assets/klog/admin/common/backbone',
-        'swfupload': 'gallery/swfupload/2.2.0/swfupload'
+        'swfupload': 'gallery/swfupload/2.2.0/swfupload',
+        'events': 'gallery/events/1.0.0/events',
+        'tab': 'gallery/tab/0.0.1/tab',
+        'modal': 'gallery/modal/0.0.1/modal',
+        'jquery-ujs': 'gallery/jquery-ujs/2.2.1/jquery-ujs'
     },
     preload: ['seajs/plugin-text']
 })

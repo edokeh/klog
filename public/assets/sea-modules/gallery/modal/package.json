@@ -1,9 +1,9 @@
 {
-    "name" : "tab",
+    "name" : "modal",
     "version" : "0.0.1",
     "root" : "gallery",
     "output" : {
-        "tab.js" : "."
+        "modal.js" : "."
     },
     "spmConfig" : {
         "build" : {

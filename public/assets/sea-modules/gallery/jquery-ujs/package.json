@@ -1,9 +1,9 @@
 {
-    "name" : "tab",
-    "version" : "0.0.1",
+    "name" : "jquery-ujs",
+    "version" : "2.2.1",
     "root" : "gallery",
     "output" : {
-        "tab.js" : "."
+        "jquery-ujs.js" : "."
     },
     "spmConfig" : {
         "build" : {

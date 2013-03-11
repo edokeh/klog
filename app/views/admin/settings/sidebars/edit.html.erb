@@ -33,5 +33,7 @@
 <% end %>
 
 <% content_for :js do %>
-    <%= page_js_tag %>
+    <script>
+      seajs.use('/assets/klog/admin/settings/sidebar/edit');
+    </script>
 <% end %>

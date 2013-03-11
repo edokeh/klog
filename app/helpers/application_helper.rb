@@ -34,11 +34,11 @@ module ApplicationHelper
 
   #根据路径自动引入相应的js
   def page_js_tag
-     javascript_include_tag "#{params[:controller]}/#{action_name}"
+    javascript_include_tag "#{params[:controller]}/#{action_name}"
   end
 
   def markdown_editor(f, method=:content)
-    render :partial=>'admin/common/markdown_editor', :locals=>{:f=>f, :method=>method}
+    render :partial => 'admin/common/markdown_editor', :locals => {:f => f, :method => method}
   end
 
 end

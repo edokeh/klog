@@ -25,5 +25,7 @@
 <% end %>
 
 <% content_for :js do %>
-    <%= javascript_include_tag 'admin/pages/new' %>
+    <script>
+    seajs.use('/assets/klog/admin/pages/form');
+    </script>
 <% end %>
