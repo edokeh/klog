@@ -33,8 +33,8 @@
         <tr>
           <td>
             <%= link_to blog.title, edit_admin_blog_path(blog), :class=>"list-title" %>
-            <a href="<%= blog_path(blog.slug) %>" title="查看原文" target="_blank" class="list-action btn btn-small"><i class="icon-share"></i></a>
-            <a href="#" title="删除" class="list-action btn btn-small"><i class="icon-remove"></i></a>
+            <a href="<%= blog_path(blog.slug) %>" title="查看原文" target="_blank" class="list-action"><i class="icon-share"></i></a>
+            <a href="#" title="删除" class="list-action"><i class="icon-remove"></i></a>
             <% unless blog.publish? %>
                 <%= link_to raw('<i class="icon-share"></i>'), publish_admin_blog_path(blog), :class=>'btn list-action', :confirm=>'确定要发布?', :method=>:post %>
             <% end %>
