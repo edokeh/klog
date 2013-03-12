@@ -5,7 +5,6 @@ define(function (require) {
     var _ = require('_');
     var $ = require('$');
     var Backbone = require('klog-backbone');
-    var successTip = require('../common/success-tip');
 
     var CategoryNewView = Backbone.View.extend({
         el: $('#new_category'),
@@ -31,12 +30,18 @@ define(function (require) {
         },
 
         showSuccess: function (model, resp, options) {
-            successTip.show('添加成功！');
             this.el.reset();
         },
 
         showError: function (model, xhr, options) {
+            var txt = $.parseJSON(xhr.responseText);
+            this.$('.tooltip-inner').text(txt[0]);
+            this.$('.tooltip').removeClass('out').addClass('in');
+            setTimeout(this.hideError, 2000);
+        },
 
+        hideError:function(){
+            this.$('.tooltip').removeClass('in').addClass('out');
         }
 
     });

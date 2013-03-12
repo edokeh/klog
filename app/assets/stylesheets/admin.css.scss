@@ -238,8 +238,9 @@
 
 // 评论
 .comments {
-  border: 1px solid $grayLighter;
-  border-radius: 5px;
+  //border: 1px solid $grayLighter;
+
+  //border-radius: 5px;
 
   article {
     border-bottom: 1px solid $grayLighter;
@@ -250,6 +251,7 @@
 
     header {
       margin-bottom: 5px;
+      font-size: 16px;
     }
 
     footer {
@@ -258,19 +260,21 @@
   }
 
   .nick {
-    color: $linkColor;
     font-weight: bolder;
-    font-size: 16px;
   }
 
-  .ip {
+  .email {
     color: $grayLight;
-    margin-left: 10px;
   }
 
   .date {
     color: $grayLight;
-    margin-right: 10px;
+    margin-right: 5px;
+  }
+
+  .delete {
+    margin-left: 10px;
+    font-size: 14px;
   }
 
 }
@@ -282,4 +286,24 @@
   width: 150px;
   text-align: center;
   padding: 8px 0;
+}
+
+.pop-confirm {
+  padding: 4px;
+  background: #eee;
+  border-radius: 4px;
+  display: inline-block;
+  position: absolute;
+  top:  0;
+
+  .pop-confirm-inner {
+    border: 1px solid #CACACA;
+    background-color: #fff;
+    padding: 10px;
+  }
+
+  .pop-confirm-content {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
 }

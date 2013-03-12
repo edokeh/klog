@@ -2,29 +2,39 @@
 
   <%= render 'common/flash_notice' %>
 
+
   <div class="comments">
     <% if @comments.blank? %>
     暂无评论
     <% end %>
+    <div class="pop-confirm">
+        <div class="pop-confirm-inner clearfix">
+            <div class="pop-confirm-content">
+              确定删除这条评论及其回复？
+            </div>
+            <div class="pull-right">
+              <a class="btn btn-small btn-primary">确定</a>
+              <a class="btn btn-small">取消</a>
+            </div>
+        </div>
+    </div>
     <% @comments.each do |comment| %>
         <article>
           <header>
-            <span>
-              <span class="nick">
-                <%= comment.is_admin? ? '我':comment.nick %>
-              </span>
-              <em><%= "(#{comment.email})" if comment.email.present? %></em>
-            </span>
-            <span class="ip">来自 <%= comment.ip %></span>
+            <span class="nick"><%= comment.is_admin? ? '我' : comment.nick %></span>
+            <% if comment.email.present? %>
+                <span class="email">&lt;<%= comment.email %>&gt;</span>
+            <% end %>
+
+            <a class="delete" href="<%= admin_comment_path(comment) %>">删除</a>
           </header>
           <section>
             <%= simple_format h(comment.content) %>
           </section>
           <footer>
-            <span class="date">评论于 <%= l comment.created_at, :format=>:long %></span>
-            <%= link_to '删除', admin_comment_path(comment), :confirm=>'确定删除评论？系统会级联删除其回复！', :method=>:delete %>
-            <%= link_to comment.blog.title, blog_url(comment.blog.slug, :anchor=>"comments_#{comment.id}"),
-                        :target=>'_blank', :class=>'pull-right' %>
+            <span class="date"><%= l comment.created_at, :format=>:long %></span>
+            来自 <%= link_to comment.ip, "http://ip.taobao.com/ipSearch.php?ipAddr=#{comment.ip}", :target=>"_blank" %>
+            <%= link_to comment.blog.title, blog_url(comment.blog.slug, :anchor => "comments_#{comment.id}"), :class=>"pull-right", :target => '_blank' %>
           </footer>
         </article>
     <% end %>

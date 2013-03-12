@@ -1,11 +1,14 @@
 <div class="container">
-
-  <%= form_for([:admin, @category], :html=>{:class=>'well form-inline'}) do |f| -%>
-      <%= f.text_field :name, :class=>"input-xlarge", :maxlength=>20, :placeholder=>'分类名称', :required=>true %>
+  <%= form_for([:admin, @category], :html => {:class => 'well form-inline'}) do |f| -%>
+      <%= f.text_field :name, :class => "input-xlarge", :maxlength => 20, :placeholder => '分类名称', :required => true %>
       <button type="submit" class="btn  btn-primary">新建分类</button>
+      <div class="tooltip bottom fade">
+        <div class="tooltip-arrow"></div>
+        <div class="tooltip-inner"></div>
+      </div>
   <% end -%>
 
-  <table class="table table-striped table-bordered table-condensed">
+  <table class="table table-hover table-condensed">
     <col width="55%"/>
     <col width="10%"/>
     <col width="20%"/>
@@ -17,38 +20,29 @@
       <th></th>
     </tr>
     </thead>
-    <% if @categories.blank? %>
-        <tr>
-          <td colspan="4" class="empty-table">暂无分类</td>
-        </tr>
-    <% end %>
-    <% @categories.each do |category| %>
-        <tr>
-          <td data-id="<%= category.id %>">
-            <span class="pull-left"><%= category.name %></span>
-          </td>
-          <td><%= category.blog_count %></td>
-          <td><%= l category.created_at, :format=>:long %></td>
-          <td>
-            <%= link_to '修改', admin_category_path(category), :class=>'btn', :data=>{:id=>category.id, :value=>category.name} %>
-            <%= link_to '删除', [:admin, category], :class=>'btn delete', :confirm => '确定删除?', :method => :delete, :remote=>true %>
-          </td>
-        </tr>
-    <% end %>
+    <tr class="table-empty-row" style="display: none">
+      <td colspan="4">暂无分类</td>
+    </tr>
+    <tr id="categoryEditView" style="display: none">
+      <td colspan="4">
+        <form class="form-inline" style="margin-bottom: 0">
+          <input type="text" class="input-xlarge" name="categroy[name]" placeholder="分类名称" required/>
+          <button type="submit" class="btn  btn-primary">提交修改</button>
+          <button type="button" class="btn cancel-edit">取消</button>
+          <div class="tooltip bottom fade">
+            <div class="tooltip-arrow"></div>
+            <div class="tooltip-inner"></div>
+          </div>
+        </form>
+      </td>
+    </tr>
   </table>
 
-  <%= form_for([:admin, @category],
-               :html=>{:class=>'form-inline', :id=>'edit_form', :data=>{:type=>'json'}, :style=>'display:none;margin-bottom:0'},
-               :method=>:put, :remote=>true) do |f| -%>
-      <%= f.text_field :name, :class=>"input-xlarge", :id=>'edit_cate_name', :placeholder=>'分类名称' %>
-      <button type="submit" class="btn  btn-primary">提交修改</button>
-      <button type="button" id="cancel_edit" class="btn">取消</button>
-  <% end -%>
 </div>
 
 <% content_for :js do %>
     <script>
-      var category_json = <%=raw @categories.to_json %>;
-      seajs.use('/assets/klog/admin/categories/index');
+        var category_json = <%=raw @categories.to_json %>;
+        seajs.use('/assets/klog/admin/categories/index');
     </script>
 <% end %>
