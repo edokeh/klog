@@ -32,12 +32,19 @@
     <% @blogs.each do |blog| %>
         <tr>
           <td>
-            <%= link_to blog.title, blog_path(blog.slug), :target=>'_blank', :class=>'pull-left' %>
-            <%= link_to '删除', [:admin, blog], :class=>'btn btn-danger list-btn', :confirm=>"确定删除“#{blog.title}”?", :method=>:delete %>
-            <%= link_to '修改', edit_admin_blog_path(blog), :class=>'btn btn-primary list-btn' %>
+            <%= link_to blog.title, edit_admin_blog_path(blog), :class=>"list-title" %>
+            <a href="<%= blog_path(blog.slug) %>" title="查看原文" target="_blank" class="list-action btn btn-small"><i class="icon-share"></i></a>
+            <a href="#" title="删除" class="list-action btn btn-small"><i class="icon-remove"></i></a>
             <% unless blog.publish? %>
-                <%= link_to '发布', publish_admin_blog_path(blog), :class=>'btn btn-warning list-btn', :confirm=>'确定要发布?', :method=>:post %>
+                <%= link_to raw('<i class="icon-share"></i>'), publish_admin_blog_path(blog), :class=>'btn list-action', :confirm=>'确定要发布?', :method=>:post %>
             <% end %>
+            <!--
+            <%= link_to '删除', [:admin, blog], :class=>'btn list-btn', :confirm=>"确定删除“#{blog.title}”?", :method=>:delete %>
+            <%= link_to '修改', edit_admin_blog_path(blog), :class=>'btn list-btn' %>
+            <% unless blog.publish? %>
+                <%= link_to '发布', publish_admin_blog_path(blog), :class=>'btn btn-primary list-btn', :confirm=>'确定要发布?', :method=>:post %>
+            <% end %>
+            -->
           </td>
           <td><%= blog.category.try(:name) %></td>
           <td><%= blog.comment_count %></td>

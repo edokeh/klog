@@ -18,3 +18,8 @@
 
   <%= link_to '<< 返回列表', admin_blogs_path %>
 </div>
+<% content_for :js do %>
+    <script>
+        seajs.use('/assets/klog/admin/blogs/new');
+    </script>
+<% end %>

@@ -88,6 +88,16 @@
     display: none;
   }
 
+  .list-title {
+    margin-right: 10px;
+  }
+
+  .list-action {
+    opacity: 0.6;
+    margin-right: 2px;
+    display: none;
+  }
+
   .table-empty-row {
     height: 20px;
     font-weight: bolder;
@@ -251,7 +261,6 @@
 
     header {
       margin-bottom: 5px;
-      font-size: 16px;
     }
 
     footer {
@@ -261,10 +270,17 @@
 
   .nick {
     font-weight: bolder;
+    font-size: 16px;
+  }
+
+  .commentTo {
+    color: $grayLight;
+    margin: 0 5px;
   }
 
   .email {
     color: $grayLight;
+    font-size: 14px;
   }
 
   .date {
@@ -273,7 +289,7 @@
   }
 
   .delete {
-    margin-left: 10px;
+    margin-left: 20px;
     font-size: 14px;
   }
 
@@ -289,14 +305,15 @@
 }
 
 .pop-confirm {
-  padding: 4px;
   background: #eee;
   border-radius: 4px;
   display: inline-block;
   position: absolute;
-  top:  0;
+  visibility: hidden;
+  overflow: hidden;
 
   .pop-confirm-inner {
+    margin: 4px;
     border: 1px solid #CACACA;
     background-color: #fff;
     padding: 10px;

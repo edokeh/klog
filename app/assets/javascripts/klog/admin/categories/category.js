@@ -3,7 +3,9 @@
  */
 define(function (require) {
     var _ = require('_');
-    var Backbone = require('klog-backbone');
+    var Backbone = require('backbone');
+
+    Backbone.emulateHTTP = true;
 
     var Category = Backbone.Model.extend({
 

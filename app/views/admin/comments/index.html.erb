@@ -1,23 +1,9 @@
 <div class="container">
 
-  <%= render 'common/flash_notice' %>
-
-
   <div class="comments">
     <% if @comments.blank? %>
     暂无评论
     <% end %>
-    <div class="pop-confirm">
-        <div class="pop-confirm-inner clearfix">
-            <div class="pop-confirm-content">
-              确定删除这条评论及其回复？
-            </div>
-            <div class="pull-right">
-              <a class="btn btn-small btn-primary">确定</a>
-              <a class="btn btn-small">取消</a>
-            </div>
-        </div>
-    </div>
     <% @comments.each do |comment| %>
         <article>
           <header>
@@ -25,8 +11,9 @@
             <% if comment.email.present? %>
                 <span class="email">&lt;<%= comment.email %>&gt;</span>
             <% end %>
+            <span class="commentTo">评论了</span>
+            <%= link_to comment.blog.title, blog_url(comment.blog.slug, :anchor => "comments_#{comment.id}"), :class=>"", :target => '_blank' %>
 
-            <a class="delete" href="<%= admin_comment_path(comment) %>">删除</a>
           </header>
           <section>
             <%= simple_format h(comment.content) %>
@@ -34,7 +21,7 @@
           <footer>
             <span class="date"><%= l comment.created_at, :format=>:long %></span>
             来自 <%= link_to comment.ip, "http://ip.taobao.com/ipSearch.php?ipAddr=#{comment.ip}", :target=>"_blank" %>
-            <%= link_to comment.blog.title, blog_url(comment.blog.slug, :anchor => "comments_#{comment.id}"), :class=>"pull-right", :target => '_blank' %>
+            <a class="delete" href="<%= admin_comment_path(comment) %>">删除</a>
           </footer>
         </article>
     <% end %>

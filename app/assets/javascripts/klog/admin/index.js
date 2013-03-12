@@ -14,9 +14,9 @@ define(function (require) {
     $('td').hover(function () {
         clearTimeout(timer);
         timer = setTimeout(_.bind(function () {
-            $(this).find('.list-btn').fadeIn('fast');
-        }, this), 200);
+            $(this).find('.list-action').fadeIn('fast');
+        }, this), 10);
     }, function () {
-        $(this).find('.list-btn').hide();
+        $(this).find('.list-action').hide();
     });
 });

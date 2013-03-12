@@ -3,7 +3,7 @@
  */
 define(function (require) {
     var _ = require('_');
-    var Backbone = require('klog-backbone');
+    var Backbone = require('backbone');
     var temp = require('./attach.html');
 
     var AttachView = Backbone.View.extend({

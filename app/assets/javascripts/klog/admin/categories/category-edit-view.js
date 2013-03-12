@@ -4,7 +4,7 @@
 define(function (require) {
     var _ = require('_');
     var $ = require('$');
-    var Backbone = require('klog-backbone');
+    var Backbone = require('backbone');
 
     var CategoryEditView = Backbone.View.extend({
         el: '#categoryEditView',

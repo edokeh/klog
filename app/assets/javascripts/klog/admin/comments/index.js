@@ -3,18 +3,25 @@
  */
 define(function (require) {
     var $ = require('$');
+    var PopConfirm = require('../common/pop-confirm');
     require('jquery-ujs');
 
-//    setTimeout(function () {
-//        $('div.alert-success').fadeOut();
-//    }, 3000);
+    var popConfirm = new PopConfirm();
+    popConfirm.on('submit', function (link) {
+        $.post(link.attr('href'), {
+            '_method': 'delete'
+        }, function () {
+            link.closest('article').hide('normal');
+        });
+    });
 
-    $('a.delete').click(function(){
-        //$(this).closest('article').fadeOut('normal');
-        $('.pop-confirm').css({
-            left: $(this).position().left,
-            top:$(this).position().top+$(this).offset().height
-        })
+    $('a.delete').click(function (e) {
+        e.preventDefault();
+        popConfirm.show({
+            text: '确定删除这条评论及其回复？',
+            trigger: this
+        });
+
         return false;
     });
 });

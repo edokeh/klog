@@ -4,7 +4,7 @@
 define(function (require) {
     var _ = require('_');
     var $ = require('$');
-    var Backbone = require('klog-backbone');
+    var Backbone = require('backbone');
     var CategoryView = require('./category-view');
     var CategoryEditView = require('./category-edit-view');
     require('../common/jquery.color');
@@ -16,16 +16,16 @@ define(function (require) {
             _.bindAll(this);
 
             this.childViews = {};
+            this.editView = new CategoryEditView();
+            this.emptyRow = this.$('.table-empty-row');
+
             this.collection.on('add', this.add);
             this.collection.on('destroy', this.handleChildDelete);
             this.collection.on('edit', this.renderEdit);
-
             this.collection.each(function (category) {
                 this.add(category, {noAnim: true});
             }, this);
 
-            this.editView = new CategoryEditView();
-            this.emptyRow = this.$('.table-empty-row');
             if (this.collection.size() === 0) {
                 this.emptyRow.show();
             }

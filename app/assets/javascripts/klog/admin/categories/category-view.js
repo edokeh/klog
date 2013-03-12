@@ -4,16 +4,19 @@
 define(function (require) {
     var _ = require('_');
     var $ = require('$');
-    var Backbone = require('klog-backbone');
+    var Backbone = require('backbone');
     var temp = require('./category.html');
+    var PopConfirm = require('../common/pop-confirm');
     require('../common/jquery.color');
+
+    var popConfirm = new PopConfirm();
 
     var CategoryView = Backbone.View.extend({
         el: null,
         template: _.template(temp),
 
         events: {
-            'click .delete': 'delete',
+            'click .delete': 'confirmDelete',
             'click .edit': 'edit'
         },
 
@@ -34,11 +37,17 @@ define(function (require) {
             this.animChange();
         },
 
+        confirmDelete: function () {
+            popConfirm.show({
+                text: '确定要删除分类 “' + this.model.get('name') + '” ？',
+                trigger: this.$('.delete')
+            });
+            popConfirm.off().on('submit', this.delete);
+        },
+
         delete: function () {
-            if (confirm('确定删除“' + this.model.get('name') + '”？')) {
-                this.model.destroy();
-                this.animDelete();
-            }
+            this.model.destroy();
+            this.animDelete();
         },
 
         // 触发修改模式
@@ -50,8 +59,10 @@ define(function (require) {
         animDelete: function () {
             this.$('td').css('background-color', '#f4c8c5');
             this.$('td').animate({
-                backgroundColor: "#fff"
+                backgroundColor: "#fff",
+                height: 0
             }, 'slow', 'linear', this.remove);
+            this.$el.hide('slow')
         },
 
         // 修改的动画

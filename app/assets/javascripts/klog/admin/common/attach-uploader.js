@@ -4,7 +4,7 @@
 define(function (require) {
     var _ = require('_');
     var $ = require('$');
-    var Backbone = require('klog-backbone');
+    var Backbone = require('backbone');
     var SWFUploader = require('swfupload');
     var swfUploadConfig = require('./attach-uploader/swfupload-config');
     var Attach = require('./attach-uploader/attach');
