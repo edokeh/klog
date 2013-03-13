@@ -7,21 +7,20 @@ define(function (require) {
     require('jquery-ujs');
 
     var popConfirm = new PopConfirm();
-    popConfirm.on('submit', function (link) {
-        $.post(link.attr('href'), {
-            '_method': 'delete'
-        }, function () {
-            link.closest('article').hide('normal');
-        });
-    });
 
-    $('a.delete').click(function (e) {
-        e.preventDefault();
+    $('a.delete').click(function () {
+        var link = $(this);
         popConfirm.show({
             text: '确定删除这条评论及其回复？',
             trigger: this
         });
-
+        popConfirm.off().on('submit', function () {
+            link.trigger('click.rails');
+        });
         return false;
+    });
+
+    $('a.delete').on('ajax:success', function () {
+        $(this).closest('article').hide('normal');
     });
 });

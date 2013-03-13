@@ -1,7 +1,7 @@
 <div class="container">
   <%= render 'common/flash_notice' %>
 
-  <table class="table table-striped table-bordered table-condensed">
+  <table class="table table-hover table-condensed">
     <col width="35%"/>
     <col width="25%"/>
     <col width="10%"/>
@@ -23,8 +23,9 @@
     <% @attaches.each do |attach| %>
         <tr>
           <td>
-            <%= link_to attach.file_name, attach.file.url, :target=>'_blank', :class=>'pull-left' %>
-            <%= link_to '删除', [:admin, attach], :confirm=>'确定删除?', :method=>:delete, :class=>'btn btn-danger list-btn' %>
+            <%= link_to attach.file_name, attach.file.url, :target=>'_blank', :class=>'list-title' %>
+            <%= link_to raw('<i class="icon-remove"></i>'), [:admin, attach], :title=>"删除", :class=>'list-action delete',
+                        'data-pop-confirm'=>'确定删除?', :method=>:delete, :remote=>true, 'data-type'=>'json' %>
           </td>
           <td>
             <% if attach.parent.instance_of? Blog %>

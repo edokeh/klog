@@ -6,5 +6,11 @@ define(function (require) {
     var MarkdownEditor = require('../../common/markdown-editor');
     require('jquery-ujs');
 
-    new MarkdownEditor();
+    new MarkdownEditor({
+        uploader: {
+            post_params: {
+                'attach[max_width]': 200
+            }
+        }
+    });
 });

@@ -9,12 +9,13 @@ define(function (require) {
     var AttachUploader = require('../common/attach-uploader');
     var TextareaPos = require('../common/textarea-pos');
 
-    var MarkdownEditor = function () {
+    var MarkdownEditor = function (options) {
         _.bindAll(this);
 
+        options = options || {};
         this.textarea = $('.markdown-editor textarea');
         this.previewWrapper = $('.markdown-editor .preview-wrapper');
-        this.uploader = new AttachUploader('#uploadHolder');
+        this.uploader = new AttachUploader('#uploadHolder', options.uploader);
 
         this.textarea.focus(this.startSaveTaPos);
         this.textarea.blur(this.stopSaveTaPos);

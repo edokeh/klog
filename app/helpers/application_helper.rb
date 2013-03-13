@@ -41,4 +41,15 @@ module ApplicationHelper
     render :partial => 'admin/common/markdown_editor', :locals => {:f => f, :method => method}
   end
 
+  def seajs_use(*modules)
+    html = [];
+    unless @seajs_included
+      html << javascript_include_tag("seajs/1.3.1/sea.js")
+      html << javascript_include_tag("seajs-config.js")
+      @seajs_included = true
+    end
+    html << modules.join(",")
+    return html.join("\n").html_safe
+  end
+
 end

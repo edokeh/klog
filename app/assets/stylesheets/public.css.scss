@@ -209,6 +209,18 @@ body {
   }
 }
 
+.commentTip {
+  position: absolute;
+  background: black;
+  color: white;
+  opacity: 0.7;
+  z-index: 99999;
+  border-radius: 5px;
+  text-align: center;
+  padding: 10px 20px;
+  display: inline-block;
+}
+
 // 存档
 .archive {
   .full-year {

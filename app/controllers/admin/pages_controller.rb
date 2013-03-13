@@ -15,8 +15,7 @@ class Admin::PagesController < Admin::ApplicationController
     if @page.save
       # 更新附件的归属
       Attach.update_parent(params[:attach_ids], @page)
-      flash[:notice] = "<strong>#{@page.title}</strong> 创建成功！".html_safe
-      redirect_to admin_pages_path
+      redirect_to admin_pages_path, :notice => "<strong>#{@page.title}</strong> 创建成功！".html_safe
     else
       render :new
     end
@@ -32,9 +31,9 @@ class Admin::PagesController < Admin::ApplicationController
     if @page.update_attributes(params[:page])
       # 更新附件的归属
       Attach.update_parent(params[:attach_ids], @page)
-      redirect_to admin_pages_path, :notice=>'修改成功！'
+      redirect_to admin_pages_path, :notice => '修改成功！'
     else
-      render :action=>"edit"
+      render :action => "edit"
     end
   end
 
@@ -42,7 +41,10 @@ class Admin::PagesController < Admin::ApplicationController
     @page = Page.find(params[:id])
     @page.destroy
 
-    redirect_to admin_pages_url, :notice=>'删除成功！'
+    respond_to do |format|
+      format.html { redirect_to :back, :notice => '删除成功！' }
+      format.json { head :no_content }
+    end
   end
 
   def up

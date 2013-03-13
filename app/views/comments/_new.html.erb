@@ -1,11 +1,11 @@
-<%= form_for [@blog, @comment], :html=>{:class=>"form comment-form"} do |f| -%>
+<%= form_for [@blog, @comment], :html=>{:class=>"form comment-form", "data-type"=>"json"}, :remote=>true do |f| -%>
     <legend>发表评论</legend>
     <%= render 'common/flash_notice' %>
     <% if flash[:error] %>
         <div class="alert alert-error"><%= flash[:error] %></div>
     <% end %>
     <%= f.hidden_field :commentable_id, :data=>{:origin=>@comment.commentable_id} %>
-    <%= f.hidden_field :commentable_type, :data=>{:origin=>@comment.commentable_type} %>
+    <%= f.hidden_field :commentable_type %>
 
     <%= f.text_area :content, :placeholder=>'写点评论吧...', :rows=>5, :class=>"input-block-level" %>
 
@@ -18,8 +18,8 @@
             <img src="<%= @captcha.pic_url %>" />
           </div>
       <% end %>
-      <button class="btn pull-right" id="cancel_reply" type="button" style="margin-left:10px;display:none">取消回复</button>
-      <button class="btn pull-right" id="submit_comment" type="submit">
+      <button class="btn pull-right" type="button" id="cancelReply" style="margin-left:10px;display:none">取消回复</button>
+      <button class="btn pull-right disabled" id="submitComment" type="submit">
         <i class="icon-ok"></i>
         发表评论
       </button>

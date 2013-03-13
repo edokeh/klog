@@ -10,7 +10,7 @@ define(function (require) {
     var Attach = require('./attach-uploader/attach');
     var AttachListView = require('./attach-uploader/attach-list-view');
 
-    var AttachUploader = function (buttonHolder) {
+    var AttachUploader = function (buttonHolder, options) {
         _.bindAll(this);
 
         this.attaches = new Attach.List(attaches_json);
@@ -19,18 +19,18 @@ define(function (require) {
             this.trigger('insertCode', code);
         }, this);
 
-        this.initSwfUpload(buttonHolder);
+        this.initSwfUpload(buttonHolder, options);
     };
 
     AttachUploader.prototype = {
         constructor: AttachUploader,
 
-        initSwfUpload: function (buttonHolder) {
+        initSwfUpload: function (buttonHolder, options) {
             var config = _.extend(swfUploadConfig, {
                 upload_url: "/admin/attaches",
                 file_post_name: "attach[file]",
                 file_size_limit: "5 MB",
-                file_types: "*.jpg;*.gif;*.png;*.rar;*.ppt;*.pptx",
+                file_types: "*.jpg;*.jpeg;*.gif;*.png;*.txt;*.zip;*.rar;*.ppt;*.pptx;",
                 button_placeholder: $(buttonHolder)[0],
                 post_params: getPostParam(),
 
@@ -38,6 +38,10 @@ define(function (require) {
                 upload_progress_handler: this.handleUploadProgress,
                 upload_success_handler: this.handleUploadSuccess
             });
+
+            if (options && options.post_params) {
+                _.extend(config.post_params, options.post_params);
+            }
 
             this.swfu = new SWFUpload(config);
         },

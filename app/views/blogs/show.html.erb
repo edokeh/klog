@@ -24,9 +24,11 @@
 
 <div class="comments">
   <a name="comments" id="comment_anchor"></a>
-  <%= render 'comments/new' %>
   <h2><%= @blog.comment_count %>条评论</h2>
-  <%= render_comments(@blog, :level=>0) %>
+  <div id="commentsWrapper">
+    <%= render_comments(@blog, :level=>0) %>
+  </div>
+  <%= render 'comments/new' %>
 </div>
 
 <% content_for :title do %><%= @blog.title %> - <% end %>
@@ -37,6 +39,12 @@
 <% end %>
 
 <% content_for :js do %>
-    <%= javascript_include_tag 'blogs/show' %>
-    <%= javascript_include_tag 'jquery_ujs' if is_admin? %>
+    <%# javascript_include_tag 'blogs/show' %>
+    <%# javascript_include_tag 'jquery_ujs' if is_admin? %>
+
+    <script src="/assets/sea-modules/seajs/1.3.1/sea.js"></script>
+    <script src="/assets/seajs-config.js"></script>
+    <script>
+        seajs.use('/assets/klog/blogs/show');
+    </script>
 <% end %>

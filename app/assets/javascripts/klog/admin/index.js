@@ -1,5 +1,5 @@
 /**
- * blog 列表
+ * 列表
  */
 define(function (require) {
     var _ = require('_');
@@ -13,6 +13,7 @@ define(function (require) {
 
     var popConfirm = new PopConfirm();
 
+    // 为 data-pop-confirm 元素增加行为
     $('a[data-pop-confirm]').click(function () {
         var link = $(this);
         popConfirm.show({
@@ -28,20 +29,4 @@ define(function (require) {
     $('a.delete').on('ajax:success', function () {
         $(this).closest('tr').hide('normal');
     });
-
-//    $('a.delete').click(function (e) {
-//        popConfirm.show({
-//            text: $(this).data('confirm'),
-//            trigger: this
-//        });
-//        return false;
-//    });
-//
-//    popConfirm.on('submit', function (link) {
-//        $.post(link.attr('href'), {
-//            '_method': 'delete'
-//        }, function () {
-//            link.closest('tr').hide('normal');
-//        });
-//    });
 });
