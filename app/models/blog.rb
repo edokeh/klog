@@ -25,8 +25,8 @@ class Blog < ActiveRecord::Base
   after_destroy :decrease_blog_count, :if=>:publish?
 
   belongs_to :category
-  has_many :attaches, :as=>:parent
-  has_many :all_comments, :class_name=>'Comment', :foreign_key=>:blog_id
+  has_many :attaches, :as=>:parent, :dependent => :destroy
+  has_many :all_comments, :class_name=>'Comment', :foreign_key=>:blog_id, :dependent => :destroy
   has_many :comments, :as=>:commentable, :include=>[:comments]
 
   scope :publish, where(:status=>S_PUBLISH)

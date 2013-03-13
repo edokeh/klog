@@ -89,13 +89,17 @@
   }
 
   .list-title {
-    margin-right: 10px;
+    margin-right: 20px;
   }
 
   .list-action {
+    opacity: 0;
+    -webkit-transition: opacity 500ms;
+  }
+
+  tr:hover .list-action{
+    display: inline;
     opacity: 0.6;
-    margin-right: 2px;
-    display: none;
   }
 
   .table-empty-row {

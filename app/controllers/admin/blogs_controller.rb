@@ -3,8 +3,8 @@ class Admin::BlogsController < Admin::ApplicationController
 
   def index
     params[:status] ||= Blog::S_PUBLISH
-    @blogs = Blog.where(:status=>params[:status]).order("created_at DESC")
-                .includes(:category).page(params[:page])
+    @blogs = Blog.where(:status => params[:status]).order("created_at DESC")
+    .includes(:category).page(params[:page])
   end
 
   def new
@@ -17,7 +17,7 @@ class Admin::BlogsController < Admin::ApplicationController
     if @blog.save
       # 更新附件的归属
       Attach.update_parent(params[:attach_ids], @blog)
-      redirect_to admin_blogs_path(:status=>@blog.status), :notice=>"发表文章成功！"
+      redirect_to admin_blogs_path(:status => @blog.status), :notice => @blog.draft? ? "文章保存成功！" : "文章发布成功！"
     else
       render :new
     end
@@ -30,9 +30,9 @@ class Admin::BlogsController < Admin::ApplicationController
   def update
     @blog = Blog.find(params[:id])
     if @blog.update_attributes(params[:blog])
-       # 更新附件的归属
+      # 更新附件的归属
       Attach.update_parent(params[:attach_ids], @blog)
-      redirect_to admin_blogs_path(:status=>@blog.status), :notice=>"“#{@blog.title}” 修改成功！"
+      redirect_to admin_blogs_path(:status => @blog.status), :notice => "“#{@blog.title}” 修改成功！"
     else
       render :edit
     end
@@ -42,7 +42,10 @@ class Admin::BlogsController < Admin::ApplicationController
     @blog = Blog.find(params[:id])
     @blog.destroy
 
-    redirect_to :back, :notice=>'删除成功！'
+    respond_to do |format|
+      format.html { redirect_to :back, :notice => '删除成功！' }
+      format.json { head :no_content }
+    end
   end
 
   #直接发布草稿
@@ -50,7 +53,7 @@ class Admin::BlogsController < Admin::ApplicationController
     @blog = Blog.find(params[:id])
     @blog.publish!
 
-    redirect_to admin_blogs_path(:status=>@blog.status), :notice=>"“#{@blog.title}” 发布成功！"
+    redirect_to admin_blogs_path(:status => @blog.status), :notice => "“#{@blog.title}” 发布成功！"
   end
 
 end
