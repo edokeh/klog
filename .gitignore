@@ -18,4 +18,4 @@
 /.project
 
 /public/uploads
-/public/captcha/*
+/public/captcha/*.jpg
