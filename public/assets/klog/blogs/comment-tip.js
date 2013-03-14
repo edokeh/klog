@@ -8,7 +8,7 @@ define(function (require) {
     var commentTip = {
         init: function () {
             _.bindAll(this);
-            this.$el = $('<div class="comment-tip"><i class="icon-white"></i> <span></span></div>').appendTo('#new_comment');
+            this.$el = $('<div class="comment-tip"><i></i> <span></span></div>').appendTo('#new_comment');
             this.calcPos();
         },
 
@@ -24,10 +24,10 @@ define(function (require) {
         show: function (options) {
             if (options.success) {
                 this.$el.find('span').text(options.success);
-                this.$el.find('i').addClass('icon-ok').removeClass('icon-exclamation-sign');
+                this.$el.find('i').attr('class', 'icon-ok icon-white');
             } else if (options.error) {
                 this.$el.find('span').text(options.error);
-                this.$el.find('i').addClass('icon-exclamation-sign').removeClass('icon-ok');
+                this.$el.find('i').attr('class', 'icon-exclamation-sign icon-white');
             }
 
             var elHeight = this.$el.outerHeight();

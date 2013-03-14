@@ -16,7 +16,7 @@
       <footer>
         <%= l comment.created_at %>
         <a href="javascript:void(0)" data-commentid="<%= comment.id %>" class="reply-comment">回复</a>
-        <%= link_to '删除', admin_comment_path(comment), :confirm=>'确定删除？', :method=>:delete if is_admin? %>
+        <%= link_to '删除', admin_comment_path(comment), :method=>:delete, :remote=>true, 'data-type'=>'json', :class=>"delete" if is_admin? %>
       </footer>
     </article>
     <%= render_comments(comment, :level=>level+1) %>

@@ -4,10 +4,10 @@
 define(function (require) {
     var _ = require('_');
     var $ = require('$');
+    require('jquery.color');
     var Backbone = require('backbone');
     var CategoryView = require('./category-view');
     var CategoryEditView = require('./category-edit-view');
-    require('../common/jquery.color');
 
     var CategoryListView = Backbone.View.extend({
         el: $('table'),

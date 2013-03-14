@@ -4,10 +4,10 @@
 define(function (require) {
     var _ = require('_');
     var $ = require('$');
+    require('jquery.color');
     var Backbone = require('backbone');
     var temp = require('./category.html');
     var PopConfirm = require('../common/pop-confirm');
-    require('../common/jquery.color');
 
     var popConfirm = new PopConfirm();
 
@@ -40,7 +40,7 @@ define(function (require) {
         confirmDelete: function () {
             popConfirm.show({
                 text: '确定要删除分类 “' + this.model.get('name') + '” ？',
-                trigger: this.$('.delete')
+                trigger: this.$('.delete').parent()
             });
             popConfirm.off().on('submit', this.delete);
         },

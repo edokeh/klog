@@ -1,0 +1,31 @@
+{
+    "name": "",
+    "version": "",
+    "root": "klog",
+    "output": {
+        "./blogs/show.js": ".",
+        "./admin/blogs/form.js": ".",
+        "./admin/blogs/new.js": ".",
+        "./admin/categories/index.js": ".",
+        "./admin/comments/index.js": ".",
+        "./admin/pages/form.js": ".",
+        "./admin/settings/sidebar/edit.js": ".",
+        "./admin/index.js": ".",
+        "./admin/common/pop-confirm.js": "."
+    },
+    "configFilepath": "../seajs-config.js",
+    "spmConfig": {
+        "*": {
+            "idRule": "{{root}}/{{moduleName}}",
+            "plugins": {
+                "build": {
+                    "after": ["../spm/md5stamp-rename/src/md5stamp-rename.js"]
+                }
+            }
+        },
+        "build": {
+            "src": ".",
+            "to": "../sea-modules/{{root}}"
+        }
+    }
+}

@@ -33,6 +33,7 @@ define(function (require) {
             }
         },
 
+        // ctrl + enter 的热键
         handleHotkey: function (e) {
             if (e.which === 13 && e.ctrlKey) {
                 $('#submitComment').click();
@@ -56,7 +57,7 @@ define(function (require) {
             $('#comment_content').focus();
         },
 
-        // 退出评论
+        // 退出回复
         cancelReply: function () {
             this.$el.css('margin-left', 0).insertAfter('#commentsWrapper');
             $('#cancelReply').hide();

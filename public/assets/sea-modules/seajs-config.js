@@ -7,7 +7,8 @@ seajs.config({
         'events': 'gallery/events/1.0.0/events',
         'tab': 'gallery/tab/0.0.1/tab',
         'modal': 'gallery/modal/0.0.1/modal',
-        'jquery-ujs': 'gallery/jquery-ujs/2.2.1/jquery-ujs'
+        'jquery-ujs': 'gallery/jquery-ujs/2.2.1/jquery-ujs',
+        'jquery.color': 'jquery/color/2.1.2/color'
     },
-    preload: ['seajs/plugin-text']
-})
+    preload: [seajs.production ? '' : 'seajs/plugin-text']
+});

@@ -42,14 +42,14 @@ module ApplicationHelper
   end
 
   def seajs_use(*modules)
-    html = [];
-    unless @seajs_included
-      html << javascript_include_tag("seajs/1.3.1/sea.js")
-      html << javascript_include_tag("seajs-config.js")
-      @seajs_included = true
+    modules.map! do |mod|
+      "(seajs.production? '' : '/assets/') + '#{mod}'"
     end
-    html << modules.join(",")
-    return html.join("\n").html_safe
+    html =  <<-html
+      seajs.use([#{modules.join(',')}])
+    html
+
+    return html.html_safe
   end
 
 end
