@@ -41,20 +41,25 @@ body {
 
 // 页面
 .main {
-  box-shadow: 0 0 6px rgba(0, 0, 0, .2);
-  border: 1px solid #CCC;
-  border-radius: 4px;
-  background: #fff;
+  //box-shadow: 0 0 6px rgba(0, 0, 0, .2);
+  //border: 1px solid #CCC;
+  //border-radius: 4px;
+  //background: #fff;
 
   .content {
-    padding: 20px;
-    padding-right: 0;
+    //padding: 20px;
+    //padding-right: 0;
   }
 
   .sidebar {
-    margin-top: 20px;
-    padding: 0 20px;
-    border-left: 1px solid #ccc;
+    //margin-top: 20px;
+    padding: 20px;
+    //border-left: 1px solid #ccc;
+
+    box-shadow: 0 0 6px rgba(0, 0, 0, .2);
+    border: 1px solid #CCC;
+    border-radius: 4px;
+    background: #fff;
 
     section {
       margin-bottom: 20px;
@@ -83,32 +88,28 @@ body {
 
 // blog
 .blog {
-  border-bottom: 1px solid #ccc;
+  //border-bottom: 1px solid #ccc;
   margin-bottom: 20px;
+
+  box-shadow: 0 0 6px rgba(0, 0, 0, .2);
+  border: 1px solid #CCC;
+  border-radius: 4px;
+  background: #fff;
 
   // 标题部分
   header {
+    padding: 0 20px;
+
     h2 {
       font-size: 30px;
       font-weight: bold;
-      margin-bottom: 10px;
-    }
-
-    p {
-      color: $grayLight;
-    }
-
-    i {
-      opacity: 0.7;
-    }
-
-    .separate {
-      margin: 0 5px;
+      border-bottom: 1px solid $grayLighter;
     }
   }
 
   // 正文部分
   section {
+    padding: 5px 20px;
     h3 {
       font-size: 25px;
       line-height: 30px;
@@ -143,12 +144,26 @@ body {
 
   // 文章底部
   footer {
-    padding: 10px 0;
+    padding: 10px 20px;
     color: $grayLight;
+    background: #f7f7f7;
+    border-radius: 4px;
 
     a {
       font-size: 14px;
       font-weight: bolder;
+    }
+
+    p {
+      color: $grayLight;
+    }
+
+    i {
+      opacity: 0.7;
+    }
+
+    .separate {
+      margin: 0 5px;
     }
   }
 }

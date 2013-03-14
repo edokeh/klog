@@ -17,13 +17,9 @@
           <%= link_to blog.title, blog_path(blog.slug) %>
         </h2>
         <p>
-          <i class="icon-time"></i> <%= l blog.created_at %>
-          <i class="separate">|</i>
-          <i class="icon-user"></i> <%= Setting.website_author %>
-          <i class="separate">|</i>
           <% blog.tag_list.each do |tag| %>
-          <span class="label"><%= tag %></span>
-          <% end %>
+                    <span class="label"><%= tag %></span>
+                    <% end %>
         </p>
       </header>
       <section>
@@ -31,13 +27,16 @@
         <%= link_to "阅读全文...", blog_path(blog.slug), :class=>'link-readmore' %>
       </section>
       <footer>
-        发表在
+          <i class="icon-time"></i> <%= l blog.created_at %>
+          <i class="separate">|</i>
+          <i class="icon-user"></i> <%= Setting.website_author %>
+          <i class="separate">|</i>
         <% if blog.category.nil? %>
             未分类
         <% else %>
             <%= link_to blog.category.name, category_path(blog.category.name) %>
         <% end %>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <i class="separate">|</i>
         <%= link_to "#{blog.comment_count}条评论", blog_path(blog.slug, :anchor=>'comments')  %>
       </footer>
     </article>
