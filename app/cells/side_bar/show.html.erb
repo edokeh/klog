@@ -1,4 +1,4 @@
-<div class="span3 sidebar">
+<div class="span3 sidebar shadow-box">
   <section>
     <h3><%= Setting.sidebar_title %></h3>
 
@@ -10,20 +10,20 @@
   <% if @categories.present? %>
   <section>
     <h3>分类</h3>
-    <ul class="category">
-      <% @categories.each do |category| %>
-          <li>
-            <%= link_to "#{category.name} (#{category.blog_count})", category_path(category.name) %>
-          </li>
-      <% end %>
-    </ul>
+
+    <% @categories.each do |category| %>
+    <a class="row-fluid category" href="<%= category_path(category.name) %>">
+      <span class="span10"><%= category.name %></span>
+      <span class="span2 count"><%= category.blog_count %></span>
+    </a>
+    <% end %>
   </section>
   <% end %>
 
   <% if @tags.present? %>
   <section>
     <h3>标签</h3>
-    <% tag_cloud(@tags, %w(12 16 22 30)) do |tag, weight| %>
+    <% tag_cloud(@tags, %w(8 12 18 24)) do |tag, weight| %>
         <%= link_to tag.name, tag_path(tag.name), :style=>"font-size: #{weight}px", :class=>"tag" %>
     <% end %>
   </section>

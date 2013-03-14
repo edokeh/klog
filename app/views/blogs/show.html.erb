@@ -1,4 +1,4 @@
-<article class="blog">
+<article class="blog single-blog shadow-box">
   <header>
     <h2>
       <%= @blog.title %>
@@ -9,7 +9,7 @@
       <i class="icon-user"></i> <%= Setting.website_author %>
       <i class="separate">|</i>
       <% @blog.tag_list.each do |tag| %>
-      <span class="label"><%= tag %></span>
+          <span class="label"><%= tag %></span>
       <% end %>
     </p>
   </header>
@@ -22,7 +22,7 @@
   </footer>
 </article>
 
-<div class="comments">
+<div class="comments shadow-box">
   <a name="comments" id="comment_anchor"></a>
   <h2><%= @blog.comment_count %>条评论</h2>
   <div id="commentsWrapper">

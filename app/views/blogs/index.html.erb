@@ -1,36 +1,36 @@
 <% if controller_name == 'categories' %>
-    <div class="well">
+    <div class="shadow-box well">
       <h3>分类：<%= @category.name %></h3>
     </div>
 <% end %>
 
 <% if controller_name == 'tags' %>
-    <div class="well">
+    <div class="shadow-box well">
       <h3>标签：<%= params[:id] %></h3>
     </div>
 <% end %>
 
 <% @blogs.each do |blog| %>
-    <article class="blog">
+    <article class="blog shadow-box">
       <header>
         <h2>
           <%= link_to blog.title, blog_path(blog.slug) %>
         </h2>
-        <p>
-          <% blog.tag_list.each do |tag| %>
-                    <span class="label"><%= tag %></span>
-                    <% end %>
-        </p>
       </header>
       <section>
+        <p class="tags">
+          <% blog.tag_list.each do |tag| %>
+            <%= link_to tag, tag_path(tag), :class=>"label" %>
+          <% end %>
+        </p>
         <%= raw blog.html_content_summary %>
         <%= link_to "阅读全文...", blog_path(blog.slug), :class=>'link-readmore' %>
       </section>
       <footer>
-          <i class="icon-time"></i> <%= l blog.created_at %>
-          <i class="separate">|</i>
-          <i class="icon-user"></i> <%= Setting.website_author %>
-          <i class="separate">|</i>
+        <i class="icon-time"></i> <%= l blog.created_at %>
+        <i class="separate">|</i>
+        <i class="icon-user"></i> <%= Setting.website_author %>
+        <i class="separate">|</i>
         <% if blog.category.nil? %>
             未分类
         <% else %>
