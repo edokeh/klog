@@ -43,7 +43,7 @@ module ApplicationHelper
 
   def seajs_use(*modules)
     modules.map! do |mod|
-      "(seajs.production? '' : '/assets/') + '#{mod}'"
+      "(seajs.production? '' : '/js/') + '#{mod}'"
     end
     html =  <<-html
       seajs.use([#{modules.join(',')}])
