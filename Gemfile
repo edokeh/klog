@@ -22,7 +22,6 @@ group :assets do
   gem 'uglifier', '>= 1.3'
 end
 
-gem 'jquery-rails'
 gem "redcarpet", "~> 2.2.2"
 gem 'coderay', '~> 1.0.9'
 gem 'cells', '~> 3.8'
