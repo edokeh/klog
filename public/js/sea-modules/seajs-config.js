@@ -1,4 +1,4 @@
-/*map start*/
+/*map start*
 seajs.config({
     map: [
 	[

@@ -1,6 +1,6 @@
 <div class="container">
   <h3>修改文章</h3>
-  <%= form_for([:admin, @blog], :html => {:class => "editor-form"}) do |f| %>
+  <%= form_for([:admin, @blog], :html => {:class => "editor-form", "data-type"=>"json"}) do |f| %>
       <fieldset>
         <%= render :partial => "form", :locals => {:f => f} %>
       </fieldset>
@@ -8,11 +8,7 @@
         <%= f.hidden_field :status %>
         <button class="btn btn-large btn-primary" type="submit" data-status="<%= Blog::S_PUBLISH %>">
           <i class="icon-edit icon-white"></i>
-          <% if @blog.publish? %>
-              修改文章
-          <% else %>
-              发布文章
-          <% end %>
+          <%= @blog.publish? ? '修改文章':'发布文章' %>
         </button>
         <% unless @blog.publish? %>
             <button class="btn btn-large btn-warning" type="submit" data-status="<%= Blog::S_DRAFT %>">

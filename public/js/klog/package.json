@@ -5,7 +5,6 @@
     "output": {
         "./blogs/show.js": ".",
         "./admin/blogs/form.js": ".",
-        "./admin/blogs/new.js": ".",
         "./admin/categories/index.js": ".",
         "./admin/comments/index.js": ".",
         "./admin/pages/form.js": ".",

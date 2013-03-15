@@ -1,6 +1,9 @@
 <div class="container">
-  <h3>写文章</h3>
-  <%= form_for([:admin, @blog], :html => {:class => "editor-form"}) do |f| %>
+  <h3>
+    写文章
+    <label class="checkbox auto-save-switch"><input type="checkbox"/>自动保存</label>
+  </h3>
+  <%= form_for([:admin, @blog], :html => {:class => "editor-form", "data-type"=>"json"}) do |f| %>
       <fieldset>
         <%= render :partial => "form", :locals=>{:f=>f} %>
       </fieldset>
@@ -18,8 +21,3 @@
 
   <%= link_to '<< 返回列表', admin_blogs_path %>
 </div>
-<% content_for :js do %>
-    <script>
-        <%= seajs_use 'klog/admin/blogs/new' %>
-    </script>
-<% end %>

@@ -113,6 +113,15 @@
   float: right;
 }
 
+// 自动保存的checkbox
+.auto-save-switch {
+  width: 65px;
+  font-size: 14px;
+  padding-top: 20px;
+  float: right;
+  -webkit-user-select: none;
+}
+
 // 带有文本编辑器的表单
 .editor-form {
   fieldset {
@@ -173,6 +182,23 @@
     color: $grayLight;
     float: right;
     font-size: 12px;
+  }
+
+  // 自动保存的提示
+  .auto-save-tip {
+    padding-top: 10px;
+    margin-left: 20px;
+    color: $gray;
+    font-size: 12px;
+
+    span {
+      height: 20px;
+      line-height: 20px;
+      display: none;
+      i {
+        opacity: 0.6;
+      }
+    }
   }
 
   #markdown_edit {

@@ -27,6 +27,7 @@ define(function (require) {
         this.initTab();
         this.initTipModal();
         this.initZenMode();
+        setInterval(this.autoSave, 3000);
     };
 
     MarkdownEditor.prototype = {
