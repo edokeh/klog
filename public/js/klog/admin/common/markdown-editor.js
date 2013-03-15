@@ -15,7 +15,9 @@ define(function (require) {
         options = options || {};
         this.textarea = $('.markdown-editor textarea');
         this.previewWrapper = $('.markdown-editor .preview-wrapper');
+        this.zenMode = $('.markdown-editor-fullscreen');
         this.uploader = new AttachUploader('#uploadHolder', options.uploader);
+
 
         this.textarea.focus(this.startSaveTaPos);
         this.textarea.blur(this.stopSaveTaPos);
@@ -24,6 +26,7 @@ define(function (require) {
 
         this.initTab();
         this.initTipModal();
+        this.initZenMode();
     };
 
     MarkdownEditor.prototype = {
@@ -46,6 +49,12 @@ define(function (require) {
                     modal.show();
                 }
             });
+        },
+
+        // 初始化 zen mode
+        initZenMode: function () {
+            $('.zen-mode-trigger').click(this.showZenMode);
+            $('.exit-zen-mode').click(this.hideZenMode);
         },
 
         // 切换 tab 的处理
@@ -99,6 +108,16 @@ define(function (require) {
         insertImgCode: function (code) {
             var rangeData = this.textarea.data('rangeData') || {start: 0, end: 0}
             TextareaPos.insertText(this.textarea[0], rangeData, code);
+        },
+
+        showZenMode: function () {
+            this.zenMode.show();
+            this.zenMode.find('textarea').val(this.textarea.val()).focus();
+        },
+
+        hideZenMode: function () {
+            this.zenMode.hide();
+            this.textarea.val(this.zenMode.find('textarea').val()).fodus();
         }
     };
 

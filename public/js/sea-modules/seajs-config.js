@@ -3,7 +3,7 @@ seajs.config({
     map: [
 	[
 		"admin/blogs/form.js",
-		"admin/blogs/form-149ef43be3a6f1177b89d83a052ece56.js"
+		"admin/blogs/form-fffea9f53bc33d552ffbf1712987a831.js"
 	],
 	[
 		"admin/blogs/new.js",
@@ -27,11 +27,11 @@ seajs.config({
 	],
 	[
 		"admin/pages/form.js",
-		"admin/pages/form-fcbfcfb34134e52f7c2906d1f8d448e2.js"
+		"admin/pages/form-a3bf585ec94ad3d7a02c476b652564eb.js"
 	],
 	[
 		"admin/settings/sidebar/edit.js",
-		"admin/settings/sidebar/edit-76bbcf1849dabacd71a1438e02e7a6a8.js"
+		"admin/settings/sidebar/edit-8ea02fcadcc145180278c6b64550ddfc.js"
 	],
 	[
 		"blogs/show.js",

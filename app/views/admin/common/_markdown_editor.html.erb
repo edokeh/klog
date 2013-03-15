@@ -20,12 +20,21 @@
         <div class="upload-list"></div>
         <div id="uploadHolder"></div>
       </div>
+      <a href="javascript:void(0);" title="Zen Mode" class="zen-mode-trigger"><i class="icon-fullscreen"></i></a>
     </div>
 
     <div class="preview-wrapper" id="markdown_preview"></div>
   </div>
 
   <%= render 'admin/common/markdown_tip' %>
+</div>
+<div class="markdown-editor-fullscreen">
+  <div class="textarea-wrapper">
+    <textarea placeholder="写点什么..."></textarea>
+  </div>
+  <div class="fullscreen-sidebar">
+    <a title="退出" class="exit-zen-mode" href="javascript:void(0);"><%=image_tag 'exit-fullscreen.jpg' %></a>
+  </div>
 </div>
 <script>
     var attaches_json = <%= raw f.object.attaches.map {|a| a.json_data }.to_json %>;

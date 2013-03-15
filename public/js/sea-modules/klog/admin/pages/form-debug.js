@@ -12,6 +12,7 @@ define("klog/admin/common/markdown-editor-debug", [ "./attach-uploader-debug", "
         options = options || {};
         this.textarea = $(".markdown-editor textarea");
         this.previewWrapper = $(".markdown-editor .preview-wrapper");
+        this.zenMode = $(".markdown-editor-fullscreen");
         this.uploader = new AttachUploader("#uploadHolder", options.uploader);
         this.textarea.focus(this.startSaveTaPos);
         this.textarea.blur(this.stopSaveTaPos);
@@ -19,6 +20,7 @@ define("klog/admin/common/markdown-editor-debug", [ "./attach-uploader-debug", "
         this.uploader.on("insertCode", this.insertImgCode);
         this.initTab();
         this.initTipModal();
+        this.initZenMode();
     };
     MarkdownEditor.prototype = {
         constructor: MarkdownEditor,
@@ -39,6 +41,11 @@ define("klog/admin/common/markdown-editor-debug", [ "./attach-uploader-debug", "
                     modal.show();
                 }
             });
+        },
+        // 初始化 zen mode
+        initZenMode: function() {
+            $(".zen-mode-trigger").click(this.showZenMode);
+            $(".exit-zen-mode").click(this.hideZenMode);
         },
         // 切换 tab 的处理
         changeTab: function($nav) {
@@ -90,6 +97,14 @@ define("klog/admin/common/markdown-editor-debug", [ "./attach-uploader-debug", "
                 end: 0
             };
             TextareaPos.insertText(this.textarea[0], rangeData, code);
+        },
+        showZenMode: function() {
+            this.zenMode.show();
+            this.zenMode.find("textarea").val(this.textarea.val()).focus();
+        },
+        hideZenMode: function() {
+            this.zenMode.hide();
+            this.textarea.val(this.zenMode.find("textarea").val()).fodus();
         }
     };
     return MarkdownEditor;

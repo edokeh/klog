@@ -7,7 +7,7 @@
             <%= Setting.website_author %>
             <span class="label label-important">博主</span>
         <% else %>
-            <%= comment.nick %>
+            <%= comment.nick || '匿名' %>
         <% end %>
       </header>
       <section>
