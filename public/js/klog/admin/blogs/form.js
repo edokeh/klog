@@ -36,17 +36,18 @@ define(function (require) {
             if (this.isFormValid()) {
                 $.rails.handleRemote(this.form);
                 $('.saving').show();
+                $('.saved').hide();
             }
         },
 
         // 显示保存成功
-        showSaveSuccess: function () {
+        showSaveSuccess: function (e, blog) {
             $('.saving').hide();
             $('.saved').show();
-            setTimeout(function () {
-                $('.saved').fadeOut('slow');
-            }, 1000);
+            var now = new Date();
+            $('.saved').html('<i class="icon-ok"></i> ' + now.getHours() + ':' + now.getMinutes() + ' 已自动保存 ');
 
+            // 新建表单要切换为修改表单
             if (this.form.find('[name="_method"]').size() === 0) {
                 this.form.attr('action', '/admin/blogs/' + blog.id);
                 this.form.append('<input name="_method" type="hidden" value="put" />');

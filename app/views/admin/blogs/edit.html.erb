@@ -1,5 +1,8 @@
 <div class="container">
-  <h3>修改文章</h3>
+  <h3>
+    修改文章
+    <label class="checkbox auto-save-switch"><input type="checkbox"/>自动保存</label>
+  </h3>
   <%= form_for([:admin, @blog], :html => {:class => "editor-form", "data-type"=>"json"}) do |f| %>
       <fieldset>
         <%= render :partial => "form", :locals => {:f => f} %>
