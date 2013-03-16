@@ -21,6 +21,7 @@ define("klog/admin/common/markdown-editor-debug", [ "./attach-uploader-debug", "
         this.initTab();
         this.initTipModal();
         this.initZenMode();
+        setInterval(this.autoSave, 3e3);
     };
     MarkdownEditor.prototype = {
         constructor: MarkdownEditor,

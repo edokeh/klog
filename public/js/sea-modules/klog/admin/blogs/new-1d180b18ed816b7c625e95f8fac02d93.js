@@ -1,1 +1,0 @@
-define("klog/admin/blogs/new",["$"],function(a){var b=a("$");b("button[data-status]").click(function(){b("#blog_status").val(b(this).data("status"))})});
