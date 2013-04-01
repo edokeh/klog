@@ -10,7 +10,7 @@ server 'chaoskeh.com', :app, :web, :db, :primary=>true
 set :use_sudo, false
 set :user, 'test'
 set :password, 'test'
-set :deploy_to, '~/klog'
+set :deploy_to, '/home/test/klog'
 set :deploy_via, :remote_cache
 set :shared_children, shared_children + %w(public/uploads public/captcha)
 
