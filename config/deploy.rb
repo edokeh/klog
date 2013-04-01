@@ -1,6 +1,8 @@
 set :rvm_type, :system
 require 'rvm/capistrano'
 require "bundler/capistrano"
+require "whenever/capistrano"
+
 set :application, "klog"
 set :repository,  "git://github.com/edokeh/klog.git"
 
