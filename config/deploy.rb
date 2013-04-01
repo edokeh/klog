@@ -1,4 +1,5 @@
 set :rvm_type, :system
+set :whenever_command, "bundle exec whenever"
 require 'rvm/capistrano'
 require "bundler/capistrano"
 require "whenever/capistrano"
