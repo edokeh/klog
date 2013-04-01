@@ -17,5 +17,6 @@
 /.idea
 /.project
 
+/public/assets
 /public/uploads
 /public/captcha/*.jpg
