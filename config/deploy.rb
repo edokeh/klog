@@ -38,6 +38,10 @@ namespace :deploy do
         run "#{try_sudo} cp #{File.join(deploy_to,'config','*')} #{File.join(release_path,'config')}"
     end
 
+    task :chmod_rails do
+      run "cd #{current_path} && chmod u+x script/rails"
+    end
+
     desc <<-DESC
       New deploy:cold
       Add `rake db:create` and `rake db:seed`
@@ -81,4 +85,5 @@ namespace :deploy do
     end
     
     after 'deploy:finalize_update', 'deploy:replace_config'
+    after 'deploy:finalize_update', 'deploy:chmod_rails'
 end
