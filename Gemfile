@@ -30,7 +30,8 @@ gem 'carrierwave', '~> 0.8.0'
 gem 'mini_magick', '~> 3.5'
 gem 'acts-as-taggable-on', '~> 2.3.3'
 gem 'truncate_html', '~> 0.9.2'
-gem 'whenever', '~> 0.8.2'
+gem 'backup'
+gem 'dropbox-sdk'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
