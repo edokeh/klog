@@ -20,9 +20,9 @@
 # Learn more: http://github.com/javan/whenever
 set :output, "log/whenever.log"
 
-#every :day, :at=>'15:09' do
-#  command 'backup perform -t klog -c ~/klog/current/config/backup_config.rb'
-#end
+every :day, :at=>'18:00' do
+  command 'bundle exec backup perform -t klog -c ~/klog/current/config/backup_config.rb'
+end
 
 every :day, :at=>'18:00' do # Many shortcuts available: :hour, :day, :month, :year, :reboot
   runner "Captcha.destroy_all"
