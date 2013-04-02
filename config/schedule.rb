@@ -20,8 +20,10 @@
 # Learn more: http://github.com/javan/whenever
 set :output, "log/whenever.log"
 
+job_type :backup, "cd :path && bundle exec backup perform :task :output"
+
 every :day, :at=>'18:00' do
-  command 'bundle exec backup perform -t klog -c ~/klog/current/config/backup_config.rb'
+  backup '-t klog -c config/backup_config.rb'
 end
 
 every :day, :at=>'18:00' do # Many shortcuts available: :hour, :day, :month, :year, :reboot
