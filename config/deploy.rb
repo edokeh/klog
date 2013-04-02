@@ -1,5 +1,4 @@
 set :rvm_type, :system
-set :whenever_command, "bundle exec whenever"
 require 'rvm/capistrano'
 require "bundler/capistrano"
 require "whenever/capistrano"
@@ -39,7 +38,7 @@ namespace :deploy do
     end
 
     task :chmod_rails do
-      run "cd #{current_path} && chmod u+x script/rails"
+      run "cd #{release_path} && chmod u+x script/rails"
     end
 
     desc <<-DESC
