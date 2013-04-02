@@ -11,7 +11,7 @@
 <% end %>
 
 <% @blogs.each do |blog| %>
-    <article class="blog shadow-box" style="-webkit-transform:rotate(<%= rand(10)-5 %>deg)">
+    <article class="blog shadow-box">
       <header>
         <h2>
           <%= link_to blog.title, blog_path(blog.slug) %>
