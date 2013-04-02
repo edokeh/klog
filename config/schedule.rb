@@ -24,7 +24,7 @@ set :output, "log/whenever.log"
 #  command 'backup perform -t klog -c ~/klog/current/config/backup_config.rb'
 #end
 
-every :day, :at=>'03:15' do # Many shortcuts available: :hour, :day, :month, :year, :reboot
+every :day, :at=>'03:20' do # Many shortcuts available: :hour, :day, :month, :year, :reboot
   runner "Captcha.destroy_all"
   runner "Captcha.random_create(20)"
 end
