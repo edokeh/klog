@@ -1,4 +1,4 @@
-# -coding: utf-8 -
+# -*- encoding : utf-8 -*-
 # 网站信息的抽象类，不是AR Model
 class Setting::Website
   ATTR_KEYS = [:title, :sub_title, :descr, :author, :bottom_js]

@@ -1,4 +1,4 @@
-# -coding: utf-8 -
+# -*- encoding : utf-8 -*-
 class Attach < ActiveRecord::Base
   attr_accessor :max_width, :max_height
   attr_accessible :file, :max_width, :max_height

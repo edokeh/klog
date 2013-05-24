@@ -1,4 +1,4 @@
-# -coding: utf-8 -
+# -*- encoding : utf-8 -*-
 class Admin::Settings::SidebarsController < Admin::ApplicationController
 
   def edit

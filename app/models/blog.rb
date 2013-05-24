@@ -1,4 +1,4 @@
-# -coding: utf-8 -
+# -*- encoding : utf-8 -*-
 class Blog < ActiveRecord::Base
   include TruncateHtmlHelper
   # 状态常量，发布/草稿

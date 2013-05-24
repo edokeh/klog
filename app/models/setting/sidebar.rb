@@ -1,4 +1,4 @@
-# -coding: utf-8 -
+# -*- encoding : utf-8 -*-
 # 侧边栏的抽象类，不是AR Model
 class Setting::Sidebar
   ATTR_KEYS = [:title, :content, :html_content]

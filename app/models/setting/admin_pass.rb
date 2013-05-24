@@ -1,4 +1,4 @@
-# -coding: utf-8 -
+# -*- encoding : utf-8 -*-
 # 后台密码的抽象类，不是AR Model
 class Setting::AdminPass
   include ActiveModel::Conversion

@@ -1,4 +1,4 @@
-# -coding: utf-8 -
+# -*- encoding : utf-8 -*-
 require 'active_support'
 class Setting < ActiveRecord::Base
   attr_accessible :key, :value

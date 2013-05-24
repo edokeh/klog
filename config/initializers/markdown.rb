@@ -1,4 +1,4 @@
-# -coding: utf-8 -
+# -*- encoding : utf-8 -*-
 # markdown语法支持
 module Klog
   # 格式化markdown语法为html的类
