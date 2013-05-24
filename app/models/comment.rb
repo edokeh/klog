@@ -1,4 +1,4 @@
-# -coding: utf-8 -
+# -*- encoding : utf-8 -*-
 class Comment < ActiveRecord::Base
   attr_accessible :blog_id, :commentable_id, :commentable_type, :content, :email, :nick
 

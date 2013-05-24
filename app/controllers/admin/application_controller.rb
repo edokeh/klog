@@ -1,4 +1,4 @@
-# -coding: utf-8 -
+# -*- encoding : utf-8 -*-
 class Admin::ApplicationController < ApplicationController
   layout 'admin_layout'
   before_filter :check_admin
