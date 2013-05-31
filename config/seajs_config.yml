@@ -1,0 +1,13 @@
+seajs_path: seajs/seajs/2.0.0/sea.js
+family: klog
+output:
+  relative:
+    - blogs/show.js
+    - admin/blogs/form.js
+    - admin/categories/index.js
+    - admin/comments/index.js
+    - admin/pages/form.js
+    - admin/settings/sidebar/edit.js
+    - admin/index.js
+    - admin/common/pop-confirm.js
+  all: []

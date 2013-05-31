@@ -1,0 +1,6 @@
+define(function(require){
+    var jQuery = require('$');
+
+    // @include https://raw.github.com/rails/jquery-rails/v2.2.1/vendor/assets/javascripts/jquery_ujs.js
+});
+

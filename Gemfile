@@ -1,4 +1,4 @@
-source 'http://ruby.taobao.org'
+source 'http://rubygems.org'
 
 gem 'rails', '3.2.12'
 
@@ -48,4 +48,9 @@ gem 'dropbox-sdk'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
-gem 'pry-rails', :group => :development
+group :development do
+  gem 'pry-rails'
+  gem 'pry-nav'
+end
+
+gem 'seajs-rails'

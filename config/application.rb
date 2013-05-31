@@ -58,15 +58,12 @@ module Klog
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-    config.assets.precompile << 'admin.css'
-    config.assets.precompile << 'public.css'
-
-    #config.assets.precompile += %w(html5shiv.js jquery_ujs.js admin.js blogs/show.js admin/blogs/new.js admin/categories/form.js admin/pages/new.js admin/settings/sidebars/edit.js)
-    config.assets.precompile += %w(html5shiv.js)
+    config.assets.precompile += %w(admin.css public.css html5shiv.js)
 
     config.assets.initialize_on_precompile = false
 
     config.middleware.delete(ActionDispatch::BestStandardsSupport)
+
 
   end
 end
