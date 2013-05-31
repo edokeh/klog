@@ -1,0 +1,14 @@
+{
+    "name" : "tab",
+    "version" : "0.0.1",
+    "root" : "gallery",
+    "output" : {
+        "tab.js" : "."
+    },
+    "spmConfig" : {
+        "build" : {
+            "to" : "./{{version}}/"
+        }
+    }
+}
+

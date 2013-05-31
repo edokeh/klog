@@ -43,6 +43,6 @@
 <% content_for :js do %>
     <script>
         var category_json = <%=raw @categories.to_json %>;
-        <%= seajs_use 'klog/admin/categories/index' %>
     </script>
+    <%= seajs_use 'admin/categories/index' %>
 <% end %>

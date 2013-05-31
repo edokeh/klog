@@ -40,16 +40,4 @@ module ApplicationHelper
   def markdown_editor(f, method=:content)
     render :partial => 'admin/common/markdown_editor', :locals => {:f => f, :method => method}
   end
-
-  def seajs_use(*modules)
-    modules.map! do |mod|
-      "(seajs.production? '' : '/js/') + '#{mod}'"
-    end
-    html =  <<-html
-      seajs.use([#{modules.join(',')}])
-    html
-
-    return html.html_safe
-  end
-
 end

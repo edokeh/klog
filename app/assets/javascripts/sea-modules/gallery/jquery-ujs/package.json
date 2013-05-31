@@ -1,0 +1,14 @@
+{
+    "name" : "jquery-ujs",
+    "version" : "2.2.1",
+    "root" : "gallery",
+    "output" : {
+        "jquery-ujs.js" : "."
+    },
+    "spmConfig" : {
+        "build" : {
+            "to" : "./{{version}}/"
+        }
+    }
+}
+
