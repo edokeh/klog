@@ -1,1 +1,0 @@
-define("seajs/plugin-i18n",[],function(){var a=seajs.pluginSDK,b=a.Module,c=a.config.locale||"",d=b._resolve;b._resolve=function(a,b){return 0===a.indexOf("i18n!")&&(a="./i18n/"+c+"/"+a.substring(5)),d(a,b)}}),seajs.use("seajs/plugin-i18n");
