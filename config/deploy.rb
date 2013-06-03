@@ -14,6 +14,9 @@ set :user, 'test'
 set :password, 'test'
 set :deploy_to, '/home/test/klog'
 set :deploy_via, :remote_cache
+set :default_environment, {
+    'NODE_PATH' => '/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript' # cap doesn't source /ect/profile
+}
 set :shared_children, shared_children + %w(public/uploads public/captcha)
 
 # if you want to clean up old releases on each deploy uncomment this:
