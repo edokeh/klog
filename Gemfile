@@ -22,7 +22,7 @@ group :assets do
   gem 'uglifier', '>= 1.3'
 end
 
-gem "redcarpet", "~> 2.2.2"
+gem 'redcarpet', '~> 2.2.2'
 gem 'coderay', '~> 1.0.9'
 gem 'cells', '~> 3.8'
 gem 'kaminari', '~> 0.14.0'
@@ -31,6 +31,7 @@ gem 'mini_magick', '~> 3.5'
 gem 'acts-as-taggable-on', '~> 2.3.3'
 gem 'truncate_html', '~> 0.9.2'
 gem 'whenever', '~>0.8.2'
+gem 'seajs-rails', '~>0.0.3'
 gem 'backup'
 gem 'dropbox-sdk'
 
@@ -52,5 +53,3 @@ group :development do
   gem 'pry-rails'
   gem 'pry-nav'
 end
-
-gem 'seajs-rails'
