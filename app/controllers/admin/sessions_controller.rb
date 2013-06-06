@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Admin::SessionsController < ApplicationController
-  layout :nil
+  layout false
   #登录页面
   def new
     redirect_to '/admin' if is_admin?

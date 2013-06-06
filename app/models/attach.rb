@@ -40,10 +40,10 @@ class Attach < ActiveRecord::Base
   #用于生成json的数据
   def json_data
     return {
-        'file_name' => self.file_name,
-        'url' => self.file.thumb.url,
-        'is_image' => self.image?,
-        'id' => self.id,
+        'file_name' => file_name,
+        'url' => image? ? file.thumb.url : file.url,
+        'is_image' => image?,
+        'id' => id,
         'is_complete' => true
     }
   end
