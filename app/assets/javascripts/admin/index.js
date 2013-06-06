@@ -5,7 +5,6 @@ define(function (require) {
     var _ = require('_');
     var $ = require('$');
     var PopConfirm = require('./common/pop-confirm');
-    require('jquery-ujs');
 
     setTimeout(function () {
         $('div.alert-success').fadeOut();
