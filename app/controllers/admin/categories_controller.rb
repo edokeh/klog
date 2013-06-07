@@ -13,7 +13,7 @@ class Admin::CategoriesController < Admin::ApplicationController
     if @category.save
       render :json => @category.to_json
     else
-      render :json => @category.errors.full_messages, :status => 403
+      render :json => @category.errors.full_messages, :status => 422
     end
   end
 
@@ -26,7 +26,7 @@ class Admin::CategoriesController < Admin::ApplicationController
         format.json { render :json => @category.to_json }
       else
         format.html { render :action => "edit" }
-        format.json { render :json => @category.errors.full_messages, :status => 403 }
+        format.json { render :json => @category.errors.full_messages, :status => 422 }
       end
     end
   end
@@ -35,7 +35,6 @@ class Admin::CategoriesController < Admin::ApplicationController
     @category = Category.find(params[:id])
     @category.destroy
 
-    #redirect_to admin_categories_url, :notice=>'删除成功！'
     head :no_content
   end
 end

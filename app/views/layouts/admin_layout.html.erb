@@ -19,7 +19,8 @@
   </div>
 </footer>
 <%= seajs_tag %>
-<%= javascript_include_tag 'seajs-config.js' %>
+<%= render 'layouts/seajs_config' %>
+<%= seajs_use '#gallery/jquery-ujs/2.2.1/jquery-ujs' %>
 <%= yield :js %>
 </body>
 </html>

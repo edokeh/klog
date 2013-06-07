@@ -4,7 +4,6 @@
 define(function (require) {
     var $ = require('$');
     var PopConfirm = require('../common/pop-confirm');
-    require('jquery-ujs');
 
     var popConfirm = new PopConfirm();
 

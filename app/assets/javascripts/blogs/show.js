@@ -5,7 +5,6 @@ define(function (require, exports) {
     var _ = require('_');
     var $ = require('$');
     require('jquery.color');
-    require('jquery-ujs');
     var commentForm = require('./comment-form');
 
     commentForm.init();
