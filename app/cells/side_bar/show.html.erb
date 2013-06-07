@@ -1,43 +1,51 @@
 <div class="span3 sidebar shadow-box">
-  <section>
-    <h3><%= Setting.sidebar_title %></h3>
+  <div>
+    <header><h2><%= Setting.sidebar_title %></h2></header>
+    <section>
+      <div>
+        <%= raw Setting.sidebar_html_content %>
+      </div>
+    </section>
+  </div>
 
-    <div>
-      <%= raw Setting.sidebar_html_content %>
-    </div>
-  </section>
 
   <% if @categories.present? %>
-  <section>
-    <h3>分类</h3>
-
-    <% @categories.each do |category| %>
-    <a class="row-fluid category" href="<%= category_path(category.name) %>">
-      <span class="span10"><%= category.name %></span>
-      <span class="span2 count"><%= category.blog_count %></span>
-    </a>
-    <% end %>
-  </section>
+      <div>
+        <header><h2>分类</h2></header>
+        <ul class="nav nav-pills nav-stacked category">
+          <% @categories.each do |category| %>
+              <li class="">
+                <a style="" href="<%= category_path(category.name) %>">
+                  <%= category.name %>
+                  <span class="badge"><%= category.blog_count %></span>
+                </a>
+              </li>
+          <% end %>
+        </ul>
+      </div>
   <% end %>
 
   <% if @tags.present? %>
-  <section>
-    <h3>标签</h3>
-    <% tag_cloud(@tags, %w(8 12 18 24)) do |tag, weight| %>
-        <%= link_to tag.name, tag_path(tag.name), :style=>"font-size: #{weight}px", :class=>"tag" %>
-    <% end %>
-  </section>
+      <div>
+        <header><h2>标签</h2></header>
+        <section>
+          <% tag_cloud(@tags, %w(8 12 18 24)) do |tag, weight| %>
+              <%= link_to tag.name, tag_path(tag.name), :style => "font-size: #{weight}px", :class => "tag" %>
+          <% end %>
+        </section>
+      </div>
   <% end %>
 
-  <section>
-    <h3>最近文章</h3>
-    <ul>
-      <% @recent_blogs.each do |blog| %>
-          <li>
-            <%= link_to blog.title, blog_path(blog.slug) %>
-          </li>
-      <% end %>
-    </ul>
-  </section>
-
+  <div>
+    <header><h2>最近文章</h2></header>
+    <section>
+      <ul>
+        <% @recent_blogs.each do |blog| %>
+            <li>
+              <%= link_to blog.title, blog_path(blog.slug) %>
+            </li>
+        <% end %>
+      </ul>
+    </section>
+  </div>
 </div>
