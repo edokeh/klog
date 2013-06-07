@@ -40,7 +40,7 @@ define(function (require) {
             setTimeout(this.hideError, 2000);
         },
 
-        hideError:function(){
+        hideError: function () {
             this.$('.tooltip').removeClass('in').addClass('out');
         }
 

@@ -8,9 +8,9 @@ define(function (require) {
 
     var categories = new Category.List(category_json);
     new CategoryListView({
-        collection:categories
+        collection: categories
     });
     new CategoryNewView({
-        collection:categories
+        collection: categories
     });
 });

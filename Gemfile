@@ -31,7 +31,7 @@ gem 'mini_magick', '~> 3.5'
 gem 'acts-as-taggable-on', '~> 2.3.3'
 gem 'truncate_html', '~> 0.9.2'
 gem 'whenever', '~>0.8.2'
-gem 'seajs-rails', '~>0.0.6'
+gem 'seajs-rails', '~>0.0.7'
 gem 'backup'
 gem 'dropbox-sdk'
 

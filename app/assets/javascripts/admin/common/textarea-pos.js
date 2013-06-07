@@ -3,8 +3,8 @@
  */
 define(function (require) {
     return {
-        get : function (textarea) {
-            var rangeData = {text : "", start : 0, end : 0 };
+        get: function (textarea) {
+            var rangeData = {text: "", start: 0, end: 0 };
             if (textarea.setSelectionRange) { // W3C
                 rangeData.start = textarea.selectionStart;
                 rangeData.end = textarea.selectionEnd;
@@ -12,7 +12,7 @@ define(function (require) {
             } else if (document.selection) { // IE
                 var i,
                     oS = document.selection.createRange(),
-                    // Don't: oR = textarea.createTextRange()
+                // Don't: oR = textarea.createTextRange()
                     oR = document.body.createTextRange();
                 oR.moveToElementText(textarea);
 
@@ -35,7 +35,7 @@ define(function (require) {
         },
 
         // 设置光标位置
-        set : function (textarea, rangeData) {
+        set: function (textarea, rangeData) {
             var oR, start, end;
             textarea.focus();
             if (textarea.setSelectionRange) { // W3C
@@ -56,7 +56,7 @@ define(function (require) {
         },
 
         // 根据光标位置插入文本，选中的文字会被替换掉
-        insertText : function (textarea, rangeData, text) {
+        insertText: function (textarea, rangeData, text) {
             var oValue, nValue, oR, sR, nStart, nEnd, st;
             this.set(textarea, rangeData);
 
@@ -81,7 +81,7 @@ define(function (require) {
         },
 
         // 将光标定位到textarea，对于IE不使用focus，而是使用光标定位，所以不会造成窗口抢焦点
-        focus : function (textarea) {
+        focus: function (textarea) {
             if (textarea.setSelectionRange) {
                 textarea.focus();
                 textarea.setSelectionRange(0, 0);

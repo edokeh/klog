@@ -40,9 +40,9 @@
 
 <% content_for :js do %>
     <%= seajs_tag %>
-    <%= javascript_include_tag 'seajs-config.js' %>
+    <%= render 'layouts/seajs_config' %>
     <script>
-            var IS_ADMIN = <%= is_admin? %>;
+        var IS_ADMIN = <%= is_admin? %>;
     </script>
     <%= seajs_use 'blogs/show' %>
 <% end %>
