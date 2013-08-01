@@ -12,6 +12,10 @@ Klog::Application.routes.draw do
   get '/feed'=>'feed#show', :format=>:rss, :as=>:feed
   get '/archive.html'=>'archive#show', :as=>:archive
 
+  namespace :admin2 do
+    get '/'=>'home#show'
+  end
+
   namespace :admin do
     resources :blogs do
       post 'publish', :on=>:member
