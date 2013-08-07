@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source 'http://ruby.taobao.org'
 
 gem 'rails', '3.2.12'
 
@@ -22,6 +22,7 @@ group :assets do
   gem 'uglifier', '>= 1.3'
 end
 
+gem 'jbuilder', '~> 1.5.0'
 gem 'redcarpet', '~> 2.2.2'
 gem 'coderay', '~> 1.0.9'
 gem 'cells', '~> 3.8'

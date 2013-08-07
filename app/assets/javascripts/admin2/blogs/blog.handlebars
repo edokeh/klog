@@ -1,0 +1,11 @@
+<td>
+    <a href="#" class="list-title">{{ title }}</a>
+    {{#if publish }}
+        <a class="list-action" title="发布"><i class="icon-ok"></i></a>
+    {{/if}}
+    <a href="/blogs/{{slug}}" target="_blank" class="list-action" title="查看原文"><i class="icon-share"></i></a>
+    <a href="#" class="list-action" title="删除"><i class="icon-remove"></i></a>
+</td>
+<td>{{ category.name }}</td>
+<td>{{ comment_count }}</td>
+<td>{{ created_at }}</td>

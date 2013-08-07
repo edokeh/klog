@@ -14,6 +14,9 @@ Klog::Application.routes.draw do
 
   namespace :admin2 do
     get '/'=>'home#show'
+    resources :blogs do
+      post 'publish', :on=>:member
+    end
   end
 
   namespace :admin do

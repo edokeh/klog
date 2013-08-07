@@ -5,6 +5,7 @@
             '_': 'gallery/underscore/1.4.4/underscore',
             'backbone': 'gallery/backbone/0.9.10/backbone',
             'backbone.marionette': 'gallery/backbone.marionette/1.0.4/backbone.marionette',
+            'handlebars': 'gallery/handlebars/1.0.2/handlebars',
             'swfupload': 'gallery/swfupload/2.2.0/swfupload',
             'events': 'gallery/events/1.0.0/events',
             'tab': 'gallery/tab/0.0.1/tab',
@@ -12,6 +13,6 @@
             'jquery-ujs': 'gallery/jquery-ujs/2.2.1/jquery-ujs',
             'jquery.color': 'jquery/color/2.1.2/color'
         },
-        plugins: [<%=raw '\'text\'' unless Rails.application.config.seajs.compiled? %>]
+        preload: [<%=raw '\'seajs/seajs-text/1.0.2/seajs-text-debug\'' unless Rails.application.config.seajs.compiled? %>]
     });
 </script>

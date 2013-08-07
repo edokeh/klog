@@ -1,4 +1,4 @@
-seajs_path: seajs/seajs/2.0.0/sea.js
+seajs_path: seajs/seajs/2.1.1/sea.js
 family: klog
 output:
   relative:
