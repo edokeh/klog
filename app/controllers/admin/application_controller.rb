@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class Admin::ApplicationController < ApplicationController
   layout 'admin_layout'
-  before_filter :check_admin
+  #before_filter :check_admin
 
   protected
   #检查是否为admin

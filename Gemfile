@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source 'http://ruby.taobao.org'
 
 gem 'rails', '3.2.12'
 
@@ -35,11 +35,12 @@ gem 'seajs-rails', '~>0.0.7'
 gem 'backup'
 gem 'dropbox-sdk'
 
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
-# gem 'jbuilder'
+gem 'jbuilder'
 
 # Use unicorn as the app server
 # gem 'unicorn'

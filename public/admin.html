@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="admin">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+    <link rel="stylesheet" href="/assets/admin.css"/>
+    <script src="js/lib/underscore.js"></script>
+    <script src="js/lib/angular.js"></script>
+    <script src="js/lib/restangular.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/blog/index.js"></script>
+    <script src="js/blog/controller.js"></script>
+    <script src="js/blog/service.js"></script>
+</head>
+<body>
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="/admin">Klog后台管理</a>
+            <ul class="nav nav-link">
+                <li class="active">
+                    <a href="/admin/blogs">文章</a>
+                </li>
+                <li>
+                    <a href="/admin/comments">评论</a>
+                </li>
+                <li>
+                    <a href="/admin/categories">分类</a>
+                </li>
+                <li>
+                    <a href="/admin/pages">页面</a>
+                </li>
+                <li>
+                    <a href="/admin/attaches">附件</a>
+                </li>
+                <li>
+                    <a href="/admin/settings/website/edit">设置</a>
+                </li>
+            </ul>
+            <ul class="nav pull-right">
+                <li>
+                    <a href="/" target="_blank">查看博客首页</a>
+                </li>
+                <li>
+                    <a href="/admin/session" data-confirm="确定退出？" data-method="delete" rel="nofollow">退出后台</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container" ng-view>
+</div>
+
+</div>
+</body>
+</html>
