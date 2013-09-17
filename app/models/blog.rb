@@ -5,6 +5,11 @@ class Blog < ActiveRecord::Base
   S_DRAFT = 0
   S_PUBLISH = 1
 
+  #extend Enumerize
+  #enumerize :status, :in => {:draft => 0, :publish => 1}, :predicates => true, :scope => true
+  #scope :publish, with_status(:publish)
+  #scope :draft, with_status(:draft)
+
   acts_as_taggable
 
   attr_accessible :content, :seo_desc, :seo_kwd, :slug, :status, :title, :category_id, :tag_list
@@ -38,6 +43,7 @@ class Blog < ActiveRecord::Base
 
   def publish!
     self.status = S_PUBLISH
+    #self.status = :publish
     self.save
   end
 
