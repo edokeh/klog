@@ -401,3 +401,57 @@
     margin-bottom: 10px;
   }
 }
+
+// animate
+.tr-animate-enter {
+  -webkit-transition: 1.5s linear all; /* Safari/Chrome */
+  -moz-transition: 1.5s linear all; /* Firefox */
+  -o-transition: 1.5s linear all; /* Opera */
+  transition: 1.5s linear all; /* IE10+ and Future Browsers */
+
+  background: #fcf8e3
+}
+
+.tr-animate-enter.tr-animate-enter-active {
+  background: #fff;
+}
+
+.tr-animate-leave {
+  -webkit-animation: leave_sequence 1s linear; /* Safari/Chrome */
+  -moz-animation: leave_sequence 1s linear; /* Firefox */
+  -o-animation: leave_sequence 1s linear; /* Opera */
+  animation: leave_sequence 1s linear; /* IE10+ and Future Browsers */
+}
+
+@-webkit-keyframes leave_sequence {
+  from {
+    background-color: #f4c8c5;
+  }
+  to {
+    background-color: #fff;
+  }
+}
+@-moz-keyframes leave_sequence {
+  from {
+    background-color: #f4c8c5;
+  }
+  to {
+    background-color: #fff;
+  }
+}
+@-o-keyframes leave_sequence {
+  from {
+    background-color: #f4c8c5;
+  }
+  to {
+    background-color: #fff;
+  }
+}
+@keyframes leave_sequence {
+  from {
+    background-color: #f4c8c5;
+  }
+  to {
+    background-color: #fff;
+  }
+}
