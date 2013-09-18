@@ -1,5 +1,7 @@
-blog.controller('BlogCtrl', ['$scope', 'Blog', '$routeParams', function ($scope, Blog, $routeParams) {
-    $scope.status = $routeParams.status || '1';
+blog.controller('BlogCtrl', ['$scope', '$routeParams', 'Model', function ($scope, $routeParams, Model) {
+    $scope.status = $routeParams.status;
+
+    var Blog = Model.create('admin/blogs');
 
     Blog.getList({status: $scope.status}).then(function (blogs) {
         $scope.blogs = blogs;

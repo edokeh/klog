@@ -1,0 +1,51 @@
+<div class="well" ng-controller="CategoryAddCtrl">
+    <form class="form-inline" ng-submit="add()">
+        <input type="text" class="input-xlarge" maxlength="20" placeholder="分类名称" required ng-model="newCategory.name"
+               ng-keydown="hideError()" autofocus/>
+
+        <div class="tooltip bottom fade" ng-class="{in: showError, out: !showError}">
+            <div class="tooltip-arrow"></div>
+            <div class="tooltip-inner">{{error}}</div>
+        </div>
+        <button type="submit" class="btn btn-primary">新建分类</button>
+    </form>
+</div>
+
+<table class="table table-hover table-condensed">
+    <col width="55%"/>
+    <col width="10%"/>
+    <col width="20%"/>
+    <thead>
+    <tr>
+        <th>名称</th>
+        <th>文章数</th>
+        <th>创建时间</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tr class="table-empty-row" ng-show="{{categories.length == 0}}">
+        <td colspan="4">暂无分类</td>
+    </tr>
+    <tr ng-repeat="category in categories"  ng-animate="'sb'">
+        <td>{{ category.name }}</td>
+        <td>{{ category.blog_count }}</td>
+        <td>{{ category.created_at }}</td>
+        <td>
+            <a class="btn edit">修改</a>
+            <a class="btn delete" ng-click="remove(category)">删除</a>
+        </td>
+    </tr>
+    <tr id="categoryEditView" style="display: none">
+        <td colspan="4">
+            <form class="form-inline" style="margin-bottom: 0">
+                <input type="text" class="input-xlarge" name="categroy[name]" placeholder="分类名称" required/>
+                <button type="submit" class="btn  btn-primary">提交修改</button>
+                <button type="button" class="btn cancel-edit">取消</button>
+                <div class="tooltip bottom fade">
+                    <div class="tooltip-arrow"></div>
+                    <div class="tooltip-inner"></div>
+                </div>
+            </form>
+        </td>
+    </tr>
+</table>
