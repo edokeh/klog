@@ -15,7 +15,7 @@ angular.module('common', ['restangular']).factory('Model', function (Restangular
                 var promise = Child.post(item);
 
                 promise.then(function (data) {
-                    collection.push(data);
+                    collection.push(_.extend(item, data));
                 });
 
                 return promise;
