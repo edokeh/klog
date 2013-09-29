@@ -1,13 +1,10 @@
 <div class="well" ng-controller="CategoryAddCtrl">
     <form class="form-inline" ng-submit="add()" novalidate name="addForm">
-        <input type="text" name="name" class="input-xlarge" ng-minlength="2" maxlength="20" placeholder="分类名称" required
+        <input type="text" name="name" class="input-xlarge" autofocus placeholder="分类名称" ng-minlength="2" maxlength="20"
+               required
                ng-model="newCategory.name"
-               ng-keydown="hideError()" autofocus/>
-
-        <div class="tooltip bottom fade" ng-class="{in: showError, out: !showError}">
-            <div class="tooltip-arrow"></div>
-            <div class="tooltip-inner">{{error}}</div>
-        </div>
+               ng-keydown="hideValidError()"
+               error-tip="validError"/>
         <button type="submit" class="btn btn-primary">新建分类</button>
     </form>
 </div>
@@ -21,43 +18,32 @@
         <th>名称</th>
         <th>文章数</th>
         <th>创建时间</th>
-        <th></th>
+        <th>
+        </th>
     </tr>
     </thead>
-    <tr class="table-empty-row" ng-show="{{categories.length == 0}}">
+    <tr class="table-empty-row" ng-show="categories.length == 0">
         <td colspan="4">暂无分类</td>
     </tr>
-    {{ originalCategory }}
-    <tr ng-repeat="category in categories" ng-animate="anim">
-        <td ng-if="category != editingCategory">{{ category.name }}</td>
-        <td ng-if="category != editingCategory">{{ category.blog_count }}</td>
-        <td ng-if="category != editingCategory">{{ category.created_at }}</td>
-        <td ng-if="category != editingCategory">
+    <tr ng-show="category != editingCategory" ng-repeat-start="category in categories">
+        <td>{{ category.name }}</td>
+        <td>{{ category.blog_count }}</td>
+        <td>{{ category.created_at }}</td>
+        <td>
             <a class="btn edit" ng-click="edit(category)">修改</a>
             <a class="btn delete" ng-click="remove(category)">删除</a>
         </td>
-        <td colspan="4" ng-if="category == editingCategory">
-            <form class="form-inline" style="margin-bottom: 0" ng-submit="update(category)" name="editForm">
-                <input type="text" class="input-xlarge" name="name" placeholder="分类名称" required ng-model="category.name" />
-                <button type="submit" class="btn  btn-primary">提交修改</button>
-                <button type="button" class="btn cancel-edit" ng-click="cancelEdit(category)">取消</button>
-                <div class="tooltip bottom fade">
-                    <div class="tooltip-arrow"></div>
-                    <div class="tooltip-inner"></div>
-                </div>
-            </form>
-        </td>
     </tr>
-    <tr id="categoryEditView" style="display: none">
-        <td colspan="4">
-            <form class="form-inline" style="margin-bottom: 0">
-                <input type="text" class="input-xlarge" name="categroy[name]" placeholder="分类名称" required/>
+    <tr ng-repeat-end ng-if="category == editingCategory">
+        <td colspan="4" ng-controller="CategoryEditCtrl" ng-controller="CategoryEditCtrl" ng-init="init(category)">
+            <form class="form-inline" style="margin-bottom: 0" ng-submit="update(category)" name="editForm">
+                <input type="text" name="name" class="input-xlarge" autofocus placeholder="分类名称" ng-minlength="2"
+                       maxlength="20" required
+                       ng-model="category.name"
+                       ng-keydown="hideError()"
+                       error-tip="addValidError"/>
                 <button type="submit" class="btn  btn-primary">提交修改</button>
-                <button type="button" class="btn cancel-edit">取消</button>
-                <div class="tooltip bottom fade">
-                    <div class="tooltip-arrow"></div>
-                    <div class="tooltip-inner"></div>
-                </div>
+                <button type="button" class="btn cancel-edit" ng-click="cancelEdit()">取消</button>
             </form>
         </td>
     </tr>
