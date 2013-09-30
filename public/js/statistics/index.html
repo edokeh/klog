@@ -1,3 +1,13 @@
-<span>{{valid.error}}</span>
-<input type="text" error-tip="valid.error" ng-model="valid.error" />
 
+<table>
+    <tr ng-show="post != edit.current" ng-repeat="post in posts" class="row-animate">
+            <td>{{ post }}</td>
+            <td>{{ category.blog_count }}</td>
+            <td>{{ category.created_at }}</td>
+            <td>
+                <a class="btn edit" ng-click="edit(category)">修改</a>
+            </td>
+        </tr>
+</table>
+
+<button ng-click="remove()">remove</button>

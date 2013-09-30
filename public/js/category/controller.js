@@ -1,68 +1,81 @@
-category.controller('CategoryCtrl', ['$scope', 'Model', function ($scope, Model) {
-    var Category = Model.create('admin/categories');
+category.controller({
+    /**
+     * 父控制器
+     */
+    CategoryCtrl: ['$scope', 'Model', function ($scope, Model) {
+        var Category = Model.create('admin/categories');
 
-    Category.getList().then(function (categories) {
-        $scope.categories = categories;
-    });
+        $scope.categories = [];
 
-    $scope.remove = function (category) {
-        $scope.categories.remove(category);
-    };
+        Category.getList().then(function (categories) {
+            $scope.categories = categories;
+        });
 
-    $scope.edit = function (category) {
-        $scope.editingCategory = category;
-        angular.copy(category, $scope.originalCategory);
-    };
+        $scope.remove = function (category) {
+            $scope.categories.remove(category);
+        };
 
-    $scope.cancelEdit = function (category) {
-        angular.copy($scope.originalCategory, category);
-        $scope.editingCategory = null;
-    };
+        $scope.edit = {};
 
-    // 动画
-    //$scope.anim = {leave: 'tr-animate-leave'};
-}]);
+        $scope.edit = function (category) {
+            $scope.cancelEdit($scope.edit.current);
+            $scope.edit.current = category;
+            $scope.edit.original = angular.copy(category);
+        };
 
-/**
- * 添加分类的表单
- */
-category.controller('CategoryAddCtrl', ['$scope', '$timeout', function ($scope, $timeout) {
-    $scope.newCategory = {name: ''};
+        $scope.cancelEdit = function (category) {
+            angular.copy($scope.edit.original, category);
+            $scope.edit.current = null;
+        };
 
-    formValid($scope, $timeout);
+        // 动画
+        $scope.anim = {leave: 'tr-animate-leave'};
+    }],
 
-    $scope.add = function () {
-        // 校验
-        if ($scope.addForm.$valid) {
-            //$scope.$parent.anim.enter = 'tr-animate-enter';
-            $scope.categories.create($scope.newCategory).then(function () {
-                $scope.newCategory = {name: ''};
-            }, function (resp) {
-                $scope.showValidError({remote: resp.data[0]});
-            });
-        } else {
-            $scope.showValidError($scope.addForm.name.$error);
-        }
-    };
-}]);
+    /**
+     * 添加分类的控制器
+     */
+    CategoryAddCtrl: ['$scope', '$timeout', function ($scope, $timeout) {
+        $scope.newCategory = {name: ''};
 
-category.controller('CategoryEditCtrl', ['$scope', function ($scope, $timeout) {
-    formValid($scope, $timeout);
+        formValid($scope, $timeout);
 
-    $scope.update = function (category) {
-        // 校验
-        if ($scope.editForm.$valid) {
-            //$scope.$parent.anim.enter = 'tr-animate-enter';
-            category.put().then(function () {
-                $scope.$parent.editingCategory = null;
-            }, function (resp) {
-                $scope.showValidError({remote: resp.data[0]});
-            });
-        } else {
-            $scope.showValidError($scope.editForm.name.$error);
-        }
-    };
-}]);
+        $scope.add = function () {
+            // 校验
+            if ($scope.addForm.$valid) {
+                //$scope.$parent.anim.enter = 'tr-animate-enter';
+                $scope.categories.create($scope.newCategory).then(function () {
+                    $scope.newCategory = {name: ''};
+                }, function (resp) {
+                    $scope.showValidError({remote: resp.data[0]});
+                });
+            } else {
+                $scope.showValidError($scope.addForm.name.$error);
+            }
+        };
+    }],
+
+    /**
+     * 修改分类的控制器
+     */
+    CategoryEditCtrl: ['$scope', function ($scope, $timeout) {
+        formValid($scope, $timeout);
+
+        $scope.update = function (category) {
+            // 校验
+            if ($scope.editForm.$valid) {
+                //$scope.$parent.anim.enter = 'tr-animate-enter';
+                category.put().then(function () {
+                    $scope.edit.current = null;  // prototype 继承
+                }, function (resp) {
+                    $scope.showValidError({remote: resp.data[0]});
+                });
+            } else {
+                $scope.showValidError($scope.editForm.name.$error);
+            }
+        };
+    }]
+});
 
 // 表单校验的通用方法
 var formValid = function ($scope, $timeout) {
