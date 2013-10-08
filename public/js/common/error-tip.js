@@ -1,4 +1,4 @@
-angular.module('common').directive('errorTip', function ($compile, $timeout) {
+angular.module('common').directive('errorTip', ['$compile', '$timeout', function ($compile, $timeout) {
     var template = '<div class="tooltip bottom fade" ng-class="{in: showError, out: !showError}">' +
         '<div class="tooltip-arrow"></div>' +
         '<div class="tooltip-inner">{{tip}}</div>' +
@@ -38,4 +38,4 @@ angular.module('common').directive('errorTip', function ($compile, $timeout) {
             };
         }
     };
-});
+}]);

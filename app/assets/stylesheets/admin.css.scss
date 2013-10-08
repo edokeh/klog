@@ -385,9 +385,9 @@
   background: #eee;
   border-radius: 4px;
   display: inline-block;
-  position: absolute;
   visibility: hidden;
   overflow: hidden;
+  position: absolute;
 
   .pop-confirm-inner {
     margin: 4px;
@@ -403,63 +403,26 @@
 }
 
 // animate
-//.row-animate.ng-enter {
-//  -webkit-transition: 1.5s linear all; /* Safari/Chrome */
-//  -moz-transition: 1.5s linear all; /* Firefox */
-//  -o-transition: 1.5s linear all; /* Opera */
-//  transition: 1.5s linear all; /* IE10+ and Future Browsers */
-//
-//  background: #fcf8e3
-//}
-//
-//.row-animate.ng-enter-active {
-//  background: #fff;
-//}
-
-.row-animate.ng-leave {
-  -webkit-animation: background-color 1s linear; /* Safari/Chrome */
-  -moz-animation: leave_sequence 1s linear; /* Firefox */
-  -o-animation: leave_sequence 1s linear; /* Opera */
-  animation: leave_sequence 1s linear; /* IE10+ and Future Browsers */
+.row-animate-in.ng-enter, .row-animate-out.ng-leave {
+  -webkit-transition: 1s ease-in all; /* Safari/Chrome */
+  -moz-transition: 1s linear all; /* Firefox */
+  -o-transition: 1s linear all; /* Opera */
 }
 
-.row-animate.ng-leave > td{
+.row-animate-in.ng-enter {
+  background: #fcf8e3;
+}
+
+.row-animate-in.ng-enter-active {
+  background: #fff;
+}
+
+.row-animate-out.ng-leave {
   background-color: #f4c8c5;
+  opacity: 0.5;
 }
 
-.row-animate.ng-leave.ng-leave-active > td{
-  background-color: #fff;
-}
-
-@-webkit-keyframes leave_sequence {
-  from {
-    background-color: #f4c8c5;
-  }
-  to {
-    background-color: #fff;
-  }
-}
-@-moz-keyframes leave_sequence {
-  from {
-    background-color: #f4c8c5;
-  }
-  to {
-    background-color: #fff;
-  }
-}
-@-o-keyframes leave_sequence {
-  from {
-    background-color: #f4c8c5;
-  }
-  to {
-    background-color: #fff;
-  }
-}
-@keyframes leave_sequence {
-  from {
-    background-color: #f4c8c5;
-  }
-  to {
-    background-color: #fff;
-  }
+.row-animate-out.ng-leave-active {
+  background: #fff;
+  opacity: 0;
 }

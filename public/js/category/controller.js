@@ -2,19 +2,23 @@ category.controller({
     /**
      * 父控制器
      */
-    CategoryCtrl: ['$scope', 'Model', function ($scope, Model) {
+    CategoryCtrl: ['$scope', 'Model', '$animate', function ($scope, Model, $animate) {
         var Category = Model.create('admin/categories');
 
         $scope.categories = [];
+        $scope.fetching = true;
 
         Category.getList().then(function (categories) {
             $scope.categories = categories;
+            $scope.fetching = false;
         });
 
+        // 删除
         $scope.remove = function (category) {
             $scope.categories.remove(category);
         };
 
+        // 修改与取消修改
         $scope.edit = {};
 
         $scope.edit = function (category) {
@@ -29,14 +33,14 @@ category.controller({
         };
 
         // 动画
-        $scope.anim = {leave: 'tr-animate-leave'};
+        //$scope.anim = {leave: 'tr-animate-leave'};
     }],
 
     /**
      * 添加分类的控制器
      */
     CategoryAddCtrl: ['$scope', '$timeout', function ($scope, $timeout) {
-        $scope.newCategory = {name: ''};
+        $scope.newCategory = {name: '', isNew: true};
 
         formValid($scope, $timeout);
 
@@ -45,7 +49,7 @@ category.controller({
             if ($scope.addForm.$valid) {
                 //$scope.$parent.anim.enter = 'tr-animate-enter';
                 $scope.categories.create($scope.newCategory).then(function () {
-                    $scope.newCategory = {name: ''};
+                    $scope.newCategory = {name: '', isNew: true};
                 }, function (resp) {
                     $scope.showValidError({remote: resp.data[0]});
                 });

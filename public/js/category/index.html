@@ -23,19 +23,21 @@
     </tr>
     </thead>
     <tr class="table-empty-row" ng-show="categories.length == 0">
-        <td colspan="4">暂无分类</td>
+        <td colspan="4" ng-if="!fetching">暂无分类</td>
+        <td colspan="4" ng-if="fetching">loading...</td>
     </tr>
-    <tr ng-show="category != edit.current" ng-repeat="category in categories" class="row-animate">
+    <tr ng-show="category != edit.current" ng-class="{'row-animate-in':category.isNew}" ng-repeat-start="category in categories" class="row-animate-out">
         <td>{{ category.name }}</td>
         <td>{{ category.blog_count }}</td>
         <td>{{ category.created_at }}</td>
         <td>
-            <a class="btn edit" ng-click="edit(category)">修改</a>
-            <a class="btn delete" ng-click="remove(category)">删除</a>
+            <div class="btn-group">
+                <a class="btn edit" ng-click="edit(category)">修改</a>
+                <a class="btn delete" confirm="确定要删除分类“{{category.name}}”？" confirm-ok="remove(category)">删除</a>
+            </div>
         </td>
     </tr>
-    <!--
-    <tr ng-repeat-end ng-if="category == edit.current">
+    <tr ng-if="category == edit.current" ng-repeat-end>
         <td colspan="4" ng-controller="CategoryEditCtrl" ng-controller="CategoryEditCtrl">
             <form class="form-inline" style="margin-bottom: 0" ng-submit="update(category)" name="editForm" novalidate>
                 <input type="text" name="name" class="input-xlarge" autofocus placeholder="分类名称" ng-minlength="2"
@@ -48,5 +50,4 @@
             </form>
         </td>
     </tr>
-    -->
 </table>
