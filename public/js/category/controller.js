@@ -2,7 +2,7 @@ category.controller({
     /**
      * 父控制器
      */
-    CategoryCtrl: ['$scope', 'Model', '$animate', function ($scope, Model, $animate) {
+    CategoryCtrl: ['$scope', 'Model', function ($scope, Model) {
         var Category = Model.create('admin/categories');
 
         $scope.categories = [];

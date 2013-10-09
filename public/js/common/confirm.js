@@ -3,7 +3,7 @@ angular.module('common').directive('confirm', ['$compile', '$timeout', '$documen
         '<div class="pop-confirm-inner clearfix">' +
         '<div class="pop-confirm-content">{{confirm}}' +
         '</div>' +
-        '<div class="pull-right">' +
+        '<div class="pull-right btn-group">' +
         '<a class="btn btn-small btn-primary submit" ng-click="hide();confirmOk()">确定</a>&nbsp;' +
         '<a class="btn btn-small cancel" ng-click="hide()">取消</a>' +
         '</div>' +
@@ -30,7 +30,7 @@ angular.module('common').directive('confirm', ['$compile', '$timeout', '$documen
                     }
 
                     $pop = $compile(template)(scope);
-                    $document.find('body').append($pop);
+                    element.after($pop);
 
                     var height = parseInt(window.getComputedStyle ? window.getComputedStyle($pop[0]).height : $pop[0].currentStyle.height, 10);
 

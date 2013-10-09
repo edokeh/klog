@@ -15,6 +15,8 @@
     <script src="js/common/animate.js"></script>
     <script src="js/common/confirm.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/nav/index.js"></script>
+    <script src="js/nav/controller.js"></script>
     <script src="js/blog/index.js"></script>
     <script src="js/blog/controller.js"></script>
     <script src="js/blog/service.js"></script>
@@ -29,24 +31,9 @@
     <div class="navbar-inner">
         <div class="container">
             <a class="brand" href="/admin">Klog后台管理</a>
-            <ul class="nav nav-link">
-                <li class="active">
-                    <a href="/admin/blogs">文章</a>
-                </li>
-                <li>
-                    <a href="/admin/comments">评论</a>
-                </li>
-                <li>
-                    <a href="/admin/categories">分类</a>
-                </li>
-                <li>
-                    <a href="/admin/pages">页面</a>
-                </li>
-                <li>
-                    <a href="/admin/attaches">附件</a>
-                </li>
-                <li>
-                    <a href="/admin/settings/website/edit">设置</a>
+            <ul class="nav nav-link" ng-controller="NavCtrl">
+                <li ng-class="{active:item.active}" ng-repeat="item in navItems">
+                    <a ng-href="#{{item.url}}">{{item.name}}</a>
                 </li>
             </ul>
             <ul class="nav pull-right">

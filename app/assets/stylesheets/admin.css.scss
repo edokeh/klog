@@ -388,6 +388,7 @@
   visibility: hidden;
   overflow: hidden;
   position: absolute;
+  min-width: 200px;
 
   .pop-confirm-inner {
     margin: 4px;
