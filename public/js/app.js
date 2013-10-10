@@ -1,13 +1,27 @@
-var admin = angular.module('admin', ['ngAnimate', 'ngRoute', 'restangular', 'common', 'nav', 'blog', 'category', 'statistics']);
+var admin = angular.module('admin', ['ngAnimate', 'ngRoute', 'restangular', 'common', 'nav', 'blog', 'category', 'page']);
 
-admin.config(['$routeProvider', 'RestangularProvider', function ($routeProvider, RestangularProvider) {
+admin.factory('ajaxSpinner', ['$rootScope', '$q', function ($rootScope, $q) {
+    return {
+        'request': function (config) {
+            $rootScope.ajaxing = true;
+            return config || $q.when(config);
+        },
+        'response': function (response) {
+            $rootScope.ajaxing = false;
+            return response || $q.when(response);
+        }
+    };
+}]);
+
+admin.config(['$routeProvider', 'RestangularProvider', '$httpProvider', function ($routeProvider, RestangularProvider, $httpProvider) {
     $routeProvider
-        .when('/blogs?status=:status', {templateUrl: '/js/blog/index.html', controller: 'BlogCtrl'})
-        .when('/blogs', {redirectTo: '/blogs?status=1'})
+        .when('/blogs', {templateUrl: '/js/blog/index.html', controller: 'BlogCtrl'})
         .when('/categories', {templateUrl: '/js/category/index.html', controller: 'CategoryCtrl'})
-        .when('/statistics', {templateUrl: '/js/statistics/index.html', controller: 'StatisticsCtrl'})
+        .when('/pages', {templateUrl: '/js/page/index.html', controller: 'PageCtrl'})
         .otherwise({redirectTo: '/blogs'});
 
     RestangularProvider.setRequestSuffix('.json');
     RestangularProvider.setMethodOverriders(['post', 'delete']);
+
+    $httpProvider.interceptors.push('ajaxSpinner');
 }]);

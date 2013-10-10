@@ -21,8 +21,7 @@ angular.module('common').directive('confirm', ['$compile', '$timeout', '$documen
         compile: function (element, attrs) {
 
             return function (scope, element, attrs) {
-                var triggerPos = element.position();
-                var triggerWidth = window.getComputedStyle ? window.getComputedStyle(element[0]).width : element[0].currentStyle.width;
+                var trigger = element.parent().css('position') === 'relative' ? element.parent() : element;
 
                 element.bind('click', function () {
                     if ($pop) {
@@ -30,12 +29,14 @@ angular.module('common').directive('confirm', ['$compile', '$timeout', '$documen
                     }
 
                     $pop = $compile(template)(scope);
-                    element.after($pop);
+                    $document.find('body').eq(0).append($pop);
 
-                    var height = parseInt(window.getComputedStyle ? window.getComputedStyle($pop[0]).height : $pop[0].currentStyle.height, 10);
+                    var height = $pop.height();
+                    var triggerPos = trigger.position();
+                    var triggerWidth = trigger.width();
 
                     $pop.css({
-                        left: triggerPos.left - parseInt(triggerWidth, 10) * 0.4 + 'px',
+                        left: triggerPos.left - triggerWidth * 0.4 + 'px',
                         top: triggerPos.top + 'px',
                         visibility: 'visible',
                         height: 0
@@ -54,6 +55,8 @@ angular.module('common').directive('confirm', ['$compile', '$timeout', '$documen
                 });
 
                 scope.hide = function () {
+                    var triggerPos = trigger.position();
+
                     $pop.css({
                         top: triggerPos.top + 'px',
                         height: 0

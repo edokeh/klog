@@ -1,0 +1,38 @@
+<table class="table table-hover table-condensed">
+    <col width="60%"/>
+    <thead>
+    <tr>
+        <th>标题</th>
+        <th>slug</th>
+        <th>创建时间</th>
+    </tr>
+    </thead>
+    <tr class="empty-table" ng-if="pages.length === 0">
+        <td colspan="5">暂无页面</td>
+    </tr>
+    <tr ng-repeat="blog in blogs" class="row-animate-out">
+        <td>
+            <a ng-href="/admin/pages/{{page.id}}/edit" class="list-title">{{page.title}}</a>
+
+            <a class="list-action" ng-href="/page/{{page.slug}}" target="_blank" title="查看原文">
+                <i class="icon-share"></i>
+            </a>
+
+            <a class="list-action" title="删除" confirm="确定要删除“{{page.title}}”？" confirm-ok="remove(page)">
+                <i class="icon-remove"></i>
+            </a>
+
+            <a class="list-action" title="下移" ng-click="down(page)">
+                <i class="icon-arrow-down"></i>
+            </a>
+
+            <a class="list-action" title="上移" ng-click="up(page)">
+                <i class="icon-arrow-up"></i>
+            </a>
+        </td>
+        <td>{{ page.slug }}</td>
+        <td>{{ page.created_at }}</td>
+    </tr>
+</table>
+
+<a href="" class="btn btn-primary btn-large"><i class="icon-pencil icon-white"></i> 添加页面</a>

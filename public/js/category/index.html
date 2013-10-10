@@ -22,7 +22,7 @@
         </th>
     </tr>
     </thead>
-    <tr class="table-empty-row" ng-show="categories.length == 0">
+    <tr class="table-empty-row" ng-if="categories.length == 0">
         <td colspan="4" ng-if="!fetching">暂无分类</td>
         <td colspan="4" ng-if="fetching">loading...</td>
     </tr>

@@ -1,0 +1,1 @@
+var page = angular.module('page', []);

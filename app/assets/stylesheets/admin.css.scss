@@ -403,6 +403,23 @@
   }
 }
 
+.ajax-spinner {
+  position: fixed;
+  left: 50%;
+  top: 50px;
+  width: 300px;
+  margin-left: -150px;
+  background: black;
+  border-radius: 5px;
+  color:white;
+  text-align: center;
+  padding: 5px 0;
+}
+
+.ajax-spinner.in {
+  opacity: 0.3;
+}
+
 // animate
 .row-animate-in.ng-enter, .row-animate-out.ng-leave {
   -webkit-transition: 1s ease-in all; /* Safari/Chrome */

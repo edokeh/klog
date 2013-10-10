@@ -19,10 +19,10 @@
         <th>创建时间</th>
     </tr>
     </thead>
-    <tr ng-show="{{blogs.length === 0}}">
+    <tr ng-if="blogs.length === 0">
         <td colspan="5" class="table-empty-row">暂无文章</td>
     </tr>
-    <tr ng-repeat="blog in blogs">
+    <tr ng-repeat="blog in blogs" class="row-animate-out">
         <td>
             <a ng-href="/admin/blogs/{{blog.id}}/edit" class="list-title">{{blog.title}}</a>
 
@@ -34,7 +34,7 @@
                 <i class="icon-share"></i>
             </a>
 
-            <a class="list-action" title="删除" ng-click="remove(blog)">
+            <a class="list-action" title="删除" confirm="确定要删除“{{blog.title}}”？" confirm-ok="remove(blog)">
                 <i class="icon-remove"></i>
             </a>
         </td>

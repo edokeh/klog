@@ -5,11 +5,11 @@
     <title></title>
     <link rel="stylesheet" href="/assets/admin.css"/>
     <script src="js/lib/underscore.js"></script>
+    <script src="js/lib/jquery-1.10.2.js"></script>
     <script src="js/lib/angular.js"></script>
     <script src="js/lib/angular-route.js"></script>
     <script src="js/lib/angular-animate.js"></script>
     <script src="js/lib/restangular.js"></script>
-    <script src="js/lib/jqlite-extend.js"></script>
     <script src="js/common/model.js"></script>
     <script src="js/common/error-tip.js"></script>
     <script src="js/common/animate.js"></script>
@@ -19,12 +19,12 @@
     <script src="js/nav/controller.js"></script>
     <script src="js/blog/index.js"></script>
     <script src="js/blog/controller.js"></script>
-    <script src="js/blog/service.js"></script>
     <script src="js/category/index.js"></script>
     <script src="js/category/controller.js"></script>
-    <script src="js/category/service.js"></script>
     <script src="js/statistics/index.js"></script>
     <script src="js/statistics/controller.js"></script>
+    <script src="js/page/index.js"></script>
+    <script src="js/page/controller.js"></script>
 </head>
 <body>
 <div class="navbar">
@@ -46,6 +46,9 @@
             </ul>
         </div>
     </div>
+</div>
+<div class="ajax-spinner fade" ng-class="{'in':ajaxing}">
+    <img src="loading.gif"/> 载入中...
 </div>
 <div class="container" ng-view>
 </div>
