@@ -1,4 +1,4 @@
-<div class="well" ng-controller="CategoryAddCtrl">
+<div class="well" ng-controller="category.add">
     <form class="form-inline" ng-submit="add()" novalidate name="addForm">
         <input type="text" name="name" class="input-xlarge" autofocus placeholder="分类名称" ng-minlength="2" maxlength="20"
                required
@@ -38,7 +38,7 @@
         </td>
     </tr>
     <tr ng-if="category == edit.current" ng-repeat-end>
-        <td colspan="4" ng-controller="CategoryEditCtrl" ng-controller="CategoryEditCtrl">
+        <td colspan="4" ng-controller="category.edit">
             <form class="form-inline" style="margin-bottom: 0" ng-submit="update(category)" name="editForm" novalidate>
                 <input type="text" name="name" class="input-xlarge" autofocus placeholder="分类名称" ng-minlength="2"
                        maxlength="20" required

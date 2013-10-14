@@ -11,8 +11,8 @@
 //    };
 //}]);
 
-define(function (require, exports) {
-    var IndexCtrl = ['$scope', '$routeParams', 'Blog', function ($scope, $routeParams, Blog) {
+define(function (require, exports, module) {
+    var IndexController = ['$scope', '$routeParams', 'Blog', function ($scope, $routeParams, Blog) {
         $scope.blogs = [];
         $scope.status = $routeParams.status || '1';
 
@@ -25,8 +25,7 @@ define(function (require, exports) {
         };
     }];
 
+    IndexController.template = require('./index.html');
 
-    return {
-        'BlogCtrl': IndexCtrl
-    };
+    module.exports = IndexController;
 });

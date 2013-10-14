@@ -1,4 +1,4 @@
-var admin = angular.module('admin', ['ngAnimate', 'ngRoute', 'restangular', 'common', 'nav', 'category', 'page']);
+var admin = angular.module('admin', ['ngAnimate', 'ngRoute', 'restangular', 'common', 'nav']);
 
 admin.factory('ajaxSpinner', ['$rootScope', '$q', function ($rootScope, $q) {
     return {
@@ -18,13 +18,17 @@ SeajsRoute.setApp(admin);
 
 admin.config(['$routeProvider', 'RestangularProvider', '$httpProvider', function ($routeProvider, RestangularProvider, $httpProvider) {
     $routeProvider
-        .when('/categories', {templateUrl: '/js/category/index.html', controller: 'CategoryCtrl', title: '分类'})
-        .when('/pages', {templateUrl: '/js/page/index.html', controller: 'PageCtrl'})
-        .when('/blogs', SeajsRoute.create({
-            controller: 'BlogCtrl',
-            template: 'index.html',
+        .when('/categories', SeajsRoute.createRoute({
+            controller: 'category.index',
+            module: '/js/category/index'
+        }))
+        .when('/pages', SeajsRoute.createRoute({
+            controller: 'page.index',
+            module: '/js/page/index'
+        }))
+        .when('/blogs', SeajsRoute.createRoute({
+            controller: 'blog.index',
             module: '/js/blog/index'
-
         }))
         .otherwise({redirectTo: '/blogs'});
 

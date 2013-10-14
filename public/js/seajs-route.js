@@ -1,23 +1,75 @@
 function SeajsRoute(options) {
+    var _this = this;
+    this.options = options;
+
     this.route = {
         controller: options.controller,
         resolve: {
-            $template: this.getTemplate,
-            delay: function () {
-
-            }
+            $template: ['$q', function ($q) {
+                return _this.getTemplate($q);
+            }],
+            delay: ['$q', function ($q) {
+                return _this.delay($q);
+            }]
         }
     };
 }
 
-SeajsRoute.prototype.getTemplate = ['$q', function ($q) {
-    tplDefer = $q.defer();
-    if (cachedTemplate) {
-        tplDefer.resolve(cachedTemplate);
+SeajsRoute.prototype.getTemplate = function ($q) {
+    this.tplDefer = $q.defer();
+    if (this.templates) {
+        this.tplDefer.resolve(this.templates[this.options.controller]);
     }
-    return tplDefer.promise;
-}];
+    return this.tplDefer.promise;
+};
 
+SeajsRoute.prototype.delay = function ($q) {
+    var defer = $q.defer();
+    var _this = this;
+
+    if (this.templates) {
+        defer.resolve();
+    } else {
+        seajs.use(this.options.module, function (module) {
+            _this.handleModule(module);
+
+            _this.tplDefer.resolve(_this.templates[_this.options.controller]);
+            defer.resolve();
+        });
+    }
+    return defer.promise;
+};
+
+/**
+ * 将 Module 中的 controller/factory 等插入 app
+ */
+SeajsRoute.prototype.handleModule = function (module) {
+    var queue = SeajsRoute.app._invokeQueue;
+    var queueLen = queue.length;
+
+    SeajsRoute.app.controller(module.controllers);
+
+    angular.forEach(module.factories, function (factory, name) {
+        SeajsRoute.app.factory(name, module.factories[name]);
+    });
+
+    this.templates = {};
+    angular.forEach(module.controllers, function (controller, name) {
+        this.templates[name] = controller.template;
+    }, this);
+
+    for (var i = queueLen; i < queue.length; i++) {
+        var call = queue[i];
+        var provider = SeajsRoute.providers[call[0]];
+        if (provider) {
+            provider[call[1]].apply(provider, call[2]);
+        }
+    }
+};
+
+/**
+ * 设置 app 模块
+ */
 SeajsRoute.setApp = function (app) {
     this.app = app;
     var _this = this;
@@ -28,51 +80,11 @@ SeajsRoute.setApp = function (app) {
             $provide: $provide
         };
     }]);
-
 };
 
-SeajsRoute.create = function (options) {
-    var seajsRoute = new SeajsRoute(options);
-    return seajsRoute.route;
-
-    var tplDefer;
-    var cachedTemplate;
-    var _this = this;
-
-    var route = {
-        controller: options.controller,
-        resolve: {
-            delay: function ($q) {
-                var defer = $q.defer();
-
-                if (cachedTemplate) {
-                    defer.resolve();
-                } else {
-                    seajs.use(options.module, function (module) {
-                        cachedTemplate = module.templates[options.template];
-                        tplDefer.resolve(cachedTemplate);
-
-                        var queueLen = _this.app._invokeQueue.length;
-
-                        _this.app.controller(options.controller, module.controllers[options.controller]);
-                        _this.app.factory('Blog', module.factories.Blog);
-
-                        var queue = _this.app._invokeQueue;
-                        for (var i = queueLen; i < queue.length; i++) {
-                            var call = queue[i];
-                            var provider = _this.providers[call[0]];
-                            if (provider) {
-                                provider[call[1]].apply(provider, call[2]);
-                            }
-                        }
-
-                        defer.resolve();
-                    });
-                }
-
-
-                return defer.promise;
-            }
-        }
-    };
+/**
+ * 创建路由
+ */
+SeajsRoute.createRoute = function (options) {
+    return new SeajsRoute(options).route;
 };

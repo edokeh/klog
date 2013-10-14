@@ -1,21 +1,9 @@
-//var blog = angular.module('blog', []);
+define(function (require, exports, module) {
+    var IndexController = require('./index-controller');
 
-//{
-//    controller:
-//}
-//
-//admin.factory('Blog', function (Model) {
-//    return Model.create('admin/blogs');
-//});
-
-define(function (require, exports) {
-    var controllers = require('./controller');
-    var tpl = require('./index.html');
-
-    return {
-        controllers: controllers,
-        templates: {
-            'index.html': tpl
+    module.exports = {
+        controllers: {
+            'blog.index': IndexController
         },
         factories: {
             'Blog': function (Model) {
