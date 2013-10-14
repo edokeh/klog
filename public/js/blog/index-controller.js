@@ -26,6 +26,7 @@ define(function (require, exports, module) {
     }];
 
     IndexController.template = require('./index.html');
+    IndexController.title = '文章列表';
 
     module.exports = IndexController;
 });

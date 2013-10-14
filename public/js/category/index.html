@@ -1,11 +1,15 @@
 <div class="well" ng-controller="category.add">
-    <form class="form-inline" ng-submit="add()" novalidate name="addForm">
-        <input type="text" name="name" class="input-xlarge" autofocus placeholder="分类名称" ng-minlength="2" maxlength="20"
-               required
-               ng-model="newCategory.name"
-               ng-keydown="hideValidError()"
-               error-tip="validError"/>
-        <button type="submit" class="btn btn-primary">新建分类</button>
+    <form class="row" ng-submit="add()" novalidate name="addForm" role="form">
+        <div class="input-group col-md-5">
+            <input type="text" class="form-control" name="name" autofocus placeholder="分类名称"
+                   ng-minlength="2"
+                   maxlength="20"
+                   required
+                   ng-model="newCategory.name"
+                   ng-keydown="hideValidError()"
+                   error-tip="validError"/>
+            <span class="input-group-btn"><button class="btn btn-primary" type="submit">新建分类</button></span>
+        </div>
     </form>
 </div>
 
@@ -26,15 +30,16 @@
         <td colspan="4" ng-if="!fetching">暂无分类</td>
         <td colspan="4" ng-if="fetching">loading...</td>
     </tr>
-    <tr ng-show="category != edit.current" ng-class="{'row-animate-in':category.isNew}" ng-repeat-start="category in categories" class="row-animate-out">
+    <tr ng-show="category != edit.current" ng-class="{'row-animate-in':category.isNew}"
+        ng-repeat-start="category in categories" class="row-animate-out">
         <td>{{ category.name }}</td>
         <td>{{ category.blog_count }}</td>
         <td>{{ category.created_at }}</td>
         <td>
-            <div class="btn-group">
-                <a class="btn edit" ng-click="edit(category)">修改</a>
-                <a class="btn delete" confirm="确定要删除分类“{{category.name}}”？" confirm-ok="remove(category)">删除</a>
-            </div>
+            <a class="btn btn-default edit" ng-click="edit(category)"><span
+                    class="glyphicon glyphicon-star"></span>修改</a>
+            <a class="btn btn-default delete" confirm="确定要删除分类“{{category.name}}”？"
+               confirm-ok="remove(category)">删除</a>
         </td>
     </tr>
     <tr ng-if="category == edit.current" ng-repeat-end>
@@ -45,8 +50,8 @@
                        ng-model="category.name"
                        ng-keydown="hideError()"
                        error-tip="validError"/>
-                <button type="submit" class="btn  btn-primary">提交修改</button>
-                <button type="button" class="btn cancel-edit" ng-click="cancelEdit(category)">取消</button>
+                <button type="submit" class="btn btn-primary">提交修改</button>
+                <button type="button" class="btn btn-default cancel-edit" ng-click="cancelEdit(category)">取消</button>
             </form>
         </td>
     </tr>

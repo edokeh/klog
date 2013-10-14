@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html ng-app="admin">
+<html lang="zh" ng-app="admin">
 <head>
     <meta charset="UTF-8"/>
-    <title></title>
-    <link rel="stylesheet" href="/assets/admin.css"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title ng-bind="title"></title>
+    <link rel="stylesheet" href="/css/bootstrap.css"/>
     <script src="js/lib/sea-modules/seajs/seajs/2.1.1/sea.js"></script>
     <script src="js/seajs-route.js"></script>
     <script src="js/lib/underscore.js"></script>
@@ -28,6 +30,31 @@
     </script>
 </head>
 <body>
+
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/admin">Klog后台管理</a>
+        </div>
+        <div class="collapse navbar-collapse navbar-left">
+            <ul class="nav navbar-nav" ng-controller="NavCtrl">
+                <li ng-class="{active:item.active}" ng-repeat="item in navItems">
+                    <a ng-href="#{{item.url}}">{{item.name}}</a>
+                </li>
+            </ul>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="/" target="_blank">查看博客首页</a>
+            </li>
+            <li>
+                <a href="/admin/session" data-confirm="确定退出？" data-method="delete" rel="nofollow">退出后台</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
 <div class="navbar">
     <div class="navbar-inner">
         <div class="container">
@@ -51,9 +78,8 @@
 <div class="ajax-spinner fade" ng-class="{'in':ajaxing}">
     <img src="loading.gif"/> 载入中...
 </div>
-<div class="container" ng-view>
-</div>
 
+<div class="container" ng-view>
 </div>
 </body>
 </html>
