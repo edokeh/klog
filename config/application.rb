@@ -64,6 +64,7 @@ module Klog
 
     config.middleware.delete(ActionDispatch::BestStandardsSupport)
 
+    Sass::Script::Number.precision = 16
 
   end
 end

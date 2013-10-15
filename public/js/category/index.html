@@ -1,7 +1,7 @@
 <div class="well" ng-controller="category.add">
     <form class="row" ng-submit="add()" novalidate name="addForm" role="form">
         <div class="input-group col-md-5">
-            <input type="text" class="form-control" name="name" autofocus placeholder="分类名称"
+            <input type="text" class="form-control" name="name"  placeholder="分类名称"
                    ng-minlength="2"
                    maxlength="20"
                    required
@@ -36,8 +36,7 @@
         <td>{{ category.blog_count }}</td>
         <td>{{ category.created_at }}</td>
         <td>
-            <a class="btn btn-default edit" ng-click="edit(category)"><span
-                    class="glyphicon glyphicon-star"></span>修改</a>
+            <a class="btn btn-default edit" ng-click="edit(category)">修改</a>
             <a class="btn btn-default delete" confirm="确定要删除分类“{{category.name}}”？"
                confirm-ok="remove(category)">删除</a>
         </td>

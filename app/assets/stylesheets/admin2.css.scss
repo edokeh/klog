@@ -1,0 +1,455 @@
+@import "twitter/bootstrap";
+
+.glyphicon {
+  vertical-align: -1px;
+}
+
+.nav-dropdown-menu {
+  min-width: 130px;
+  > li > a {
+    color: $gray;
+  }
+}
+
+.fade {
+  filter: alpha(opacity=0);
+}
+
+//// 登录首页
+//.admin-login-body {
+//  text-align: center;
+//
+//  .admin-login-wrapper {
+//    display: inline-block;
+//    margin-top: 100px;
+//
+//    legend, .alert {
+//      text-align: left;
+//    }
+//  }
+//}
+//
+// nav
+.navbar {
+  margin-bottom: 30px;
+
+  .navbar-brand {
+    color: #8bbbf2;
+    font-weight: bold;
+    font-size: 20px;
+  }
+}
+
+//
+//// copy right
+//.copyright {
+//  margin-top: 100px;
+//  padding: 20px 0px;
+//  border-top: 1px solid $grayLighter;
+//  color: $grayLight;
+//  text-align: center;
+//
+//  a {
+//    color: $gray;
+//    text-decoration: underline;
+//  }
+//}
+//
+//// 后台首页
+//.main {
+//  header {
+//    font-size: 20px;
+//    font-weight: bold;
+//    margin-bottom: 15px;
+//  }
+//  article {
+//    margin-bottom: 20px;
+//  }
+//
+//  li {
+//    font-size: 16px;
+//    margin-bottom: 10px;
+//  }
+//}
+//
+// 表格
+.table {
+
+  th {
+    background: $gray-lighter;
+    color: #000;
+    padding: 8px 5px;
+  }
+
+  tbody > tr > td {
+    vertical-align: middle;
+  }
+
+  .list-btn {
+    margin-right: 5px;
+    float: right;
+    display: none;
+  }
+
+  .list-title {
+    margin-right: 20px;
+  }
+
+  .list-action {
+    opacity: 0;
+    -webkit-transition: opacity 500ms;
+  }
+
+  tr:hover .list-action {
+    display: inline;
+    opacity: 0.6;
+  }
+
+  .table-empty-row {
+    height: 20px;
+    font-weight: bolder;
+  }
+}
+
+.tab-content {
+  margin-top: 15px;
+}
+
+//
+//// 分页
+//.pagination ul {
+//  float: right;
+//}
+//
+//// 自动保存的checkbox
+//.auto-save-switch {
+//  width: 65px;
+//  font-size: 14px;
+//  padding-top: 20px;
+//  float: right;
+//  -webkit-user-select: none;
+//}
+//
+//// 带有文本编辑器的表单
+//.editor-form {
+//  fieldset {
+//    padding: 4px;
+//    background: #eee;
+//    border-radius: 4px;
+//  }
+//
+//  .editor-form-inner {
+//    border: 1px solid #CACACA;
+//    background-color: #fff;
+//    padding: 20px 0px;
+//  }
+//
+//  .control-group {
+//    padding: 0 15px;
+//    margin-bottom: 10px;
+//  }
+//
+//  .control-label {
+//    width: 40px;
+//    text-align: left;
+//  }
+//
+//  .controls {
+//    margin-left: 50px;
+//  }
+//
+//  label {
+//    font-weight: bolder;
+//  }
+//
+//  // bootstrap会将input设为margin-left 0 ，所以加上一个gutter的宽度
+//  input.span10 {
+//    width: ($fluidGridColumnWidth  * 10) + ($fluidGridGutterWidth * 9);
+//  }
+//
+//  .nav-tabs > li:first-child {
+//    margin-left: 15px;
+//  }
+//
+//  .form-actions {
+//    background: #fff;
+//    border: none;
+//    margin: 0;
+//    padding: 20px 0 0 3px;
+//  }
+//
+//}
+//
+//// markdown 编辑器
+//.markdown-editor {
+//
+//  // 提示
+//  .nav-tip {
+//    padding-top: 15px;
+//    padding-right: 15px;
+//    color: $grayLight;
+//    float: right;
+//    font-size: 12px;
+//  }
+//
+//  // 自动保存的提示
+//  .auto-save-tip {
+//    padding-top: 10px;
+//    margin-left: 20px;
+//    color: $gray;
+//    font-size: 12px;
+//
+//    span {
+//      height: 20px;
+//      line-height: 20px;
+//      display: none;
+//      i {
+//        opacity: 0.6;
+//      }
+//    }
+//  }
+//
+//  #markdown_edit {
+//    position: relative;
+//  }
+//
+//  textarea {
+//    border-bottom: 1px dashed #ddd;
+//    border-bottom-left-radius: 0;
+//    border-bottom-right-radius: 0;
+//    margin-bottom: 0;
+//    outline-style: none;
+//  }
+//
+//  .zen-mode-trigger {
+//    position: absolute;
+//    top: 3px;
+//    right: 5px;
+//    opacity: 0.7;
+//  }
+//
+//  // 预览
+//  .preview-wrapper {
+//    display: none;
+//    border: 1px solid #CCC;
+//    border-radius: 3px;
+//    margin-top: 0px;
+//    padding: 4px;
+//    overflow: scroll;
+//  }
+//
+//  // 上传
+//  .upload-wrapper {
+//    padding: 10px 10px 5px 10px;
+//    min-height: 35px;
+//    background-color: #fafafa;
+//    border: 1px solid #ccc;
+//    border-top: none;
+//    border-bottom-left-radius: 3px;
+//    border-bottom-right-radius: 3px;
+//  }
+//
+//  /* 上传显示 */
+//  .upload-list {
+//    display: none;
+//    width: 500px;
+//    padding: 0;
+//    margin: 0 0 5px 2px;
+//
+//    .filename {
+//      margin-right: 10px;
+//    }
+//
+//    .handle {
+//      font-size: 10px;
+//    }
+//
+//    .progress {
+//      height: 10px;
+//      width: 150px;
+//      margin: 4px 0 0 10px;
+//    }
+//  }
+//}
+//
+//.markdown-editor-fullscreen {
+//  position: fixed;
+//  top: 0;
+//  bottom: 0;
+//  left: 0;
+//  right: 0;
+//  background: #fff;
+//  z-index: 1000;
+//  display: none;
+//
+//  .textarea-wrapper {
+//    width: 800px;
+//    padding: 50px 0;
+//    height: 100%;
+//    margin: 0 auto;
+//    box-sizing: border-box;
+//
+//    textarea {
+//      height: 100%;
+//      width: 100%;
+//      border: none;
+//      font-size: 20px;
+//      resize: none;
+//      -webkit-box-shadow: none;
+//
+//      &:focus {
+//        border: none;
+//        -webkit-box-shadow: none;
+//      }
+//    }
+//  }
+//
+//  .fullscreen-sidebar {
+//    position: absolute;
+//    right: 50px;
+//    top: 50px;
+//
+//    a {
+//      display: block;
+//      text-align: center;
+//      margin-bottom: 10px;
+//    }
+//  }
+//}
+//
+//// 普通表单
+//.admin-form {
+//  .control-label {
+//    width: 70px;
+//  }
+//
+//  label {
+//    font-weight: bolder;
+//  }
+//
+//  .controls {
+//    margin-left: 90px;
+//  }
+//
+//  .form-actions {
+//    padding-left: 90px;
+//  }
+//
+//  .help-block {
+//    color: $grayLight;
+//  }
+//}
+//
+//// 评论
+//.comments {
+//  //border: 1px solid $grayLighter;
+//
+//  //border-radius: 5px;
+//
+//  article {
+//    border-bottom: 1px solid $grayLighter;
+//    padding: 10px;
+//    &:last {
+//      border-bottom: none;
+//    }
+//
+//    header {
+//      margin-bottom: 5px;
+//    }
+//
+//    footer {
+//      margin-top: 5px;
+//    }
+//  }
+//
+//  .nick {
+//    font-weight: bolder;
+//    font-size: 16px;
+//  }
+//
+//  .commentTo {
+//    color: $grayLight;
+//    margin: 0 5px;
+//  }
+//
+//  .email {
+//    color: $grayLight;
+//    font-size: 14px;
+//  }
+//
+//  .date {
+//    color: $grayLight;
+//    margin-right: 5px;
+//  }
+//
+//  .delete {
+//    margin-left: 20px;
+//    font-size: 14px;
+//  }
+//
+//}
+//
+//.pop-confirm {
+//  background: #eee;
+//  border-radius: 4px;
+//  display: inline-block;
+//  visibility: hidden;
+//  overflow: hidden;
+//  position: absolute;
+//  min-width: 200px;
+//
+//  .pop-confirm-inner {
+//    margin: 4px;
+//    border: 1px solid #CACACA;
+//    background-color: #fff;
+//    padding: 10px;
+//  }
+//
+//  .pop-confirm-content {
+//    font-size: 12px;
+//    margin-bottom: 10px;
+//  }
+//}
+//
+.ajax-spinner {
+  position: fixed;
+  left: 50%;
+  top: 60px;
+  width: 300px;
+  margin-left: -150px;
+  background: black;
+  border-radius: 5px;
+  color: white;
+  text-align: center;
+  padding: 5px 0;
+}
+
+.ajax-spinner.in {
+  opacity: 0.3;
+  filter: alpha(opacity=30);
+}
+
+// animate
+.row-animate-in.ng-enter, .row-animate-out.ng-leave {
+  -webkit-transition: 1s ease-in all; /* Safari/Chrome */
+  -moz-transition: 1s linear all; /* Firefox */
+  -o-transition: 1s linear all; /* Opera */
+}
+
+.row-animate-in.ng-enter {
+  background: #fcf8e3;
+}
+
+.row-animate-in.ng-enter-active {
+  background: #fff;
+}
+
+.row-animate-out.ng-leave {
+  background-color: #f4c8c5;
+  opacity: 0.5;
+}
+
+.row-animate-out.ng-leave-active {
+  background: #fff;
+  opacity: 0;
+}

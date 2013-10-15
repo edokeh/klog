@@ -17,6 +17,7 @@ admin.factory('ajaxSpinner', ['$rootScope', '$q', function ($rootScope, $q) {
 SeajsRoute.setApp(admin);
 
 admin.config(['$routeProvider', 'RestangularProvider', '$httpProvider', function ($routeProvider, RestangularProvider, $httpProvider) {
+
     $routeProvider
         .when('/categories', SeajsRoute.createRoute({
             controller: 'category.index',

@@ -6,40 +6,44 @@
         <a href="#/blogs?status=0">草稿箱</a>
     </li>
 </ul>
-<table class="table table-hover table-condensed">
-    <col width="60%"/>
-    <col width="15%"/>
-    <col/>
-    <col width="20%"/>
-    <thead>
-    <tr>
-        <th>标题</th>
-        <th>分类</th>
-        <th>评论</th>
-        <th>创建时间</th>
-    </tr>
-    </thead>
-    <tr ng-if="blogs.length === 0">
-        <td colspan="5" class="table-empty-row">暂无文章</td>
-    </tr>
-    <tr ng-repeat="blog in blogs" class="row-animate-out">
-        <td>
-            <a ng-href="/admin/blogs/{{blog.id}}/edit" class="list-title">{{blog.title}}</a>
 
-            <a class="list-action" ng-hide="{{blog.publish}}" title="发布">
-                <i class="icon-ok"></i>
-            </a>
+<div class="tab-content">
+    <table class="table table-hover">
+        <col width="60%"/>
+        <col width="15%"/>
+        <col/>
+        <col width="20%"/>
+        <thead>
+        <tr>
+            <th>标题</th>
+            <th>分类</th>
+            <th>评论</th>
+            <th>创建时间</th>
+        </tr>
+        </thead>
+        <tr ng-if="blogs.length === 0">
+            <td colspan="5" class="table-empty-row">暂无文章</td>
+        </tr>
+        <tr ng-repeat="blog in blogs" class="row-animate-out">
+            <td>
+                <a ng-href="/admin/blogs/{{blog.id}}/edit" class="list-title">{{blog.title}}</a>
 
-            <a class="list-action" ng-href="/blogs/{{blog.slug}}" target="_blank" title="查看原文">
-                <i class="icon-share"></i>
-            </a>
+                <a class="list-action" ng-hide="{{blog.publish}}" title="发布">
+                    <i class="icon-ok"></i>
+                </a>
 
-            <a class="list-action" title="删除" confirm="确定要删除“{{blog.title}}”？" confirm-ok="remove(blog)">
-                <i class="icon-remove"></i>
-            </a>
-        </td>
-        <td>{{ blog.category.name }}</td>
-        <td>{{ blog.comment_count }}</td>
-        <td>{{ blog.created_at | date }}</td>
-    </tr>
-</table>
+                <a class="list-action" ng-href="/blogs/{{blog.slug}}" target="_blank" title="查看原文">
+                    <i class="icon-share"></i>
+                </a>
+
+                <a class="list-action" title="删除" confirm="确定要删除“{{blog.title}}”？" confirm-ok="remove(blog)">
+                    <i class="icon-remove"></i>
+                </a>
+            </td>
+            <td>{{ blog.category.name }}</td>
+            <td>{{ blog.comment_count }}</td>
+            <td>{{ blog.created_at | date }}</td>
+        </tr>
+    </table>
+</div>
+

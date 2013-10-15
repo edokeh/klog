@@ -28,7 +28,7 @@ nav.controller({
             }
         ];
 
-        $scope.$on('$routeChangeSuccess', function () {
+        $scope.$on('$routeChangeStart', function () {
             var url = $location.path();
             _.each($scope.navItems, function (item) {
                 if (item.url === url) {
