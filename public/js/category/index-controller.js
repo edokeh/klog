@@ -31,6 +31,7 @@ define(function (require, exports, module) {
     }];
 
     IndexController.template = require('./index.html');
+    IndexController.title = '分类管理';
 
     module.exports = IndexController;
 });
