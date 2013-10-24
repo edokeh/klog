@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title ng-bind="title"></title>
     <link rel="stylesheet" href="/assets/admin2.css"/>
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.css"/>
     <!--<link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.css"/>-->
     <script src="js/lib/sea-modules/seajs/seajs/2.1.1/sea.js"></script>
     <script src="js/lib/underscore.js"></script>
@@ -13,7 +14,9 @@
     <script src="js/lib/angular.js"></script>
     <script src="js/lib/angular-route.js"></script>
     <script src="js/lib/angular-animate.js"></script>
+    <script src="js/lib/angular-sanitize.js"></script>
     <script src="js/lib/restangular.js"></script>
+    <script src="js/lib/angular-dropdown.js"></script>
     <script src="js/common/model.js"></script>
     <script src="js/common/error-tip.js"></script>
     <script src="js/common/confirm.js"></script>
@@ -37,60 +40,61 @@
 </head>
 <body ng-cloak>
 
-<nav class="navbar navbar-default">
-    <div class="container">
+<nav class="navbar navbar-inverse navbar-admin">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/admin">Klog后台管理</a>
+            <a class="navbar-brand" href="/admin">Klog</a>
         </div>
         <ul class="nav navbar-nav" ng-controller="NavCtrl">
             <li ng-class="{active:item.active}" ng-repeat="item in navItems">
-                <a ng-href="#{{item.url}}">{{item.name}}</a>
+                <a ng-href="#{{item.url}}">
+                    <i ng-if="item.ico" ng-class="item.ico"></i>
+                    {{item.name}}
+                </a>
             </li>
         </ul>
 
-        <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown" ng-class="{open:dropdown}">
-                <a href class="dropdown-toggle" ng-click="dropdown = !dropdown">
-                    功能
-                    <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu nav-dropdown-menu">
-                    <li>
-                        <a href="/" target="_blank" title="查看首页">
-                            <span class="glyphicon glyphicon-new-window"></span>
-                            查看首页
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-user"></span>
-                            修改密码
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-cog"></span>
-                            博客设置
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-log-out"></span>
-                            退出
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </div>
+        <!--<ul class="nav navbar-nav navbar-right">-->
+            <!--<li class="dropdown" ng-class="{open:dropdown}">-->
+                <!--<a href class="dropdown-toggle" ng-click="dropdown = !dropdown">-->
+                    <!--功能-->
+                    <!--<span class="caret"></span>-->
+                <!--</a>-->
+                <!--<ul class="dropdown-menu nav-dropdown-menu">-->
+                    <!--<li>-->
+                        <!--<a href="/" target="_blank" title="查看首页">-->
+                            <!--<span class="glyphicon glyphicon-new-window"></span>-->
+                            <!--查看首页-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a href="#">-->
+                            <!--<span class="glyphicon glyphicon-user"></span>-->
+                            <!--修改密码-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a href="#">-->
+                            <!--<span class="glyphicon glyphicon-cog"></span>-->
+                            <!--博客设置-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li class="divider"></li>-->
+                    <!--<li>-->
+                        <!--<a href="#">-->
+                            <!--<span class="glyphicon glyphicon-log-out"></span>-->
+                            <!--退出-->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</li>-->
+        <!--</ul>-->
 </nav>
 
 <div class="ajax-spinner fade" ng-class="{'in':ajaxing}">
     <img src="loading.gif"/> 载入中...
 </div>
 
-<div class="container" ng-view>
+<div class="main" ng-view>
 </div>
 </body>
 </html>

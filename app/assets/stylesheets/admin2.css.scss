@@ -4,6 +4,23 @@
   vertical-align: -1px;
 }
 
+body {
+  background: #eee;
+}
+
+.navbar-admin {
+  min-height: 40px;
+  border-radius: 0;
+
+  .navbar-brand {
+    padding: 10px 20px;
+  }
+
+  .navbar-nav > li > a {
+    padding: 10px 20px;
+  }
+}
+
 .nav-dropdown-menu {
   min-width: 130px;
   > li > a {
@@ -38,6 +55,42 @@
     font-weight: bold;
     font-size: 20px;
   }
+}
+
+.main {
+  position: absolute;
+  top: 60px;
+  bottom: 10px;
+  left: 15px;
+  right: 15px;
+
+  @for $i from 1 through 12 {
+    .col-md-#{$i} {
+      height: 100%;
+    }
+  }
+
+  .row, .panel {
+    height: 100%;
+  }
+
+  .panel {
+    .panel-heading {
+      background: white;
+      padding: 20px 15px;
+      height: 60px;
+
+      h2 {
+        margin: 0;
+        line-height: 1;
+      }
+    }
+  }
+}
+
+.preview {
+  padding: 15px;
+  max-width: 800px;
 }
 
 //
@@ -414,7 +467,7 @@
 .ajax-spinner {
   position: fixed;
   left: 50%;
-  top: 60px;
+  top: 42px;
   width: 300px;
   margin-left: -150px;
   background: black;

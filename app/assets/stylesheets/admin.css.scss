@@ -1,4 +1,4 @@
-@import "bootstrap";
+@import "twitter/bootstrap";
 
 // 登录首页
 .admin-login-body {
@@ -32,7 +32,7 @@
       font-weight: bold;
     }
     li > a:hover {
-      color: $black;
+      color: #000;
     }
   }
 }
@@ -41,8 +41,8 @@
 .copyright {
   margin-top: 100px;
   padding: 20px 0px;
-  border-top: 1px solid $grayLighter;
-  color: $grayLight;
+  border-top: 1px solid $gray-lighter;
+  color: $gray-light;
   text-align: center;
 
   a {
@@ -72,8 +72,8 @@
 .table {
 
   th {
-    background: $grayLighter;
-    color: $black;
+    background: $gray-lighter;
+    color: #000;
     padding: 8px 5px;
   }
 
@@ -156,7 +156,7 @@
 
   // bootstrap会将input设为margin-left 0 ，所以加上一个gutter的宽度
   input.span10 {
-    width: ($fluidGridColumnWidth  * 10) + ($fluidGridGutterWidth * 9);
+    //width: ($fluidGridColumnWidth  * 10) + ($fluidGridGutterWidth * 9);
   }
 
   .nav-tabs > li:first-child {
@@ -179,7 +179,7 @@
   .nav-tip {
     padding-top: 15px;
     padding-right: 15px;
-    color: $grayLight;
+    color: $gray-light;
     float: right;
     font-size: 12px;
   }
@@ -328,18 +328,18 @@
   }
 
   .help-block {
-    color: $grayLight;
+    color: $gray-light;
   }
 }
 
 // 评论
 .comments {
-  //border: 1px solid $grayLighter;
+  //border: 1px solid $gray-lighter;
 
   //border-radius: 5px;
 
   article {
-    border-bottom: 1px solid $grayLighter;
+    border-bottom: 1px solid $gray-lighter;
     padding: 10px;
     &:last {
       border-bottom: none;
@@ -360,17 +360,17 @@
   }
 
   .commentTo {
-    color: $grayLight;
+    color: $gray-light;
     margin: 0 5px;
   }
 
   .email {
-    color: $grayLight;
+    color: $gray-light;
     font-size: 14px;
   }
 
   .date {
-    color: $grayLight;
+    color: $gray-light;
     margin-right: 5px;
   }
 

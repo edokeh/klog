@@ -96,7 +96,7 @@ angular.module('common').config(['$controllerProvider', '$compileProvider', '$fi
             this.modules[route.moduleUrl] = module;
 
             this.register.controller(module.controllers);
-            this.register.factory(module.factories);
+            this.register.factory(module.factories || {});
         },
 
         resolveModule: function(module, controller) {
