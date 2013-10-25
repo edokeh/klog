@@ -43,8 +43,9 @@ angular.module('common').config(['$controllerProvider', '$compileProvider', '$fi
         constructor: SeajsModule,
 
         // 初始化
-        init: function() {
+        init: function($templateCache) {
             var _this = this;
+            this.$templateCache = $templateCache;
             this.$rootScope.$on('$routeChangeStart', function(e, target) {
                 var route = target && target.$$route;
                 if (route) {
@@ -56,6 +57,7 @@ angular.module('common').config(['$controllerProvider', '$compileProvider', '$fi
 
         // 处理 URL 变化，为现有的 route 对象增加 resolve
         handleRouteChange: function(route) {
+            var _this = this;
             var module = this.modules[route.moduleUrl];
             // 如已有缓存
             if (module) {
@@ -63,20 +65,21 @@ angular.module('common').config(['$controllerProvider', '$compileProvider', '$fi
                     return module;
                 };
                 route.resolve.$template = function() {
-                    return module.controllers[route.controller].template;
+                    var templateName = module.controllers[route.controller].template;
+                    return _this.$templateCache.get(templateName);
                 };
                 this.resolveModule(module, route.controller);
             }
             // 异步加载
             else {
-                var _this = this;
 
                 route.resolve.module = ['$q', function($q) {
                     var defer = $q.defer();
                     seajs.use(route.moduleUrl, function(m) {
                         _this.registerModule(route, m);
                         if (_this.tplDefer.tag === route.moduleUrl + route.controller) {
-                            _this.tplDefer.resolve(m.controllers[route.controller].template);
+                            var templateName = m.controllers[route.controller].template;
+                            _this.tplDefer.resolve(_this.$templateCache.get(templateName));
                             _this.resolveModule(m, route.controller);
                             defer.resolve(m);
                         }
@@ -97,10 +100,20 @@ angular.module('common').config(['$controllerProvider', '$compileProvider', '$fi
 
             this.register.controller(module.controllers);
             this.register.factory(module.factories || {});
+
+            for (var key in module.templates) {
+                if (module.templates.hasOwnProperty(key)) {
+                    this.$templateCache.put(key, module.templates[key]);
+                }
+            }
         },
 
         resolveModule: function(module, controller) {
             this.$rootScope.title = module.controllers[controller].title + (SeajsModule.titleSuffix || '');
         }
     };
+}]);
+
+angular.module('common').run(['$templateCache', function($templateCache) {
+    $templateCache.put('');
 }]);

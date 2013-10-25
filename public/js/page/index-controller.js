@@ -1,6 +1,6 @@
 define(function (require, exports, module) {
 
-    var IndexController = ['$scope', '$routeParams', 'Model', function ($scope, $routeParams, Model) {
+    var IndexController = ['$scope', '$routeParams', 'Model', '$templateCache', function ($scope, $routeParams, Model, $templateCache) {
         var Page = Model.create('admin/pages');
 
         $scope.pages = [];
@@ -14,7 +14,7 @@ define(function (require, exports, module) {
         };
     }];
 
-    IndexController.template = require('./index.html');
+    IndexController.template = 'page/index';
 
     module.exports = IndexController;
 });

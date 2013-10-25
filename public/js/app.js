@@ -34,8 +34,8 @@ admin.config(['$routeProvider', 'RestangularProvider', '$httpProvider', 'SeajsMo
     $httpProvider.interceptors.push('ajaxSpinner');
 }]);
 
-admin.run(['SeajsModule', function(SeajsModule) {
-    SeajsModule.init();
+admin.run(['SeajsModule', '$templateCache', function(SeajsModule, $templateCache) {
+    SeajsModule.init($templateCache);
 }]);
 
 // 后端接口的 URL

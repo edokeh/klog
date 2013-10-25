@@ -1,16 +1,6 @@
-//admin.controller('BlogCtrl', ['$scope', '$routeParams', 'Blog', function ($scope, $routeParams, Blog) {
-//    $scope.blogs = [];
-//    $scope.status = $routeParams.status || '1';
-//
-//    Blog.getList({status: $scope.status}).then(function (blogs) {
-//        $scope.blogs = blogs;
-//    });
-//
-//    $scope.remove = function (blog) {
-//        $scope.blogs.remove(blog);
-//    };
-//}]);
-
+/**
+ * 文章列表
+ */
 define(function(require, exports, module) {
     var IndexController = ['$scope', '$routeParams', 'Restangular', 'URL', function($scope, $routeParams, Restangular, URL) {
         $scope.statusMap = {
@@ -38,7 +28,7 @@ define(function(require, exports, module) {
         };
     }];
 
-    IndexController.template = require('./index.html');
+    IndexController.template = 'blog/index';
     IndexController.title = '文章列表';
 
     module.exports = IndexController;
