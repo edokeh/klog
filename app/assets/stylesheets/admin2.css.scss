@@ -59,7 +59,7 @@ body {
 
 .main {
   position: absolute;
-  top: 60px;
+  top: 80px;
   bottom: 10px;
   left: 15px;
   right: 15px;
@@ -464,22 +464,32 @@ body {
 //  }
 //}
 //
+
 .ajax-spinner {
-  position: fixed;
+  position: absolute;
   left: 50%;
-  top: 42px;
+  top: 9px;
   width: 300px;
   margin-left: -150px;
-  background: black;
-  border-radius: 5px;
-  color: white;
+  border-radius: 0 0 5px 5px;
+  color: #c09853;
   text-align: center;
   padding: 5px 0;
+  background: #FCF6CF;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+
+  -webkit-transition: top 0.2s ease-out;
+  transition: top 0.2s ease-out;
+
+  .icon-spin {
+    -webkit-animation: spin 0.7s infinite linear;
+    animation: spin 0.7s infinite linear;
+  }
 }
 
-.ajax-spinner.in {
-  opacity: 0.3;
-  filter: alpha(opacity=30);
+.ajax-spinner.show {
+  top: 42px;
+  margin-right: 5px;
 }
 
 // animate

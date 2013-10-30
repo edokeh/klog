@@ -21,6 +21,8 @@
     <script src="js/common/error-tip.js"></script>
     <script src="js/common/confirm.js"></script>
     <script src="js/common/seajs-module.js"></script>
+    <script src="js/common/ajax-spinner.js"></script>
+    <script src="js/common/rest.js"></script>
     <script src="js/app.js"></script>
     <script src="js/nav/index.js"></script>
     <script src="js/nav/controller.js"></script>
@@ -90,9 +92,7 @@
         <!--</ul>-->
 </nav>
 
-<div class="ajax-spinner fade" ng-class="{'in':ajaxing}">
-    <img src="loading.gif"/> 载入中...
-</div>
+<div ajax-spinner></div>
 
 <div class="main" ng-view>
 </div>

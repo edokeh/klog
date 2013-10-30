@@ -9,11 +9,6 @@ define(function(require, exports, module) {
         },
         templates: {
             'page/index': indexTpl
-        },
-        factories: {
-            'Page': function(Model) {
-                return Model.create('admin/pages');
-            }
         }
     };
 });

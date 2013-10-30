@@ -1,11 +1,9 @@
 define(function (require, exports, module) {
 
-    var IndexController = ['$scope', '$routeParams', 'Model', '$templateCache', function ($scope, $routeParams, Model, $templateCache) {
-        var Page = Model.create('admin/pages');
-
+    var IndexController = ['$scope', '$routeParams', 'REST', function ($scope, $routeParams, REST) {
         $scope.pages = [];
 
-        Page.getList().then(function (pages) {
+        REST.PAGE.getList().then(function (pages) {
             $scope.pages = pages;
         });
 

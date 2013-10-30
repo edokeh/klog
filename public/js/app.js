@@ -1,19 +1,6 @@
 var admin = angular.module('admin', ['ngAnimate', 'ngRoute', 'ngSanitize', 'restangular', 'common', 'nav', 'ui.bootstrap.dropdownToggle']);
 
-admin.factory('ajaxSpinner', ['$rootScope', '$q', function($rootScope, $q) {
-    return {
-        'request': function(config) {
-            $rootScope.ajaxing = true;
-            return config || $q.when(config);
-        },
-        'response': function(response) {
-            $rootScope.ajaxing = false;
-            return response || $q.when(response);
-        }
-    };
-}]);
-
-admin.config(['$routeProvider', 'RestangularProvider', '$httpProvider', 'SeajsModuleProvider', function($routeProvider, RestangularProvider, $httpProvider, SeajsModuleProvider) {
+admin.config(['$routeProvider', 'RestangularProvider', '$httpProvider', 'SeajsModuleProvider', 'RESTProvider', function($routeProvider, RestangularProvider, $httpProvider, SeajsModuleProvider, RESTProvider) {
 
     SeajsModuleProvider.setTilteSuffix(' - Klog 后台管理');
     var category = SeajsModuleProvider.create('/js/category/index');
@@ -31,15 +18,17 @@ admin.config(['$routeProvider', 'RestangularProvider', '$httpProvider', 'SeajsMo
     RestangularProvider.setRequestSuffix('.json');
     RestangularProvider.setMethodOverriders(['post', 'delete']);
 
-    $httpProvider.interceptors.push('ajaxSpinner');
+    // 后端接口的 URL
+    RESTProvider.setURL({
+        BLOG: 'admin/blogs',
+        CATEGORY: 'admin/categories',
+        PAGE: 'admin/pages'
+    });
+
 }]);
 
 admin.run(['SeajsModule', '$templateCache', function(SeajsModule, $templateCache) {
     SeajsModule.init($templateCache);
 }]);
 
-// 后端接口的 URL
-admin.constant('URL', {
-    BLOG: 'admin/blogs',
-    CATEGORY: 'admin/categories'
-});
+

@@ -2,7 +2,7 @@
  * 文章列表
  */
 define(function(require, exports, module) {
-    var IndexController = ['$scope', '$routeParams', 'Restangular', 'URL', function($scope, $routeParams, Restangular, URL) {
+    var IndexController = ['$scope', '$routeParams', 'REST', function($scope, $routeParams, REST) {
         $scope.statusMap = {
             '1': '已发布',
             '0': '草稿箱',
@@ -12,13 +12,13 @@ define(function(require, exports, module) {
 
 
         $scope.blogs = [];
-        Restangular.all(URL.BLOG).getList({status: $routeParams.status}).then(function(blogs) {
+        REST.BLOG.getList({status: $routeParams.status}).then(function(blogs) {
             $scope.blogs = blogs;
             $scope.showBlog(blogs[0]);
         });
 
         $scope.showBlog = function(blog) {
-            Restangular.one(URL.BLOG, blog.id).get().then(function(blog) {
+            REST.BLOG.get(blog.id).then(function(blog) {
                 $scope.currBlog = blog;
             });
         };

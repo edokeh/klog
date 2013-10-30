@@ -8,11 +8,6 @@ define(function(require, exports, module) {
         },
         templates: {
             'blog/index': indeTpl
-        },
-        factories: {
-            'Blog': function(Model) {
-                return Model.create('admin/blogs');
-            }
         }
     };
 });
