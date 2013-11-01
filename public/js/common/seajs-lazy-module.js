@@ -9,38 +9,42 @@ angular.module('common').config(['$controllerProvider', '$compileProvider', '$fi
     };
 
 
-    $provide.provider('SeajsModule', SeajsModuleProvider);
+    $provide.provider('SeajsLazyModule', SeajsLazyModuleProvider);
 
-    function SeajsModuleProvider() {
+    function SeajsLazyModuleProvider() {
         this.$get = ['$rootScope', function($rootScope) {
-            return new SeajsModule($rootScope, register);
+            return new SeajsLazyModule($rootScope, register);
         }];
 
         // 快捷方法，用于创建一个 module 的配置
         this.create = function(moduleUrl) {
             return {
-                routeFor: function(controllerName) {
-                    return {
+                routeFor: function(controllerName, options) {
+                    var obj = {
                         moduleUrl: moduleUrl,
                         controller: controllerName
                     };
+                    for (var key in options || {}) {
+                        obj[key] = options[key];
+                    }
+                    return obj;
                 }
             };
         };
 
         this.setTilteSuffix = function(suffix) {
-            SeajsModule.titleSuffix = suffix;
+            SeajsLazyModule.titleSuffix = suffix;
         };
     }
 
-    function SeajsModule($rootScope, register) {
+    function SeajsLazyModule($rootScope, register) {
         this.$rootScope = $rootScope;
         this.register = register;
         this.modules = {};
     }
 
-    SeajsModule.prototype = {
-        constructor: SeajsModule,
+    SeajsLazyModule.prototype = {
+        constructor: SeajsLazyModule,
 
         // 初始化
         init: function($templateCache) {
@@ -72,7 +76,6 @@ angular.module('common').config(['$controllerProvider', '$compileProvider', '$fi
             }
             // 异步加载
             else {
-
                 route.resolve.module = ['$q', function($q) {
                     var defer = $q.defer();
                     seajs.use(route.moduleUrl, function(m) {
@@ -100,6 +103,7 @@ angular.module('common').config(['$controllerProvider', '$compileProvider', '$fi
 
             this.register.controller(module.controllers || {});
             this.register.factory(module.factories || {});
+            this.register.filter(module.filters || {});
 
             for (var key in module.templates) {
                 if (module.templates.hasOwnProperty(key)) {
@@ -109,11 +113,8 @@ angular.module('common').config(['$controllerProvider', '$compileProvider', '$fi
         },
 
         resolveModule: function(module, controller) {
-            this.$rootScope.title = module.controllers[controller].title + (SeajsModule.titleSuffix || '');
+            this.$rootScope.title = module.controllers[controller].title + (SeajsLazyModule.titleSuffix || '');
+            this.$rootScope.navClass = module.controllers[controller].navClass;
         }
     };
-}]);
-
-angular.module('common').run(['$templateCache', function($templateCache) {
-    $templateCache.put('');
 }]);

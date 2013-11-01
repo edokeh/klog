@@ -1,12 +1,12 @@
 var admin = angular.module('admin', ['ngAnimate', 'ngRoute', 'ngSanitize', 'restangular', 'common', 'nav', 'ui.bootstrap.dropdownToggle']);
 
-admin.config(['$routeProvider', 'RestangularProvider', '$httpProvider', 'SeajsModuleProvider', 'RESTProvider', function($routeProvider, RestangularProvider, $httpProvider, SeajsModuleProvider, RESTProvider) {
+admin.config(['$routeProvider', 'RestangularProvider', '$httpProvider', 'SeajsLazyModuleProvider', 'RESTProvider', function($routeProvider, RestangularProvider, $httpProvider, SeajsLazyModuleProvider, RESTProvider) {
 
-    SeajsModuleProvider.setTilteSuffix(' - Klog 后台管理');
-    var category = SeajsModuleProvider.create('/js/category/index');
-    var blog = SeajsModuleProvider.create('/js/blog/index');
-    var page = SeajsModuleProvider.create('/js/page/index');
-    var comment = SeajsModuleProvider.create('/js/comment/index');
+    SeajsLazyModuleProvider.setTilteSuffix(' - Klog 后台管理');
+    var category = SeajsLazyModuleProvider.create('/js/category/index');
+    var blog = SeajsLazyModuleProvider.create('/js/blog/index');
+    var page = SeajsLazyModuleProvider.create('/js/page/index');
+    var comment = SeajsLazyModuleProvider.create('/js/comment/index');
 
     $routeProvider
         .when('/categories', category.routeFor('category.index'))
@@ -27,8 +27,8 @@ admin.config(['$routeProvider', 'RestangularProvider', '$httpProvider', 'SeajsMo
 
 }]);
 
-admin.run(['SeajsModule', '$templateCache', function(SeajsModule, $templateCache) {
-    SeajsModule.init($templateCache);
+admin.run(['SeajsLazyModule', '$templateCache', function(SeajsLazyModule, $templateCache) {
+    SeajsLazyModule.init($templateCache);
 }]);
 
 
