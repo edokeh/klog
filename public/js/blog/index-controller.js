@@ -2,7 +2,7 @@
  * 文章列表
  */
 define(function(require, exports, module) {
-    var IndexController = ['$scope', '$routeParams', 'REST', function($scope, $routeParams, REST) {
+    var IndexController = ['$scope', '$routeParams', 'REST', 'Confirm', function($scope, $routeParams, REST, confirm) {
         $scope.statusMap = {
             '1': '已发布',
             '0': '草稿箱',
@@ -24,7 +24,11 @@ define(function(require, exports, module) {
         };
 
         $scope.remove = function(blog) {
-            $scope.blogs.remove(blog);
+            confirm.open('确定要删除“' + blog.title + '”？', 'blog/confirm').then(function() {
+                blog.remove().then(function() {
+                    $scope.blogs = _.without($scope.blogs, blog);
+                });
+            });
         };
     }];
 

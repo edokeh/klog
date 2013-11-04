@@ -1,9 +1,5 @@
 @import "twitter/bootstrap";
 
-.glyphicon {
-  vertical-align: -1px;
-}
-
 body {
   background: #eee;
 }
@@ -11,108 +7,17 @@ body {
 .navbar-admin {
   min-height: 40px;
   border-radius: 0;
+  margin-bottom: 30px;
 
   .navbar-brand {
     padding: 10px 20px;
+    color: #8bbbf2;
+    font-weight: bold;
+    font-size: 20px;
   }
 
   .navbar-nav > li > a {
     padding: 10px 20px;
-  }
-}
-
-.nav-dropdown-menu {
-  min-width: 130px;
-  > li > a {
-    color: $gray;
-  }
-}
-
-// blog 列表页
-.blog-list {
-  .panel-heading {
-
-  }
-
-  .list-group {
-    overflow: auto;
-    height: calc(100% - 60px);
-
-    .list-group-item {
-      border-left: 3px solid #fff;
-      box-sizing: border-box;
-      cursor: pointer;
-
-      &:hover {
-        background: whitesmoke;
-        .tools {
-          display: block;
-        }
-      }
-
-      .list-group-item-text {
-        color: #aaa;
-      }
-    }
-  }
-
-  .list-group-item.active {
-    background: whitesmoke;
-    border-color: #ddd;
-    border-left: 3px solid #aaa;
-    color: #333;
-  }
-
-  .tools {
-    display: none;
-    a {
-      font-size: 16px;
-      color: #999;
-
-      &:hover {
-        text-decoration: none;
-        color: #333;
-      }
-    }
-  }
-}
-
-.blog-preview {
-  padding-left: 0;
-
-  .blog-preview-content {
-    overflow: auto;
-    height: calc(100% - 60px);
-
-    > div {
-      margin: 15px;
-      max-width: 800px;
-    }
-  }
-}
-
-//// 登录首页
-//.admin-login-body {
-//  text-align: center;
-//
-//  .admin-login-wrapper {
-//    display: inline-block;
-//    margin-top: 100px;
-//
-//    legend, .alert {
-//      text-align: left;
-//    }
-//  }
-//}
-//
-// nav
-.navbar {
-  margin-bottom: 30px;
-
-  .navbar-brand {
-    color: #8bbbf2;
-    font-weight: bold;
-    font-size: 20px;
   }
 }
 
@@ -132,20 +37,120 @@ body {
   .row, .panel {
     height: 100%;
   }
+}
 
-  .panel {
-    .panel-heading {
-      background: white;
-      padding: 20px 15px;
-      height: 60px;
+//.nav-dropdown-menu {
+//  min-width: 130px;
+//  > li > a {
+//    color: $gray;
+//  }
+//}
 
-      h2 {
-        margin: 0;
-        line-height: 1;
+// blog 列表页
+.blog-list {
+  .panel-heading {
+    background: white;
+    height: 60px;
+    padding-top: 20px;
+  }
+
+  .list-group {
+    overflow: auto;
+    height: calc(100% - 60px);
+
+    .list-group-item {
+      padding-left: 19px;
+      cursor: pointer;
+
+      &:hover {
+        background: whitesmoke;
+        .tools {
+          display: block;
+        }
+      }
+    }
+
+    .list-group-item.active {
+      background: whitesmoke;
+      border-color: #ddd;
+      border-left: 4px solid #aaa;
+      color: #333;
+      padding-left: 15px;
+    }
+
+    .list-group-item-text {
+      color: #aaa;
+    }
+
+    .tools {
+      display: none;
+      a {
+        font-size: 16px;
+        color: #999;
+
+        &:hover {
+          text-decoration: none;
+          color: #333;
+        }
       }
     }
   }
 }
+
+.blog-preview {
+  padding-left: 0;
+
+  .panel-heading {
+    height: 60px;
+    background: white;
+    padding-top: 20px;
+
+    h3 {
+      margin: 0;
+    }
+
+    a {
+      font-size: 14px;
+      color: #999;
+      margin-right: 10px;
+
+      &:hover {
+        text-decoration: none;
+        color: #333;
+      }
+    }
+  }
+
+  .blog-preview-content {
+    overflow: auto;
+    height: calc(100% - 60px);
+
+    > div {
+      margin: 15px;
+      max-width: 800px;
+    }
+  }
+}
+
+.confirm-dialog {
+  width: 400px;
+}
+
+//// 登录首页
+//.admin-login-body {
+//  text-align: center;
+//
+//  .admin-login-wrapper {
+//    display: inline-block;
+//    margin-top: 100px;
+//
+//    legend, .alert {
+//      text-align: left;
+//    }
+//  }
+//}
+//
+// nav
 
 //
 //// copy right
@@ -216,10 +221,6 @@ body {
     height: 20px;
     font-weight: bolder;
   }
-}
-
-.tab-content {
-  margin-top: 15px;
 }
 
 .ajax-spinner {

@@ -1,4 +1,4 @@
-var admin = angular.module('admin', ['ngAnimate', 'ngRoute', 'ngSanitize', 'restangular', 'common', 'nav', 'ui.bootstrap.dropdownToggle']);
+var admin = angular.module('admin', ['ngAnimate', 'ngRoute', 'ngSanitize', 'restangular', 'common', 'nav', 'ui.bootstrap.dropdownToggle', 'ui.bootstrap.modal']);
 
 admin.config(['$routeProvider', 'RestangularProvider', '$httpProvider', 'SeajsLazyModuleProvider', 'RESTProvider', function($routeProvider, RestangularProvider, $httpProvider, SeajsLazyModuleProvider, RESTProvider) {
 
@@ -30,5 +30,3 @@ admin.config(['$routeProvider', 'RestangularProvider', '$httpProvider', 'SeajsLa
 admin.run(['SeajsLazyModule', '$templateCache', function(SeajsLazyModule, $templateCache) {
     SeajsLazyModule.init($templateCache);
 }]);
-
-
