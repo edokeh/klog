@@ -590,7 +590,7 @@ angular.module('ngAnimate', ['ng'])
       }
 
       function cancelChildAnimations(element) {
-        angular.forEach(element[0].querySelectorAll('.' + NG_ANIMATE_CLASS_NAME), function(element) {
+        angular.forEach(element.find('.' + NG_ANIMATE_CLASS_NAME), function(element) {  // hack by chaos
           element = angular.element(element);
           var data = element.data(NG_ANIMATE_STATE);
           if(data) {
