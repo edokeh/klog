@@ -3,7 +3,7 @@ class Admin::BlogsController < Admin::ApplicationController
 
   def index
     @blogs = Blog.order("created_at DESC").includes(:category).page(params[:page])
-    @blogs = @blogs.where(:status => params[:status]) if params[:status]
+    @blogs = @blogs.where(:status => params[:status]) if params[:status].present?
   end
 
   def new
@@ -49,7 +49,7 @@ class Admin::BlogsController < Admin::ApplicationController
 
   def destroy
     @blog = Blog.find(params[:id])
-    @blog.destroy
+    #@blog.destroy
 
     respond_to do |format|
       format.html { redirect_to :back, :notice => '删除成功！' }

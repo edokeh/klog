@@ -1,6 +1,6 @@
 Klog::Application.routes.draw do
 
-  root :to=>'blogs#index'
+  root :to => 'blogs#index'
 
   resources :blogs do
     resources :comments
@@ -8,20 +8,21 @@ Klog::Application.routes.draw do
   resources :categories
   resources :tags
 
-  get '/blog/:id.html'=>'blogs#show', :as=>:blog
-  get '/feed'=>'feed#show', :format=>:rss, :as=>:feed
-  get '/archive.html'=>'archive#show', :as=>:archive
+  get '/blog/:id.html' => 'blogs#show', :as => :blog
+  get '/feed' => 'feed#show', :format => :rss, :as => :feed
+  get '/archive.html' => 'archive#show', :as => :archive
+  get '/archive/edit' => 'archive#edit'
 
   namespace :admin do
     resources :blogs do
-      post 'publish', :on=>:member
+      post 'publish', :on => :member
     end
     resources :categories
     resources :comments
     resources :attaches
     resources :pages do
-      post 'up', :on=>:member
-      post 'down', :on=>:member
+      post 'up', :on => :member
+      post 'down', :on => :member
     end
 
     namespace :settings do
@@ -31,11 +32,11 @@ Klog::Application.routes.draw do
     end
 
     resource :session
-    get '/'=>'home#show'
-    post '/preview'=>'home#preview'
+    get '/' => 'home#show'
+    post '/preview' => 'home#preview'
   end
 
-  get '/:page_slug.html'=>'pages#show', :as=>:page
+  get '/:page_slug.html' => 'pages#show', :as => :page
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

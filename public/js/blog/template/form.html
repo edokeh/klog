@@ -1,0 +1,49 @@
+<div class="panel panel-info full-height blog-editor">
+    <div class="panel-body row">
+        <form class="col-md-6 full-height" name="form">
+            <input type="text" class="editor-title form-control" placeholder="文章标题" autofocus name="title"
+                   ng-model="blog.title"
+                   required/>
+            <textarea class="editor-content form-control" placeholder="写点什么..." ng-model="blog.content" name="content"
+                      ng-scroll="scrollSync(scrollTopPercent)"
+                      ng-scroll-top-percent="scrollTopPercent"></textarea>
+            <div style="position: absolute" class="tools">
+                <a><i class="icon-link"></i></a>
+                <a><i class="icon-picture"></i></a>
+            </div>
+            <div class="editor-config row">
+                <div class="col-md-4">
+                    <select class="form-control input-sm" ng-model="blog.category_id" ng-options="cc.id as cc.name for cc in categories">
+                        <option value="">选择分类...</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-addon"><i class="icon-link "></i></span>
+                        <input class="form-control" type="text" placeholder="URL Slug" ng-model="blog.slug"/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-addon"><i class="icon-tags"></i></span>
+                        <input class="form-control" type="text" placeholder="标签" ng-model="tags"/>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="col-md-6 full-height editor-preview-wrap">
+            <h1><i>预览</i>{{blog.title}} &nbsp;</h1>
+
+            <div class="editor-preview" ng-bind-html="htmlContent" ng-scroll="scrollSync(scrollTopPercent)"
+                 ng-scroll-top-percent="scrollTopPercent"></div>
+
+            <div class="tags">
+                <span class="label label-primary" ng-repeat="tag in blog.tag_list">{{tag}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <button class="btn btn-primary" ng-click="save(true)">发 布</button>
+        <button class="btn btn-warning" ng-click="save(false)">保存草稿</button>
+    </div>
+</div>

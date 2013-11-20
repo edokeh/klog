@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title ng-bind="title"></title>
     <link rel="stylesheet" href="/assets/admin2.css"/>
@@ -15,13 +16,16 @@
     <script src="js/lib/angular-route.js"></script>
     <script src="js/lib/angular-animate.js"></script>
     <script src="js/lib/angular-sanitize.js"></script>
+    <script src="js/lib/angular-resource.js"></script>
     <script src="js/lib/restangular.js"></script>
     <script src="js/lib/angular-dropdown.js"></script>
     <script src="js/lib/angular-modal.js"></script>
     <script src="js/common/error-tip.js"></script>
     <script src="js/common/seajs-lazy-module.js"></script>
     <script src="js/common/ajax-spinner.js"></script>
-    <script src="js/common/rest.js"></script>
+    <script src="js/common/http-method-override.js"></script>
+    <script src="js/common/angular-scroll.js"></script>
+    <script src="js/common/flash.js"></script>
     <script src="js/app.js"></script>
     <script src="js/nav/index.js"></script>
     <script src="js/nav/controller.js"></script>
@@ -48,7 +52,7 @@
         <ul class="nav navbar-nav" ng-controller="NavCtrl">
             <li ng-class="{active:item.active}" ng-repeat="item in navItems">
                 <a ng-href="#{{item.url}}">
-                    <i ng-if="item.ico" ng-class="item.ico"></i>
+                    <i ng-if="item.ico" class="{{item.ico}}"></i>
                     {{item.name}}
                 </a>
             </li>

@@ -4,7 +4,7 @@ nav.controller({
             {
                 name: '写文章',
                 ico: 'icon-pencil',
-                url: '/comments'
+                url: '/blogs/new'
             },
             {
                 name: '文章',

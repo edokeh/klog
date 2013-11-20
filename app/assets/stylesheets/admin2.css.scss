@@ -4,6 +4,28 @@ body {
   background: #eee;
 }
 
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track-piece {
+  background-color: #CCCCCC;
+  -webkit-border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+  height: 5px;
+  background-color: #999999;
+  -webkit-border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  width: 5px;
+  background-color: #CCCCCC;
+  -webkit-border-radius: 6px;
+}
+
 .navbar-admin {
   min-height: 40px;
   border-radius: 0;
@@ -21,22 +43,45 @@ body {
   }
 }
 
+// ajax 指示器
+.ajax-spinner {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  width: 300px;
+  margin-left: -150px;
+  border-radius: 0 0 5px 5px;
+  color: #c09853;
+  text-align: center;
+  padding: 5px 0;
+  background: #FCF6CF;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  z-index: -1;
+
+  -webkit-transition: all ease-out 0.5s;
+  transition: all ease-out 0.5s;
+  clip: auto;
+
+  .icon-spin {
+    -webkit-animation: spin 0.7s infinite linear;
+    animation: spin 0.7s infinite linear;
+  }
+}
+
+.ajax-spinner.show {
+  top: 42px;
+}
+
 .main {
   position: absolute;
   top: 80px;
   bottom: 10px;
   left: 15px;
   right: 15px;
+}
 
-  @for $i from 1 through 12 {
-    .col-md-#{$i} {
-      height: 100%;
-    }
-  }
-
-  .row, .panel {
-    height: 100%;
-  }
+.full-height {
+  height: 100%;
 }
 
 //.nav-dropdown-menu {
@@ -57,41 +102,51 @@ body {
   .list-group {
     overflow: auto;
     height: calc(100% - 60px);
+  }
 
-    .list-group-item {
-      padding-left: 19px;
-      cursor: pointer;
+  .list-group-item {
+    padding-left: 19px;
+    cursor: pointer;
 
-      &:hover {
-        background: whitesmoke;
-        .tools {
-          display: block;
-        }
+    &:hover {
+      background-color: whitesmoke;
+
+      .tools {
+        opacity: 1;
       }
     }
+  }
 
-    .list-group-item.active {
-      background: whitesmoke;
-      border-color: #ddd;
-      border-left: 4px solid #aaa;
-      color: #333;
-      padding-left: 15px;
-    }
+  .list-group-item.ng-leave {
+    -webkit-transition: all 1s ease-in all; /* Safari/Chrome */
+    -moz-transition: all 1s linear all; /* Firefox */
+    -o-transition: all 1s linear all; /* Opera */
+    height: 0;
+  }
 
-    .list-group-item-text {
-      color: #aaa;
-    }
+  .list-group-item.active {
+    background: whitesmoke;
+    border-color: #ddd;
+    border-left: 4px solid #aaa;
+    color: #333;
+    padding-left: 15px;
+  }
 
-    .tools {
-      display: none;
-      a {
-        font-size: 16px;
-        color: #999;
+  .list-group-item-text {
+    color: #aaa;
+  }
 
-        &:hover {
-          text-decoration: none;
-          color: #333;
-        }
+  .tools {
+    opacity: 0;
+    -webkit-transition: opacity 500ms;
+
+    a {
+      font-size: 16px;
+      color: #999;
+
+      &:hover {
+        text-decoration: none;
+        color: #333;
       }
     }
   }
@@ -134,6 +189,100 @@ body {
 
 .confirm-dialog {
   width: 400px;
+}
+
+// 编辑器
+.blog-editor {
+
+  .panel-body {
+    padding-bottom: 10px;
+    height: calc(100% - 55px);
+  }
+
+  form {
+    border-right: 1px solid #ccc;
+  }
+
+  .form-control {
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .editor-title {
+    font-size: 36px;
+    font-weight: bold;
+    padding: 5px 0;
+    height: 50px;
+  }
+
+  .editor-content {
+    border: 1px solid #ccc;
+    border-right: none;
+    border-left: none;
+    height: calc(100% - 50px - 35px);
+    resize: none;
+    padding: 20px;
+  }
+
+  .tools {
+    position: absolute;
+    right: 15px;
+    top: 55px;
+    a {
+      margin-right: 5px;
+    }
+  }
+
+  // SLUG TAG 等设置
+  .editor-config {
+    padding-top: 5px;
+
+    .col-md-4 {
+      border-right: 1px solid #ccc;
+
+      &:last-of-type {
+        border: none;
+      }
+    }
+
+    .input-group-addon {
+      border: none;
+      background: none;
+      padding: 0;
+    }
+  }
+
+  // 预览
+  .editor-preview-wrap {
+    h1 {
+      margin: 5px;
+      font-weight: bold;
+
+      & >i {
+        color: #999;
+        position: absolute;
+        top: -5px;
+        right: 20px;
+        font-size: 12px;
+        font-style: normal;
+      }
+    }
+    .editor-preview {
+      height: calc(100% - 50px - 30px);
+      overflow: auto;
+      padding: 10px 20px;
+    }
+
+    .tags {
+      height: 30px;
+      padding-top: 5px;
+
+      &> .label {
+        margin-right: 10px;
+      }
+    }
+  }
 }
 
 //// 登录首页
@@ -221,33 +370,6 @@ body {
     height: 20px;
     font-weight: bolder;
   }
-}
-
-.ajax-spinner {
-  position: absolute;
-  left: 50%;
-  top: 9px;
-  width: 300px;
-  margin-left: -150px;
-  border-radius: 0 0 5px 5px;
-  color: #c09853;
-  text-align: center;
-  padding: 5px 0;
-  background: #FCF6CF;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
-
-  -webkit-transition: top 0.2s ease-out;
-  transition: top 0.2s ease-out;
-
-  .icon-spin {
-    -webkit-animation: spin 0.7s infinite linear;
-    animation: spin 0.7s infinite linear;
-  }
-}
-
-.ajax-spinner.show {
-  top: 42px;
-  margin-right: 5px;
 }
 
 // animate
