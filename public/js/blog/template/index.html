@@ -73,7 +73,7 @@
                     </h4>
 
                     <p class="list-group-item-text">
-                        <span style="color:#aaa;margin-right: 10px;"><i class="icon-time"></i> {{ blog.created_at | date:'yyyy-MM-dd'}}</span>
+                        <span style="color:#aaa;margin-right: 10px;"><i class="icon-time"></i> {{ blog.created_at | date:'yyyy-MM-dd HH:mm'}}</span>
                         <span style="color:#aaa"><i class="icon-comments-alt"></i> {{ blog.comment_count }}</span>
                     </p>
                 </div>
@@ -82,18 +82,18 @@
     </div>
     <div class="col-md-9 blog-preview full-height">
         <div class="panel panel-default full-height">
-            <div class="panel-heading clearfix">
-                <h3 class="">{{currBlog.title }}</h3>
-                <div>
-                    <span><i class="icon-time"></i> {{ currBlog.created_at | date: 'HH:mm'  }}</span>
-                    <span ng-if="currBlog.category.name"><i class="icon-book"></i> {{currBlog.category.name}}</span>
-                    <span ng-repeat="tag in currBlog.tag_list"><i class="icon-tag"></i>{{tag}}</span>
+            <div class="panel-heading clearfix" ng-show="currBlog">
+                <div class="pull-left">
+                    <h3><a href="" target="_blank">{{currBlog.title }}</a></h3>
+                    <div class="blog-misc">
+                        <span><i class="icon-book"></i> {{currBlog.category ? currBlog.category.name : '未分类'}}</span>
+                        <span ng-repeat="tag in currBlog.tag_list"><i class="icon-tag"></i> {{tag}}</span>
+                    </div>
                 </div>
 
-                <div class="actions">
-                    <a href="#/blogs/{{currBlog.id}}/edit"><i class="icon-pencil"></i> 修改</a>
-                    <a href=""><i class="icon-trash"> 删除</i></a>
-                    <a href=""><i class="icon-external-link"> 链接</i></a>
+                <div class="actions pull-right">
+                    <a href="#/blogs/{{currBlog.id}}/edit" class="btn btn-primary"><i class="icon-pencil"></i> 修改</a>
+                    <a href="" ng-click="remove(currBlog)" class="btn btn-danger"><i class="icon-trash"> 删除</i></a>
                 </div>
             </div>
             <div class="blog-preview-content">

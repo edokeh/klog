@@ -4,7 +4,7 @@
 define(function(require, exports, module) {
     var marked = require('marked');
 
-    var IndexController = ['$scope', '$routeParams', 'Blog', 'Confirm', 'Flash', function($scope, $routeParams, Blog, confirm, Flash) {
+    var IndexController = ['$scope', '$routeParams', 'Blog', 'Confirm', 'Flash', function($scope, $routeParams, Blog, Confirm, Flash) {
 
         $scope.STATUS = Blog.STATUS;
         $scope.currStatus = Blog.getStatus($routeParams.status);
@@ -23,11 +23,12 @@ define(function(require, exports, module) {
         };
 
         $scope.remove = function(blog) {
-            //confirm.open('确定要删除“' + blog.title + '”？', 'blog/confirm').then(function() {
-            blog.$remove(function() {
-                $scope.blogs = _.without($scope.blogs, blog);
+            Confirm.open('确定要删除“' + blog.title + '”？', 'blog/confirm').then(function() {
+                blog.$remove(function() {
+                    $scope.blogs = _.without($scope.blogs, blog);
+                    $scope.currBlog = $scope.blogs[0];
+                });
             });
-            //});
         };
     }];
 

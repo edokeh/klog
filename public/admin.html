@@ -1,39 +1,14 @@
 <!doctype html>
-<html xmlns:ng="http://angularjs.org" lang="zh" id="ng-app" ng-app="admin">
+<html xmlns:ng="http://angularjs.org" lang="zh">
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="renderer" content="webkit" />
+    <meta name="renderer" content="webkit"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title ng-bind="title"></title>
     <link rel="stylesheet" href="/assets/admin2.css"/>
     <link rel="stylesheet" href="font-awesome/css/font-awesome.css"/>
-    <!--<link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.css"/>-->
-    <script src="js/lib/sea-modules/seajs/seajs/2.1.1/sea.js"></script>
-    <script src="js/lib/underscore.js"></script>
-    <script src="js/lib/jquery-1.10.2.js"></script>
-    <script src="js/lib/angular.js"></script>
-    <script src="js/lib/angular-route.js"></script>
-    <script src="js/lib/angular-animate.js"></script>
-    <script src="js/lib/angular-sanitize.js"></script>
-    <script src="js/lib/angular-resource.js"></script>
-    <script src="js/lib/restangular.js"></script>
-    <script src="js/lib/angular-dropdown.js"></script>
-    <script src="js/lib/angular-modal.js"></script>
-    <script src="js/common/error-tip.js"></script>
-    <script src="js/common/seajs-lazy-module.js"></script>
-    <script src="js/common/ajax-spinner.js"></script>
-    <script src="js/common/http-method-override.js"></script>
-    <script src="js/common/angular-scroll.js"></script>
-    <script src="js/common/flash.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/nav/index.js"></script>
-    <script src="js/nav/controller.js"></script>
-    <script>
-        seajs.config({
-            preload: ['seajs/seajs-text/1.0.3/seajs-text']
-        });
-    </script>
+
     <!--[if lt IE 9]>
     <script src="/assets/html5shiv.js" type="text/javascript"></script>
     <script src="/js/lib/respond.min.js" type="text/javascript"></script>
@@ -42,62 +17,91 @@
     <!--[if lte IE 8]>
     <script src="js/lib/json2.js"></script>
     <![endif]-->
+
+    <script src="js/lib/sea-modules/seajs/seajs/2.1.1/sea.js"></script>
+    <script src="js/lib/sea-modules/xhr-shim.js"></script>
+    <script src="js/lib/underscore.js"></script>
+    <script src="js/lib/jquery-1.10.2.js"></script>
+    <script src="js/lib/angular.js"></script>
+    <script src="js/lib/angular-route.js"></script>
+    <script src="js/lib/angular-animate.js"></script>
+    <script src="js/lib/angular-sanitize.js"></script>
+    <script src="js/lib/angular-resource.js"></script>
+    <script src="js/lib/restangular.js"></script>
+    <script src="js/common/error-tip.js"></script>
+    <script src="js/common/seajs-lazy-module.js"></script>
+    <script src="js/common/ajax-spinner.js"></script>
+    <script src="js/common/http-method-override.js"></script>
+    <script src="js/common/angular-scroll.js"></script>
+    <script src="js/common/flash.js"></script>
+    <script src="js/common/angular-tag-list.js"></script>
+    <script src="js/common/dnd.js"></script>
+    <script src="js/nav/index.js"></script>
+    <script src="js/nav/controller.js"></script>
+    <script>
+        seajs.config({
+            preload: ['seajs/seajs-text/1.0.3/seajs-text']
+        });
+    </script>
 </head>
 <body ng-cloak>
 
 <nav class="navbar navbar-inverse navbar-admin">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/admin">Klog</a>
-        </div>
-        <ul class="nav navbar-nav" ng-controller="NavCtrl">
-            <li ng-class="{active:item.active}" ng-repeat="item in navItems">
-                <a ng-href="#{{item.url}}">
-                    <i ng-if="item.ico" class="{{item.ico}}"></i>
-                    {{item.name}}
-                </a>
-            </li>
-        </ul>
+    <div class="navbar-header">
+        <a class="navbar-brand" href="/admin">Klog</a>
+    </div>
+    <ul class="nav navbar-nav" ng-controller="NavCtrl">
+        <li ng-class="{active:item.active}" ng-repeat="item in navItems">
+            <a ng-href="#{{item.url}}">
+                <i ng-if="item.ico" class="{{item.ico}}"></i>
+                {{item.name}}
+            </a>
+        </li>
+    </ul>
 
-        <!--<ul class="nav navbar-nav navbar-right">-->
-            <!--<li class="dropdown" ng-class="{open:dropdown}">-->
-                <!--<a href class="dropdown-toggle" ng-click="dropdown = !dropdown">-->
-                    <!--功能-->
-                    <!--<span class="caret"></span>-->
-                <!--</a>-->
-                <!--<ul class="dropdown-menu nav-dropdown-menu">-->
-                    <!--<li>-->
-                        <!--<a href="/" target="_blank" title="查看首页">-->
-                            <!--<span class="glyphicon glyphicon-new-window"></span>-->
-                            <!--查看首页-->
-                        <!--</a>-->
-                    <!--</li>-->
-                    <!--<li>-->
-                        <!--<a href="#">-->
-                            <!--<span class="glyphicon glyphicon-user"></span>-->
-                            <!--修改密码-->
-                        <!--</a>-->
-                    <!--</li>-->
-                    <!--<li>-->
-                        <!--<a href="#">-->
-                            <!--<span class="glyphicon glyphicon-cog"></span>-->
-                            <!--博客设置-->
-                        <!--</a>-->
-                    <!--</li>-->
-                    <!--<li class="divider"></li>-->
-                    <!--<li>-->
-                        <!--<a href="#">-->
-                            <!--<span class="glyphicon glyphicon-log-out"></span>-->
-                            <!--退出-->
-                        <!--</a>-->
-                    <!--</li>-->
-                <!--</ul>-->
-            <!--</li>-->
-        <!--</ul>-->
+    <!--<ul class="nav navbar-nav navbar-right">-->
+    <!--<li class="dropdown" ng-class="{open:dropdown}">-->
+    <!--<a href class="dropdown-toggle" ng-click="dropdown = !dropdown">-->
+    <!--功能-->
+    <!--<span class="caret"></span>-->
+    <!--</a>-->
+    <!--<ul class="dropdown-menu nav-dropdown-menu">-->
+    <!--<li>-->
+    <!--<a href="/" target="_blank" title="查看首页">-->
+    <!--<span class="glyphicon glyphicon-new-window"></span>-->
+    <!--查看首页-->
+    <!--</a>-->
+    <!--</li>-->
+    <!--<li>-->
+    <!--<a href="#">-->
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+    <!--修改密码-->
+    <!--</a>-->
+    <!--</li>-->
+    <!--<li>-->
+    <!--<a href="#">-->
+    <!--<span class="glyphicon glyphicon-cog"></span>-->
+    <!--博客设置-->
+    <!--</a>-->
+    <!--</li>-->
+    <!--<li class="divider"></li>-->
+    <!--<li>-->
+    <!--<a href="#">-->
+    <!--<span class="glyphicon glyphicon-log-out"></span>-->
+    <!--退出-->
+    <!--</a>-->
+    <!--</li>-->
+    <!--</ul>-->
+    <!--</li>-->
+    <!--</ul>-->
 </nav>
 
 <div ajax-spinner></div>
 
 <div class="main" ng-view>
 </div>
+<script>
+seajs.use('/js/app');
+</script>
 </body>
 </html>

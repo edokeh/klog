@@ -3,21 +3,49 @@
  */
 define(function(require, exports, module) {
 
-    var Upload = ['$modal', function($modal) {
+    var Upload = ['$scope', '$modalInstance', '$http', 'BlogAttach' , function($scope, $modalInstance, $http, BlogAttach) {
+        $scope.modal = $modalInstance;
+        $scope.attaches = [];
 
-        return {
-            open: function(text, templateUrl) {
-                var modal = $modal.open({
-                    templateUrl: 'blog/upload',
-                    controller: ['$scope', '$modalInstance', function($scope, $modalInstance) {
-                        $scope.text = text;
-                        $scope.modal = $modalInstance;
-                    }]
-                });
-                return modal.result;
-            }
+        $scope.upload = function() {
+            $('#sb').click();
+        };
+
+        $scope.doUpload = function(files) {
+            _.each(files, function(file) {
+                var attach = BlogAttach.create({file: file});
+                $scope.attaches.push(attach);
+            });
+        };
+
+        $scope.remove = function(attach) {
+            attach.$remove(function() {
+                $scope.attaches = _.without($scope.attaches, attach);
+            });
+        };
+
+        $scope.do = function(files) {
+            console.log(files);
         };
     }];
 
-    module.exports = Confirm;
+    function upload(url, file, $http) {
+        var config = {
+            url: url,
+            method: 'POST',
+            data: formData,
+            headers: {
+                'Content-Type': false
+            },
+            transformRequest: function() {
+
+            }
+        };
+
+        var promise = $http(config);
+
+        return promise;
+    }
+
+    module.exports = Upload;
 });

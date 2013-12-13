@@ -52,7 +52,7 @@ angular.module('common').config(['$controllerProvider', '$compileProvider', '$fi
             this.$templateCache = $templateCache;
             this.$rootScope.$on('$routeChangeStart', function(e, target) {
                 var route = target && target.$$route;
-                if (route) {
+                if (route && route.moduleUrl) {
                     route.resolve = route.resolve || {};
                     _this.handleRouteChange(route);
                 }
@@ -104,6 +104,7 @@ angular.module('common').config(['$controllerProvider', '$compileProvider', '$fi
             this.register.controller(module.controllers || {});
             this.register.factory(module.factories || {});
             this.register.filter(module.filters || {});
+            this.register.directive(module.directives || {});
 
             for (var key in module.templates) {
                 if (module.templates.hasOwnProperty(key)) {

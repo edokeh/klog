@@ -26,6 +26,10 @@ body {
   -webkit-border-radius: 6px;
 }
 
+.modal {
+  display: block;
+}
+
 .navbar-admin {
   min-height: 40px;
   border-radius: 0;
@@ -46,7 +50,7 @@ body {
 // ajax 指示器
 .ajax-spinner {
   position: absolute;
-  top: 10px;
+  top: 0;
   left: 50%;
   width: 300px;
   margin-left: -150px;
@@ -58,8 +62,8 @@ body {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
   z-index: -1;
 
-  -webkit-transition: all ease-out 0.5s;
-  transition: all ease-out 0.5s;
+  -webkit-transition: all cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.5s;
+  transition: all cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.5s;
   clip: auto;
 
   .icon-spin {
@@ -69,7 +73,7 @@ body {
 }
 
 .ajax-spinner.show {
-  top: 42px;
+  top: 40px;
 }
 
 .main {
@@ -158,22 +162,32 @@ body {
   .panel-heading {
     height: 60px;
     background: white;
-    padding-top: 20px;
 
     h3 {
       margin: 0;
     }
 
-    a {
-      font-size: 14px;
-      color: #999;
-      margin-right: 10px;
-
-      &:hover {
-        text-decoration: none;
-        color: #333;
+    .blog-misc {
+      span {
+        margin-right: 15px;
+        color: #aaa;
       }
     }
+
+    .actions {
+      margin-top: 3px;
+    }
+
+    //a {
+    //  font-size: 14px;
+    //  color: #999;
+    //  margin-right: 10px;
+    //
+    //  &:hover {
+    //    text-decoration: none;
+    //    color: #333;
+    //  }
+    //}
   }
 
   .blog-preview-content {
@@ -225,12 +239,25 @@ body {
     padding: 20px;
   }
 
+  // 上传、提示等按钮
   .tools {
     position: absolute;
     right: 15px;
-    top: 55px;
+    top: 60px;
+
     a {
       margin-right: 5px;
+      text-decoration: none;
+      color: #000;
+      opacity: 0.3;
+
+      &:hover {
+        opacity: 0.8;
+      }
+
+      i {
+        font-size: 1.2em;
+      }
     }
   }
 
@@ -259,7 +286,7 @@ body {
       margin: 5px;
       font-weight: bold;
 
-      & >i {
+      & > i {
         color: #999;
         position: absolute;
         top: -5px;
@@ -278,10 +305,129 @@ body {
       height: 30px;
       padding-top: 5px;
 
-      &> .label {
+      & > .label {
         margin-right: 10px;
       }
     }
+  }
+}
+
+// 上传
+.upload-attaches {
+  position: absolute;
+  bottom: 30px;
+  right: 15px;
+
+  .panel-heading {
+    padding: 5px 10px;
+  }
+
+  .action {
+    text-decoration: none;
+    display: inline-block;
+    padding: 2px 5px;
+    float: right;
+    color: #000;
+    opacity: 0.3;
+
+    &:hover {
+      opacity: 0.8;
+      background: white;
+    }
+  }
+
+  ul {
+    max-height: 170px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .list-group-item {
+    border-top: none;
+    width: 250px;
+  }
+
+  .title {
+    display: inline-block;
+    margin-right: 10px;
+    width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+
+  .progress {
+    height: 10px;
+    width: 100px;
+    display: inline-block;
+    margin-bottom: 0;
+  }
+
+  //
+  //  ul {
+  //    list-style: none;
+  //    padding: 0;
+  //  }
+  //
+  //
+  //  li {
+  //    margin-bottom: 5px;
+  //    padding: 5px 10px;
+  //    width: 300px;
+  //  }
+  //
+  //  .summary {
+  //    float: right;
+  //    clear: both;
+  //    width: 100px;
+  //  }
+  //
+  //  .title {
+  //    margin-right: 10px;
+  //  }
+  //
+  //
+  //  a {
+  //    margin: 0 5px;
+  //
+  //    &:hover {
+  //      text-decoration: none;
+  //    }
+  //  }
+}
+
+// 拖拽文件
+.upload-drop {
+  position: absolute;
+  z-index: 1000;
+  height: calc(100% - 50px - 35px - 8px);
+  width: calc(100% - 30px);
+  top: 53px;
+  border: 4px dashed $gray-light;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: $gray-light;
+
+  .tip {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -10px;
+    margin-left: -70px;
+  }
+}
+
+.upload-drop.dragover {
+  border-color: lighten(#0000FF, 30%);
+  background: rgba($gray-lighter, 0.8);
+}
+
+.dragover {
+  .upload-drop {
+    display: table-cell;
+    vertical-align: middle;
   }
 }
 

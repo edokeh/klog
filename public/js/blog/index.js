@@ -10,14 +10,19 @@ define(function(require, exports, module) {
         },
         templates: {
             'blog/index': require('./template/index.html'),
-            'blog/confirm': require('./template/confirm.html'),
+            'blog/upload': require('./template/upload.html'),
             'blog/form': require('./template/form.html')
         },
         factories: {
             'Confirm': require('./service/confirm'),
             'Blog': require('./service/blog'),
+            'BlogAttach': require('./service/attach'),
             'BlogCategory': require('./service/blog-category'),
             'BlogForm': require('./service/blog-form')
+        },
+        directives: {
+            'fileSelect': require('./directive/file-select'),
+            'fileDrop': require('./directive/file-drop')
         }
     };
 });

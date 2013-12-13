@@ -39,7 +39,6 @@ nav.controller({
                     item.active = false;
                 }
             });
-
         });
     }]
 });

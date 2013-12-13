@@ -8,15 +8,13 @@ class Admin::AttachesController < Admin::ApplicationController
   #上传附件
   def create
     # JS 中会传递对于图像的尺寸要求 max_width
-    attach = Attach.new_by_params(params[:attach])
+    @attach = Attach.new_by_params(params.slice(:file))
 
-    if attach.save
-      result = {:status => 'success', :attach=>attach.json_data}
+    if @attach.save
+      render
     else
-      result = {:status => 'error'}
+      render :json => @attach.errors, :status => 422
     end
-
-    render :json=>result.to_json
   end
 
   def destroy
@@ -24,10 +22,9 @@ class Admin::AttachesController < Admin::ApplicationController
     attach.destroy
 
     respond_to do |format|
-      format.html { redirect_to :back, :notice=>'删除成功！' }
+      format.html { redirect_to :back, :notice => '删除成功！' }
       format.json { head :no_content }
     end
-
   end
 
 end

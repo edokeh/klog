@@ -5,7 +5,7 @@ define(function (require) {
     var _ = require('_');
     var $ = require('$');
     var Events = require('events');
-    var html = require('./pop-confirm.html');
+    var html = require('./pop-upload.html');
 
     var PopConfirm = function () {
         _.bindAll(this);
