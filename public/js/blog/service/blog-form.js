@@ -108,11 +108,6 @@ define(function(require, exports, module) {
                     });
                 };
 
-                //
-                $scope.doFileSelect = function(){
-
-                };
-
                 // 上传
                 $scope.doUpload = function(files) {
                     _.each(files, function(file) {
@@ -122,7 +117,7 @@ define(function(require, exports, module) {
                     if (files.length > 0) {
                         $scope.attachShow = true;
                     }
-                }
+                };
 
                 // 拖拽事件中是否有文件
                 function hasFile(event) {

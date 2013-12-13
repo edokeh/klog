@@ -10,7 +10,6 @@ define(function(require, exports, module) {
         },
         templates: {
             'blog/index': require('./template/index.html'),
-            'blog/upload': require('./template/upload.html'),
             'blog/form': require('./template/form.html')
         },
         factories: {
