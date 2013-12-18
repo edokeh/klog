@@ -22,24 +22,17 @@
     <script src="js/lib/sea-modules/xhr-shim.js"></script>
     <script src="js/lib/underscore.js"></script>
     <script src="js/lib/jquery-1.10.2.js"></script>
-    <script src="js/lib/angular.js"></script>
-    <script src="js/lib/angular-route.js"></script>
-    <script src="js/lib/angular-animate.js"></script>
-    <script src="js/lib/angular-sanitize.js"></script>
-    <script src="js/lib/angular-resource.js"></script>
-    <script src="js/lib/restangular.js"></script>
-    <script src="js/common/error-tip.js"></script>
-    <script src="js/common/seajs-lazy-module.js"></script>
-    <script src="js/common/ajax-spinner.js"></script>
-    <script src="js/common/http-method-override.js"></script>
-    <script src="js/common/angular-scroll.js"></script>
-    <script src="js/common/flash.js"></script>
-    <script src="js/common/angular-tag-list.js"></script>
-    <script src="js/common/dnd.js"></script>
-    <script src="js/nav/index.js"></script>
-    <script src="js/nav/controller.js"></script>
     <script>
         seajs.config({
+            alias: {
+                'angularjs': 'angular/angularjs/1.2.3/angular',
+                'angular-animate': 'angular/angularjs/1.2.3/angular-animate',
+                'angular-resource': 'angular/angularjs/1.2.3/angular-resource',
+                'angular-route': 'angular/angularjs/1.2.3/angular-route',
+                'angular-sanitize': 'angular/angularjs/1.2.3/angular-sanitize',
+
+                '_': 'gallery/underscore/1.4.4/underscore'
+            },
             preload: ['seajs/seajs-text/1.0.3/seajs-text']
         });
     </script>
@@ -101,7 +94,7 @@
 <div class="main" ng-view>
 </div>
 <script>
-seajs.use('/js/app');
+    seajs.use('/js/app');
 </script>
 </body>
 </html>

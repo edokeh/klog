@@ -23,7 +23,7 @@ define(function(require, exports, module) {
         };
 
         $scope.remove = function(blog) {
-            Confirm.open('确定要删除“' + blog.title + '”？', 'blog/confirm').then(function() {
+            Confirm.open('确定要删除“' + blog.title + '”？').then(function() {
                 blog.$remove(function() {
                     $scope.blogs = _.without($scope.blogs, blog);
                     $scope.currBlog = $scope.blogs[0];
@@ -32,8 +32,8 @@ define(function(require, exports, module) {
         };
     }];
 
-    IndexController.template = 'blog/index';
+    IndexController.templateUrl = 'blog/index';
     IndexController.title = '文章列表';
 
-    module.exports = IndexController;
+    module.exports = {'blog.index': IndexController};
 });

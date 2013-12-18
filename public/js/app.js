@@ -1,39 +1,44 @@
 define(function(require, exports, module) {
+    var angular = require('angularjs');
+    var ngAnimate = require('angular-animate');
+    var ngResource = require('angular-resource');
+    var ngRoute = require('angular-route');
+    var ngSanitize = require('angular-sanitize');
+    var SeajsLazyAngular = require('seajs-lazy-angular');
     var bootstrap = require('bootstrap/index');
+    var nav = require('./nav/index');
+    var common = require('./common/index');
 
-    var admin = angular.module('admin', ['ngAnimate', 'ngRoute', 'ngResource', 'ngSanitize', 'restangular', 'common', nav.name, bootstrap.name]);
+    var admin = angular.module('admin', [
+        ngAnimate.name,
+        ngRoute.name,
+        ngResource.name,
+        ngSanitize.name,
+        nav.name,
+        bootstrap.name,
+        common.name
+    ]);
 
-    admin.config(['$routeProvider', 'SeajsLazyModuleProvider', function($routeProvider, SeajsLazyModuleProvider) {
-
-        SeajsLazyModuleProvider.setTilteSuffix(' - Klog 后台管理');
-        var category = SeajsLazyModuleProvider.create('/js/category/index');
-        var blog = SeajsLazyModuleProvider.create('/js/blog/index');
-        var page = SeajsLazyModuleProvider.create('/js/page/index');
-        var comment = SeajsLazyModuleProvider.create('/js/comment/index');
-
-        $routeProvider
-            .when('/blogs/new', blog.routeFor('blog.new'))
-            .when('/blogs/:id/edit', blog.routeFor('blog.edit'))
-            .when('/blogs', blog.routeFor('blog.index'))
-            .when('/pages', page.routeFor('page.index'))
-            .when('/categories', category.routeFor('category.index'))
-            .when('/comments', comment.routeFor('comments.index'))
-            .when('/sb', {controller: 'xx', template: '<h1>{{name}}</h1>'})
-            .otherwise({redirectTo: '/blogs'});
-
+    admin.config(SeajsLazyAngular.cacheInternals);
+    SeajsLazyAngular.patchAngular();
+    SeajsLazyAngular.setResolveCallback(['$rootScope', 'controller', function($rootScope, controller) {
+        $rootScope.title = controller.title + ' - Klog 后台管理';
     }]);
 
-    admin.run(['SeajsLazyModule', '$templateCache', function(SeajsLazyModule, $templateCache) {
-        SeajsLazyModule.init($templateCache);
+    admin.config(['$routeProvider', function($routeProvider) {
+
+        var blog = SeajsLazyAngular.createLazyStub('/js/blog/index');
+        var blogEdit = SeajsLazyAngular.createLazyStub('/js/blog-edit/index');
+
+        $routeProvider
+            .when('/blogs/new', blogEdit.createRoute('blogEdit.form'))
+            .when('/blogs/:id/edit', blogEdit.createRoute('blogEdit.edit'))
+            .when('/blogs', blog.createRoute('blog.index'))
+            //            .when('/pages', page.routeFor('page.index'))
+            //            .when('/categories', category.routeFor('category.index'))
+            //            .when('/comments', comment.routeFor('comments.index'))
+            .otherwise({redirectTo: '/blogs'});
     }]);
 
     angular.bootstrap(window.document, ['admin']);
 });
-
-
-
-//var sb = angular.module('sb', []);
-//
-//angular.module('sb').controller('xx', function($scope){
-//    $scope.name = "sb";
-//});

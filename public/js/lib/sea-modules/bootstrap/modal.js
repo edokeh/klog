@@ -55,7 +55,7 @@ define(function(require, exports, module) {
         })
 
     /**
-     * A helper directive for the $modal service. It creates a backdrop element.
+     * A helper directive for the $modal factory. It creates a backdrop element.
      */
         .directive('modalBackdrop', ['$modalStack', '$timeout', function($modalStack, $timeout) {
             return {

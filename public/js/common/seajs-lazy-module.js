@@ -97,7 +97,7 @@ angular.module('common').config(['$controllerProvider', '$compileProvider', '$fi
             }
         },
 
-        // 注册 module，缓存、并将 controller/service 等注册
+        // 注册 module，缓存、并将 controller/factory 等注册
         registerModule: function(route, module) {
             this.modules[route.moduleUrl] = module;
 
