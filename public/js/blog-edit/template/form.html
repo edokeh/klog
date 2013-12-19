@@ -1,17 +1,28 @@
-<div class="panel panel-info full-height blog-editor" dropable drag-hover="toggleFileDrop($event)"
-     drag-over="setCursor($event, 'none')">
+<div class="panel panel-info full-height blog-editor">
     <div class="panel-body row">
-        <form class="col-md-6 full-height" name="form">
+        <form class="col-md-6 full-height" name="form" novalidate>
             <input type="text" class="editor-title form-control" placeholder="文章标题" autofocus name="title"
-                   ng-model="blog.title"
+                   ng-model="blog.title" maxlength="25"
                    required/>
-            <textarea class="editor-content form-control" placeholder="写点什么..." ng-model="blog.content" name="content"
-                      ng-scroll="scrollSync(scrollTopPercent)"
-                      ng-scroll-top-percent="scrollTopPercent"></textarea>
 
-            <div class="upload-drop" ng-show="isFileDropShow" ng-class="{dragover:fileDropDragOver}" dropable
-                 drag-hover="toggleFileDropClass($event)" drag-over="setCursor($event, 'copy')"
-                 drop="dropUpload($event)">
+            <div class="" style="position: absolute;right:10px;top:10px;">
+                <button class="btn btn-primary" ng-click="save(true)">
+                    保 存 <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                </ul>
+            </div>
+
+            <textarea class="editor-content form-control" placeholder="写点什么..." ng-model="blog.content" name="content"
+                      ng-scroll1="scrollSync(scrollTopPercent)"
+                      ng-scroll-top-percent1="scrollTopPercent" scroll-pos="sb"></textarea>
+
+            <div class="upload-drop" file-drop="doUpload(files)" accept="{{UPLOAD_FILE_TYPES}}">
                 <div class="tip">将文件拖至此处</div>
             </div>
             <div class="panel panel-default upload-attaches" ng-class="{'panel-info': attachShow}"
@@ -35,20 +46,25 @@
                             </div>
                         </div>
                         <div ng-if="!attach.file">
-                            <strong class="title" style="width: 150px"><a title="{{attach.file_name}}" ng-href="{{attach.url}}"
+                            <strong class="title" style="width: 150px"><a title="{{attach.file_name}}"
+                                                                          ng-href="{{attach.url}}"
                                                                           target="_blank">{{attach.file_name}}</a></strong>
-                            <a class="action" title="删除附件" ng-click="removeAttach(attach)" href=""><i class="icon-trash"></i></a>
-                            <a class="action" title="插入文章" ng-click="insertTo(attach)" href=""><i class="icon-link"></i></a>
+                            <a class="action" title="删除附件" ng-click="removeAttach(attach)" href=""><i
+                                    class="icon-trash"></i></a>
+                            <a class="action" title="插入文章" ng-click="insertCode(attach)" href=""><i
+                                    class="icon-link"></i></a>
                         </div>
                     </li>
                 </ul>
             </div>
             <div class="tools">
-                <a href="" file-input accept="{{UPLOAD_FILE_TYPES}}" ng-select="doUpload(files)" title="上传图片或附件"><i class="icon-upload-alt"></i></a>
                 <a href="" ng-click="showTip()" title="Markdown 帮助"><i class="icon-question-sign"></i></a>
+                <a href="" file-input="doUpload(files)" accept="{{UPLOAD_FILE_TYPES}}" title="上传图片或附件"><i
+                        class="icon-upload-alt"></i></a>
+                <a href=""><i class="icon-paperclip"></i> <span class="badge">42</span></a>
             </div>
             <div class="editor-config row">
-                <div class="col-md-4">
+                <div class="col col-md-4">
                     <div class="input-group input-group-sm">
                         <span class="input-group-addon"><i class="icon-book"></i></span>
                         <select class="form-control" ng-model="blog.category_id"
@@ -57,13 +73,13 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col col-md-4">
                     <div class="input-group input-group-sm">
                         <span class="input-group-addon"><i class="icon-link "></i></span>
                         <input class="form-control" type="text" placeholder="URL Slug" ng-model="blog.slug"/>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col col-md-4">
                     <div class="input-group input-group-sm">
                         <span class="input-group-addon"><i class="icon-tags"></i></span>
                         <input class="form-control" type="text" placeholder="标签" ng-model="blog.tag_list" tag-list/>
@@ -74,8 +90,8 @@
         <div class="col-md-6 full-height editor-preview-wrap">
             <h1><i>预览</i>{{blog.title}} &nbsp;</h1>
 
-            <div class="editor-preview" ng-bind-html="htmlContent" ng-scroll="scrollSync(scrollTopPercent)"
-                 ng-scroll-top-percent="scrollTopPercent"></div>
+            <div class="editor-preview" ng-bind-html="htmlContent" ng-scroll1="scrollSync(scrollTopPercent)"
+                 ng-scroll-top-percent1="scrollTopPercent" scroll-pos="sb"></div>
 
             <div class="tags">
                 <span class="label label-primary" ng-repeat="tag in blog.tag_list">{{tag}}</span>

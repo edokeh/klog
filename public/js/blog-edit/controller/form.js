@@ -9,7 +9,7 @@ define(function(require, exports, module) {
             $scope.blog = Blog.get({id: $routeParams.id});
         }
         else {
-            $scope.blog = new Blog();
+            $scope.blog = new Blog({content: ''});
         }
 
         $scope.UPLOAD_FILE_TYPES = '.jpg, .jpeg, .gif, .png, .pdf, .ppt, .pptx, .rar, .zip, .txt';
@@ -24,6 +24,10 @@ define(function(require, exports, module) {
                     $location.url('/blogs');
                 });
             }
+        };
+
+        $scope.insertCode = function(attach) {
+            $scope.blog.content += $scope.codeFor(attach);
         };
 
         Editor.addPreviewFn($scope, {

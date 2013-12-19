@@ -11,12 +11,12 @@ define(function(require, exports, module) {
     editor.factory(require('./factory/editor'));
 
     editor.directive(require('./directive/file-input'));
-    editor.directive(require('./directive/dropable'));
+    editor.directive(require('./directive/file-drop'));
+    editor.directive(require('./directive/scroll-pos'));
 
     editor.template({
         'editor/tip': require('./template/tip.html')
     });
-
 
     module.exports = editor;
 });

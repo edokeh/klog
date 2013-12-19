@@ -32,7 +32,7 @@ define(function(require, exports, module) {
 
         $routeProvider
             .when('/blogs/new', blogEdit.createRoute('blogEdit.form'))
-            .when('/blogs/:id/edit', blogEdit.createRoute('blogEdit.edit'))
+            .when('/blogs/:id/edit', blogEdit.createRoute('blogEdit.form'))
             .when('/blogs', blog.createRoute('blog.index'))
             //            .when('/pages', page.routeFor('page.index'))
             //            .when('/categories', category.routeFor('category.index'))

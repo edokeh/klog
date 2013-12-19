@@ -1,6 +1,6 @@
 /**
- * 为元素提供类似 input[type=file] 的功能
- * 示例 <a file-input ng-select="do(files)" accept=".jpg, .png"></a>
+ * 为元素提供类似 input[type=file] 的功能，点击后出现上传框
+ * 示例 <a file-input="do(files)" accept=".jpg, .png"></a>
  */
 define(function(require, exports, module) {
     module.exports = {
@@ -8,7 +8,7 @@ define(function(require, exports, module) {
             return {
                 restrict: 'CA',
                 scope: {
-                    ngSelect: '&',
+                    fileInput: '&',
                     accept: '@'
                 },
                 link: function(scope, element, attrs) {
@@ -18,19 +18,25 @@ define(function(require, exports, module) {
                         fileInput.click();
                     });
 
+                    element.on('$destroy', removeFileInput);
+
                     // 创建 input file
                     function createInput() {
-                        if (createInput.fileInput) {
-                            createInput.fileInput.remove();
-                        }
+                        removeFileInput();
                         createInput.fileInput = angular.element('<input type="file" multiple accept="' + scope.accept + '" />');
                         createInput.fileInput.bind('change', function(e) {
                             var fileList = e.target.files;
                             scope.$apply(function() {
-                                scope.ngSelect({files: fileList});
+                                scope.fileInput({files: fileList});
                             });
                         });
                         return createInput.fileInput;
+                    }
+
+                    function removeFileInput() {
+                        if (createInput.fileInput) {
+                            createInput.fileInput.remove();
+                        }
                     }
                 }
             };
