@@ -50,7 +50,7 @@ define(function(require, exports, module) {
 
                     var hoverClass = scope.hoverClass || 'dragover';
 
-                    // 拖动文件到主页面时显示 Drop 框
+                    // 拖动文件到 document 时显示 Drop 框
                     bindDragHover($document, function(e) {
                         element.toggle(e.type === 'dragenter' && hasFile(e));
                     });
@@ -67,7 +67,8 @@ define(function(require, exports, module) {
                     // drop file
                     element.on('drop', function(e) {
                         e.preventDefault();
-                        element.removeClass('dragover').hide();
+                        element.removeClass('dragover');
+                        $document.trigger('dragleave');
 
                         var files = _.filter(e.originalEvent.dataTransfer.files, function(file) {
                             return typeReg.test(file.name);

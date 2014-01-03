@@ -37,17 +37,6 @@ define(function(require, exports, module) {
                         $scope[options.dest] = data;
                     });
                 });
-
-                // 滚动条同步
-                $scope.scrollSync = function(scrollTopPercent) {
-                    if ($scope.changed) {
-                        $scope.changed = false;
-                        return;
-                    }
-                    // 避免死循环
-                    $scope.scrollTopPercent = scrollTopPercent;
-                    $scope.changed = true;
-                };
             },
 
             /**

@@ -10,7 +10,8 @@ define(function(require, exports, module) {
     blogEdit.controller(require('./controller/form'));
 
     blogEdit.template({
-        'blogEdit/form': require('./template/form.html')
+        'blogEdit/form' : require('./template/form2.html'),
+        'blogEdit/config': require('./template/config.html')
     });
 
     module.exports = blogEdit;

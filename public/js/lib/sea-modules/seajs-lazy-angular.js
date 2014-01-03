@@ -76,7 +76,16 @@ define(function(require) {
 
                     // get controller/template
                     var controller = m.retrieveController(controllerName);
-                    var template = $templateCache.get(controller.templateUrl);
+                    var template;
+                    if (controller.template) {
+                        template = controller.template;
+                    }
+                    else if (controller.templateUrl) {
+                        template = $templateCache.get(controller.templateUrl);
+                    }
+                    else {
+                        template = $templateCache.get(moduleUrl);
+                    }
 
                     // invoke resolveCallback
                     $injector.invoke(resolveCallback, null, {controller: controller});
@@ -152,6 +161,12 @@ define(function(require) {
                     angular.forEach(templates, function(v, k) {
                         $templateCache.put(k, v);
                     });
+                }]);
+            },
+
+            template2: function(template) {
+                this.run(['$templateCache', function($templateCache) {
+                    $templateCache.put(template.uri, template.html);
                 }]);
             },
 

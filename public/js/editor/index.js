@@ -12,7 +12,7 @@ define(function(require, exports, module) {
 
     editor.directive(require('./directive/file-input'));
     editor.directive(require('./directive/file-drop'));
-    editor.directive(require('./directive/scroll-pos'));
+    editor.directive(require('./directive/scroll-top-percent'));
 
     editor.template({
         'editor/tip': require('./template/tip.html')

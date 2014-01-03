@@ -26,6 +26,14 @@ define(function(require, exports, module) {
             }
         };
 
+        $scope.toggleConfig = function(e) {
+            $scope.isConfigOpen = !$scope.isConfigOpen;
+            var pos = $(e.currentTarget).position();
+
+            $scope.configTop = pos.top;
+            $scope.configLeft = pos.left;
+        };
+
         $scope.insertCode = function(attach) {
             $scope.blog.content += $scope.codeFor(attach);
         };

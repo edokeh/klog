@@ -16,6 +16,14 @@ define("seajs/seajs-text/1.0.3/seajs-text-debug", [], function() {
             globalEval('define("' + uri + '#", [], "' + jsEscape(content) + '")');
         }
     });
+//    // normal text
+//    register({
+//        name: "text",
+//        ext: [".html" ],
+//        exec: function(uri, content) {
+//            globalEval('define("' + uri + '#", [], function(require, exports, module) { return { uri : module.uri, html : "' + jsEscape(content) + '"}})');
+//        }
+//    });
     // json
     register({
         name: "json",
