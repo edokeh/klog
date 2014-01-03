@@ -14,7 +14,6 @@ define(function(require, exports, module) {
     common.factory(require('./factory/category'));
     common.factory(require('./factory/attach'));
 
-    common.directive(require('./directive/angular-scroll'));
     common.directive(require('./directive/angular-tag-list'));
 
     common.config(require('./config/http-method-override'));
