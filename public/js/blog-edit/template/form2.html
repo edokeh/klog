@@ -1,0 +1,70 @@
+<div class="panel panel-info full-height blog-editor">
+    <div class="panel-body row">
+        <div class="title">
+            <input type="text" class="form-control" placeholder="文章标题" name="title"
+                   ng-model="blog.title" maxlength="25" required autofocus/>
+        </div>
+        <div class="col-md-6 content-wrap">
+            <textarea class="content form-control" placeholder="写点什么..." ng-model="blog.content" name="content"
+                      scroll-top-percent="scrollTopPercent"></textarea>
+
+            <div class="upload-drop" file-drop="doUpload(files)" accept="{{UPLOAD_FILE_TYPES}}">
+                <div class="tip">将文件拖至此处</div>
+            </div>
+            <div class="panel panel-default upload-attaches" ng-class="{'panel-info': attachShow}"
+                 ng-show="attaches.length > 0">
+                <div class="panel-heading" ng-click="attachShow=true" ng-show="!attachShow">
+                    <a href=""><i class="icon-paperclip"></i> {{attaches.length}} 个附件</a>
+                </div>
+                <div class="panel-heading" ng-show="attachShow">
+                    <span><i class="icon-paperclip"></i> {{attaches.length}} 个附件</span>
+                    <a href="" ng-click="attachShow=false" title="最小化" class="icon-minus action"></a>
+                </div>
+                <ul class="list-group" ng-show="attachShow">
+                    <li class="list-group-item" ng-repeat="attach in attaches">
+                        <div ng-if="attach.file">
+                            <strong class="title">{{attach.file.name}}</strong>
+
+                            <div class="progress progress-striped active">
+                                <div class="progress-bar" role="progressbar" ng-style="{width: attach.percent+'%'}">
+                                    <span class="sr-only">{{attach.percent}}% Complete</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="!attach.file">
+                            <strong class="title" style="width: 150px"><a title="{{attach.file_name}}"
+                                                                          ng-href="{{attach.url}}"
+                                                                          target="_blank">{{attach.file_name}}</a></strong>
+                            <a class="action" title="删除附件" ng-click="removeAttach(attach)" href=""><i
+                                    class="icon-trash"></i></a>
+                            <a class="action" title="插入文章" ng-click="insertCode(attach)" href=""><i
+                                    class="icon-link"></i></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="tools">
+                <a href="" ng-click="showTip()" title="Markdown 帮助"><i class="icon-question-sign"></i></a>
+                <a href="" file-input="doUpload(files)" accept="{{UPLOAD_FILE_TYPES}}" title="上传图片或附件"><i
+                        class="icon-upload-alt"></i></a>
+                <a href=""><i class="icon-paperclip"></i></a>
+            </div>
+        </div>
+        <div class="col-md-6 preview-wrap">
+            <em class="tip">预览</em>
+
+            <div class="preview" ng-bind-html="htmlContent" scroll-top-percent="scrollTopPercent"></div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <div class="btn-group1">
+            <button class="btn btn-default" ng-click="save(true)">保 存</button>
+            <button class="btn btn-default" ng-click="save(true)">发 布</button>
+            <button class="btn btn-default" ng-click="toggleConfig($event)"><i class="icon-cog"></i></button>
+        </div>
+        <div class="popover top fade" popover-for="configTrigger">
+            <div class="arrow"></div>
+            <div ng-include="relativeUrl('./config.html')"></div>
+        </div>
+    </div>
+</div>
