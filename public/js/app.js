@@ -31,7 +31,7 @@ define(function(require, exports, module) {
         var blogEdit = SeajsLazyAngular.createLazyStub('/js/blog-edit/index');
 
         $routeProvider
-            .when('/blogs/new', blogEdit.createRoute('blogEdit.form'))
+            .when('/blogs/new', blogEdit.createRoute('./controller/form'))
             .when('/blogs/:id/edit', blogEdit.createRoute('blogEdit.form'))
             .when('/blogs', blog.createRoute('blog.index'))
             //            .when('/pages', page.routeFor('page.index'))

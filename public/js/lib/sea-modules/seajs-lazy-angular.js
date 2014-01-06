@@ -14,6 +14,17 @@ define(function(require) {
                 cachedInternals.$compileProvider = $compileProvider;
                 cachedInternals.$filterProvider = $filterProvider;
                 cachedInternals.$controllerProvider = $controllerProvider;
+
+                cachedInternals.$provide.factory({
+                    RelativeUrl: function() {
+                        return function(module) {
+                            return function(url) {
+                                var templateUrl = getTemplateUrl(module.uri);
+                                return seajs.resolve(url + '#', templateUrl);
+                            };
+                        };
+                    }
+                });
             }
         ],
 
@@ -49,16 +60,17 @@ define(function(require) {
     };
 
     function LazyStub(url, resolveCallback) {
-        this.url = url;
+        this.url = seajs.resolve(url);
         this.resolveCallback = resolveCallback || angular.noop;
     }
 
     LazyStub.prototype.createRoute = function(controllerName, options) {
         var moduleUrl = this.url;
         var resolveCallback = this.resolveCallback;
+        var controllerUrl = seajs.resolve(controllerName, this.url);
 
         options = options || {};
-        options.controller = controllerName;
+        options.controller = controllerUrl;
         options.resolve = {
             module: ['$q', '$route', '$templateCache', '$exceptionHandler', '$injector', function($q, $route, $templateCache, $exceptionHandler, $injector) {
                 var defer = $q.defer();
@@ -75,22 +87,27 @@ define(function(require) {
                     m.resolveRun($injector);
 
                     // get controller/template
-                    var controller = m.retrieveController(controllerName);
-                    var template;
+                    var controller = m.retrieveController(controllerUrl);
                     if (controller.template) {
-                        template = controller.template;
-                    }
-                    else if (controller.templateUrl) {
-                        template = $templateCache.get(controller.templateUrl);
+                        var template = controller.template;
+                        templateDefer.resolve(template);
                     }
                     else {
-                        template = $templateCache.get(moduleUrl);
+                        var templateUrl;
+                        if (controller.templateUrl) {
+                            templateUrl = seajs.resolve(controller.templateUrl + '#', controllerUrl);
+                        }
+                        else {
+                            templateUrl = getTemplateUrl(controllerUrl);
+                        }
+                        require.async(templateUrl + '#', function(template) {
+                            templateDefer.resolve(template);
+                        });
                     }
 
                     // invoke resolveCallback
                     $injector.invoke(resolveCallback, null, {controller: controller});
 
-                    templateDefer.resolve(template);
                     defer.resolve(m);
                 });
 
@@ -156,6 +173,9 @@ define(function(require) {
              * 注册模板，模块注册时会将之写入 $templateCache
              * @param templates {Object} 模板名称与内容的键值对
              */
+            seajsController: function(controller) {
+                this.controller(controller.__moduleUri, controller);
+            },
             template: function(templates) {
                 this.run(['$templateCache', function($templateCache) {
                     angular.forEach(templates, function(v, k) {
@@ -195,6 +215,15 @@ define(function(require) {
             // TODO Implement the rest of the angular.module interface
         };
         return lazyModule;
+    }
+
+    // 根据约定规则，从 controller url 生成对应模板的 url
+    // http://x.com/blog/controller/index.js  => http://x.com/blog/template/index.html
+    function getTemplateUrl(controllerUrl) {
+        var arr = controllerUrl.split('/');
+        var controllerName = arr[arr.length - 1].replace(/\.js$/, '');
+        var templateUrl = '../template/' + controllerName + '.html';
+        return seajs.resolve(templateUrl + '#', controllerUrl);
     }
 
     return SeajsLazyAngular;

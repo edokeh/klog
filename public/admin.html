@@ -94,6 +94,11 @@
 <div class="main" ng-view>
 </div>
 <script>
+    seajs.on('exec', function(m) {
+        if(m.exports){
+            m.exports.__moduleUri = m.uri;
+        }
+    })
     seajs.use('/js/app');
 </script>
 </body>

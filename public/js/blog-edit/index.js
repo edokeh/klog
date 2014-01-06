@@ -7,12 +7,9 @@ define(function(require, exports, module) {
 
     var blogEdit = angular.module('blog', [editor.name]);
 
-    blogEdit.controller(require('./controller/form'));
+    blogEdit.seajsController(require('./controller/form'));
 
-    blogEdit.template({
-        'blogEdit/form' : require('./template/form2.html'),
-        'blogEdit/config': require('./template/config.html')
-    });
+    blogEdit.directive(require('./directive/popover-for'));
 
     module.exports = blogEdit;
 });
