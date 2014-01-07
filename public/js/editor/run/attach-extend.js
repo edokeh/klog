@@ -16,10 +16,10 @@ define(function(require, exports, module) {
                 data: data,
                 transformRequest: function(data) {
                     var formData = new FormData();
-                    formData.append('file', data.file, data.file.name);
+                    formData.append('file', data.originalFile, data.originalFile.name);
                     formData.setXHR = function(xhr) {
                         xhr.upload.onprogress = function(e) {
-                            value.percent = 100.0 * e.loaded / e.total;
+                            value.originalFile.percent = 100.0 * e.loaded / e.total;
                             $rootScope.$apply();
                         };
                     };

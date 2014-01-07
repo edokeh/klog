@@ -32,8 +32,7 @@ define(function(require, exports, module) {
         };
     }];
 
-    IndexController.templateUrl = 'blog/index';
     IndexController.title = '文章列表';
 
-    module.exports = {'blog.index': IndexController};
+    module.exports = IndexController;
 });

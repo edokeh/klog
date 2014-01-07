@@ -15,6 +15,7 @@ define(function(require, exports, module) {
     common.factory(require('./factory/attach'));
 
     common.directive(require('./directive/angular-tag-list'));
+    common.directive(require('./directive/popover'));
 
     common.config(require('./config/http-method-override'));
 

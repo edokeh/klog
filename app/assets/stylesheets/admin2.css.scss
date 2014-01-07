@@ -134,7 +134,7 @@ body {
     border-left: 4px solid #aaa;
     color: #333;
     padding-left: 15px;
-    
+
     .tools {
       opacity: 1;
     }
@@ -285,7 +285,7 @@ body {
     right: 10px;
     top: 3px;
 
-    a {
+    & > a {
       margin-right: 5px;
       text-decoration: none;
       color: #000;
@@ -299,6 +299,24 @@ body {
         font-size: 1.2em;
       }
     }
+  }
+
+  .config-wrap {
+    input, select {
+      @include no-border();
+    }
+
+    td {
+      padding: 0;
+      &:first-child {
+        padding-left: 5px;
+      }
+    }
+
+    tr:first-of-type td {
+      border-top: none;
+    }
+
   }
 
   // SLUG TAG 等设置
@@ -344,14 +362,38 @@ body {
   }
 }
 
-// 上传
+// 上传的显示
 .upload-attaches {
-  position: absolute;
-  bottom: 30px;
-  right: 15px;
+  max-height: 170px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin: 5px;
+  list-style: none;
+  padding: 5px 10px;
 
-  .panel-heading {
-    padding: 5px 10px;
+  li {
+    width: 250px;
+
+    &:first-child {
+      border-top: none;
+    }
+  }
+
+  .title {
+    display: inline-block;
+    margin-right: 10px;
+    width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+
+  .progress {
+    height: 10px;
+    width: 120px;
+    display: inline-block;
+    margin-bottom: 0;
   }
 
   .action {
@@ -366,34 +408,6 @@ body {
       opacity: 0.8;
       background: white;
     }
-  }
-
-  ul {
-    max-height: 170px;
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
-
-  .list-group-item {
-    border-top: none;
-    width: 250px;
-  }
-
-  .title {
-    display: inline-block;
-    margin-right: 10px;
-    width: 100px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    vertical-align: middle;
-  }
-
-  .progress {
-    height: 10px;
-    width: 100px;
-    display: inline-block;
-    margin-bottom: 0;
   }
 
   //

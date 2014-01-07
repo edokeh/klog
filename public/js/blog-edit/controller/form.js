@@ -14,14 +14,17 @@ define(function(require, exports, module) {
             $scope.blog = Blog.get({id: $routeParams.id});
         }
         else {
-            $scope.blog = new Blog({content: ''});
+            $scope.blog = new Blog({
+                content: '',
+                status: 1,
+                attaches: []
+            });
         }
 
         $scope.UPLOAD_FILE_TYPES = '.jpg, .jpeg, .gif, .png, .pdf, .ppt, .pptx, .rar, .zip, .txt';
 
         $scope.save = function(isPublish) {
             if ($scope.form.$valid) {
-                $scope.blog.setPublish(isPublish);
                 $scope.blog.$save(function() {
                     Flash.tmp($scope.blog.id);
                     $location.url('/blogs');

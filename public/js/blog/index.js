@@ -6,11 +6,7 @@ define(function(require, exports, module) {
 
     var blog = angular.module('blog', []);
 
-    blog.controller(require('./controller/index'));
-
-    blog.template({
-        'blog/index': require('./template/index.html')
-    });
+    blog.seajsController(require('./controller/index'));
 
     module.exports = blog;
 });

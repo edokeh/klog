@@ -44,25 +44,20 @@ define(function(require, exports, module) {
              * @param $scope
              */
             addAttachFn: function($scope) {
-                $scope.attaches = [];
+                //$scope.attaches = $scope.blog.attaches;
 
                 // 上传
                 $scope.doUpload = function(files) {
                     _.each(files, function(file) {
-                        var attach = Attach.create({file: file});
-                        $scope.attaches.push(attach);
+                        var attach = Attach.create({originalFile: file});
+                        $scope.blog.attaches.push(attach);
                     });
-                    if (files.length > 0) {
-                        $scope.attachShow = true;
-                    }
+                    $scope.attachShow = true;
                 };
 
                 $scope.removeAttach = function(attach) {
                     attach.$remove(function() {
-                        $scope.attaches = _.without($scope.attaches, attach);
-                        if ($scope.attaches === 0) {
-                            $scope.attachShow = false;
-                        }
+                        $scope.blog.attaches = _.without($scope.blog.attaches, attach);
                     });
                 };
 
