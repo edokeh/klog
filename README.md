@@ -3,6 +3,8 @@
 Klog是一个简单的个人 Blog 程序
 基于Ruby 1.9 + Rails 3.2 + Mysql
 
+**此库已经停止维护，请移步https://github.com/edokeh/klog2**
+
 # 安装
 
 请参考这篇文章
